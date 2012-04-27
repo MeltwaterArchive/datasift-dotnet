@@ -1,4 +1,23 @@
-datasift-dotnet
-===============
+DataSift .NET Client Library
+============================
 
-The official .NET API library for DataSift.
+This is the official .NET library for accessing [Datasift](http://datasift.com/). See the examples
+folder for some simple example usage.
+
+Requirements
+------------
+
+* Compiler for .NET 3.5+
+
+License
+-------
+
+All code contained in this repository is Copyright 2012 MediaSift Ltd.
+
+This code is released under the BSD license. Please see the LICENSE file for
+more details.
+
+Changelog
+---------
+
+* v.0.1.0 Initial release (2012-04-??)

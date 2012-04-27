@@ -4,3 +4,6 @@ obj
 
 # mstest test results
 TestResults
+Local.testsettings
+TraceAndTestImpact.testsettings
+datasift.vsmdi
