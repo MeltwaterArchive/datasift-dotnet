@@ -7,10 +7,8 @@ namespace datasift_tests
 {
     public class TestData
     {
-        //static public string username = "<your datasift username>";
-        //static public string api_key = "<your datasift api_key>";
-        static public string username = "3ft9";
-        static public string api_key = "01af49102292e7cb67fef7eee30b81c2";
+        static public string username = "<your datasift username>";
+        static public string api_key = "<your datasift api_key>";
 
         static public string definition = "interaction.content contains \"datasift\"";
         static public string definition_hash = "947b690ec9dca525fb8724645e088d79";
