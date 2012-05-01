@@ -27,17 +27,24 @@ namespace datasift_examples
 
         public void run()
         {
-            string csdl = "interaction.content contains \"football\"";
-            
-            m_form.footballLog("Creating definition...");
-            m_form.footballLog("  " + csdl);
-            Definition def = m_form.user.createDefinition(csdl);
+            try
+            {
+                string csdl = "interaction.content contains \"football\"";
 
-            m_form.footballLog("Creating consumer...");
-            m_consumer = def.getConsumer(this, "http");
+                m_form.footballLog("Creating definition...");
+                m_form.footballLog("  " + csdl);
+                Definition def = m_form.user.createDefinition(csdl);
 
-            m_form.footballLog("Consuming...");
-            m_consumer.consume();
+                m_form.footballLog("Creating consumer...");
+                m_consumer = def.getConsumer(this, "http");
+
+                m_form.footballLog("Consuming...");
+                m_consumer.consume();
+            }
+            catch (Exception e)
+            {
+                m_form.footballLog(e.GetType().ToString() + ": " + e.Message);
+            }
         }
 
         public void onConnect(StreamConsumer consumer)
@@ -48,23 +55,37 @@ namespace datasift_examples
 
         public void onInteraction(StreamConsumer consumer, Interaction interaction, string hash)
         {
-            m_form.footballLog("Type: " + interaction.getStringVal("interaction.type"));
-            m_form.footballLog("Content: " + interaction.getStringVal("interaction.content"));
-            m_form.footballLog("--");
-
-            m_count--;
-            if (m_count == 0)
+            try
             {
-                m_form.footballLog("Stopping consumer...");
-                consumer.stop();
+                m_form.footballLog("Type: " + interaction.getStringVal("interaction.type"));
+                m_form.footballLog("Content: " + interaction.getStringVal("interaction.content"));
+                m_form.footballLog("--");
+
+                m_count--;
+                if (m_count == 0)
+                {
+                    m_form.footballLog("Stopping consumer...");
+                    consumer.stop();
+                }
+            }
+            catch (Exception e)
+            {
+                m_form.footballLog(e.GetType().ToString() + ": " + e.Message);
             }
         }
 
         public void onDeleted(StreamConsumer consumer, Interaction interaction, string hash)
         {
-            m_form.footballLog("Delete request for interaction " + interaction.getStringVal("interaction.id") + " of type " + interaction.getStringVal("interaction.type"));
-            m_form.footballLog("Please delete it from your archive.");
-            m_form.footballLog("--");
+            try
+            {
+                m_form.footballLog("Delete request for interaction " + interaction.getStringVal("interaction.id") + " of type " + interaction.getStringVal("interaction.type"));
+                m_form.footballLog("Please delete it from your archive.");
+                m_form.footballLog("--");
+            }
+            catch (Exception e)
+            {
+                m_form.footballLog(e.GetType().ToString() + ": " + e.Message);
+            }
         }
 
         public void onWarning(StreamConsumer consumer, string message)
