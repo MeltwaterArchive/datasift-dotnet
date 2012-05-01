@@ -7,3 +7,6 @@ TestResults
 Local.testsettings
 TraceAndTestImpact.testsettings
 datasift.vsmdi
+
+# VS options files
+*.suo

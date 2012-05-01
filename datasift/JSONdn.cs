@@ -41,8 +41,12 @@ namespace datasift
             return retval;
         }
 
-        public JToken getJVal(string key)
+        public JToken getJVal(string key = "")
         {
+            if (key.Length == 0)
+            {
+                return (JToken)m_data;
+            }
             return resolveString(key);
         }
 

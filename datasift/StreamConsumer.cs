@@ -77,13 +77,17 @@ namespace datasift
 
         protected string getUrl()
         {
-            if (m_hashes.Count == 1)
+            if (m_hashes.Count == 0)
             {
-                return "http://" + User.STREAM_BASE_URL + "multi?hashes=" + String.Join(",", m_hashes.ToArray());
+                throw new InvalidDataException("At least one hash is required");
+            }
+            else if (m_hashes.Count == 1)
+            {
+                return "http://" + User.STREAM_BASE_URL + m_hashes[0];
             }
             else
             {
-                return "http://" + User.STREAM_BASE_URL + m_hashes[0];
+                return "http://" + User.STREAM_BASE_URL + "multi?hashes=" + String.Join(",", m_hashes.ToArray());
             }
         }
 
@@ -153,11 +157,11 @@ namespace datasift
             {
                 if (data.has("deleted"))
                 {
-                    m_event_handler.onDeleted(this, (Interaction)data, m_hashes[0]);
+                    m_event_handler.onDeleted(this, new Interaction(data.getJVal()), m_hashes[0]);
                 }
                 else
                 {
-                    m_event_handler.onInteraction(this, (Interaction)data, m_hashes[0]);
+                    m_event_handler.onInteraction(this, new Interaction(data.getJVal()), m_hashes[0]);
                 }
             }
             else

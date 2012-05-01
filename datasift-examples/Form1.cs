@@ -18,8 +18,6 @@ namespace datasift_examples
             get { return m_user; }
         }
 
-        private Football m_football = null;
-
         public Form1()
         {
             InitializeComponent();
@@ -42,49 +40,123 @@ namespace datasift_examples
 
             if (m_user == null || m_user.getUsername() != username || m_user.getApiKey() != api_key)
             {
+                m_user = null;
                 m_user = new User(username, api_key);
+            }
+
+            if (e.TabPage.Text.EndsWith("*"))
+            {
+                e.TabPage.Text = e.TabPage.Text.TrimEnd(new char[] { '*' });
             }
         }
 
-        private delegate void lbAddCallback(ListBox lb, string line);
-        private void lbAdd(ListBox lb, string line)
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (lb.InvokeRequired)
+            if (m_football != null)
             {
-                this.Invoke(new lbAddCallback(lbAdd), new object[] { lb, line });
+                m_football.stop();
+            }
+
+            if (m_deletes != null)
+            {
+                m_deletes.stop();
+            }
+        }
+
+        private delegate void appendTxtLogCallback(TextBox tb, string line, TabPage tp);
+        private void appendTxtLog(TextBox tb, string txt, TabPage tp = null)
+        {
+            if (tb.InvokeRequired)
+            {
+                this.Invoke(new appendTxtLogCallback(appendTxtLog), new object[] { tb, txt, tp });
             }
             else
             {
-                lb.Items.Add(line);
-                int idx = lb.Items.Count - 1;
-                lb.SetSelected(idx, true);
-                lb.SetSelected(idx, false);
+                tb.AppendText(txt);
+                if (tp != null && tp != tabs.SelectedTab && !tp.Text.EndsWith("*"))
+                {
+                    tp.Text += "*";
+                }
             }
         }
+
+        #region football
+        private Football m_football = null;
 
         public void btnFootballStart_Click(object sender = null, EventArgs e = null)
         {
-            btnFootballStart.Enabled = false;
-            m_football = new Football(this);
-            m_football.start();
-        }
-
-        private delegate void enableFootballStartButtonCallback();
-        public void enableFootballStartButton()
-        {
-            if (btnFootballStart.InvokeRequired)
+            if (btnFootballStart.Text == "Start")
             {
-                this.Invoke(new enableFootballStartButtonCallback(enableFootballStartButton));
+                btnFootballStart.Text = "Stop";
+                m_football = new Football(this);
+                m_football.start();
             }
             else
             {
-                btnFootballStart.Enabled = true;
+                footballLog("Stopping...");
+                m_football.stop();
+            }
+
+        }
+
+        private delegate void resetFootballStartButtonCallback();
+        public void resetFootballStartButton()
+        {
+            if (btnFootballStart.InvokeRequired)
+            {
+                this.Invoke(new resetFootballStartButtonCallback(resetFootballStartButton));
+            }
+            else
+            {
+                btnFootballStart.Text = "Start";
+                m_football = null;
             }
         }
 
-        public void footballLog(string log)
+        public void footballLog(string log, bool addCR = true)
         {
-            lbAdd(lbFootball, log);
+            appendTxtLog(txtFootballLog, log + (addCR ? "\r\n" : ""), tabFootball);
         }
+        #endregion
+
+        #region deletes
+        private Deletes m_deletes = null;
+
+        public void btnDeletesStart_Click(object sender = null, EventArgs e = null)
+        {
+            if (btnDeletesStart.Text == "Start")
+            {
+                btnDeletesStart.Text = "Stop";
+                m_deletes = null;
+                m_deletes = new Deletes(this);
+                m_deletes.start();
+                deletesLog("\r\n");
+            }
+            else
+            {
+                deletesLog("\r\nStopping...");
+                m_deletes.stop();
+            }
+        }
+
+        private delegate void resetDeletesStartButtonCallback();
+        public void resetDeletesStartButton()
+        {
+            if (btnDeletesStart.InvokeRequired)
+            {
+                this.Invoke(new resetDeletesStartButtonCallback(resetDeletesStartButton));
+            }
+            else
+            {
+                btnDeletesStart.Text = "Start";
+                m_deletes = null;
+            }
+        }
+
+        public void deletesLog(string log, bool addCR = true)
+        {
+            appendTxtLog(txtDeletesLog, log + (addCR ? "\r\n" : ""), tabDeletes);
+        }
+        #endregion
     }
 }

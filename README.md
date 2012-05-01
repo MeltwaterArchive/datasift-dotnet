@@ -2,7 +2,7 @@ DataSift .NET Client Library
 ============================
 
 This is the official .NET library for accessing [Datasift](http://datasift.com/). See the examples
-folder for some simple example usage.
+project for some simple example usage.
 
 Requirements
 ------------
@@ -20,4 +20,4 @@ more details.
 Changelog
 ---------
 
-* v.0.1.0 Initial release (2012-04-??)
+* v.0.1.0 Initial release (2012-05-01)
