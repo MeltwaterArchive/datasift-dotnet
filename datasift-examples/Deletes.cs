@@ -7,14 +7,14 @@ using datasift;
 
 namespace datasift_examples
 {
-    class Football : IEventHandler
+    class Deletes : IEventHandler
     {
         private Thread m_thread = null;
         private Form1 m_form = null;
         private int m_count = 10;
         private StreamConsumer m_consumer = null;
 
-        public Football(Form1 f)
+        public Deletes(Form1 f)
         {
             m_form = f;
             m_thread = new Thread(new ThreadStart(run));
@@ -37,48 +37,39 @@ namespace datasift_examples
         {
             try
             {
-                string csdl = "interaction.content contains \"football\"";
+                string csdl = "interaction.type == \"twitter\" and interaction.sample <= 1.0";
 
-                m_form.footballLog("Creating definition...");
-                m_form.footballLog("  " + csdl);
+                m_form.deletesLog("Creating definition...");
+                m_form.deletesLog("  " + csdl);
                 Definition def = m_form.user.createDefinition(csdl);
 
-                m_form.footballLog("Creating consumer...");
+                m_form.deletesLog("Creating consumer...");
                 m_consumer = def.getConsumer(this, "http");
 
-                m_form.footballLog("Consuming...");
+                m_form.deletesLog("Consuming...");
                 m_consumer.consume();
             }
             catch (Exception e)
             {
-                m_form.footballLog(e.GetType().ToString() + ": " + e.Message);
+                m_form.deletesLog(e.GetType().ToString() + ": " + e.Message);
             }
         }
 
         public void onConnect(StreamConsumer consumer)
         {
-            m_form.footballLog("Connected");
-            m_form.footballLog("--");
+            m_form.deletesLog("Connected");
+            m_form.deletesLog("--");
         }
 
         public void onInteraction(StreamConsumer consumer, Interaction interaction, string hash)
         {
             try
             {
-                m_form.footballLog("Type: " + interaction.getStringVal("interaction.type"));
-                m_form.footballLog("Content: " + interaction.getStringVal("interaction.content"));
-                m_form.footballLog("--");
-
-                m_count--;
-                if (m_count == 0)
-                {
-                    m_form.footballLog("Stopping consumer...");
-                    consumer.stop();
-                }
+                m_form.deletesLog(".", false);
             }
             catch (Exception e)
             {
-                m_form.footballLog(e.GetType().ToString() + ": " + e.Message);
+                m_form.deletesLog(e.GetType().ToString() + ": " + e.Message);
             }
         }
 
@@ -86,34 +77,36 @@ namespace datasift_examples
         {
             try
             {
-                m_form.footballLog("Delete request for interaction " + interaction.getStringVal("interaction.id") + " of type " + interaction.getStringVal("interaction.type"));
-                m_form.footballLog("Please delete it from your archive.");
-                m_form.footballLog("--");
+                m_form.deletesLog("X", false);
+
+                m_count--;
+                if (m_count == 0)
+                {
+                    m_form.deletesLog("\r\n\r\nStopping consumer...");
+                    consumer.stop();
+                }
             }
             catch (Exception e)
             {
-                m_form.footballLog(e.GetType().ToString() + ": " + e.Message);
+                m_form.deletesLog(e.GetType().ToString() + ": " + e.Message);
             }
         }
 
         public void onWarning(StreamConsumer consumer, string message)
         {
-            m_form.footballLog("WARN: " + message);
-            m_form.footballLog("--");
+            m_form.deletesLog("\r\nWARN: " + message);
         }
 
         public void onError(StreamConsumer consumer, string message)
         {
-            m_form.footballLog("ERR: " + message);
-            m_form.footballLog("--");
+            m_form.deletesLog("\r\nERR: " + message);
         }
 
         public void onDisconnect(StreamConsumer consumer)
         {
-            m_form.footballLog("Disconnected");
-            m_form.footballLog("--");
+            m_form.deletesLog("\r\nDisconnected");
 
-            m_form.resetFootballStartButton();
+            m_form.resetDeletesStartButton();
         }
     }
 }

@@ -58,18 +58,20 @@ namespace datasift
                     break;
                 }
 
-                if ((int)response.StatusCode == 200)
+                int statusCode = (int)response.StatusCode;
+
+                if (statusCode == 200)
                 {
                     connectionDelay = 0;
                     onConnect();
                     readStream(new StreamReader(response.GetResponseStream()));
                 }
-                else if ((int)response.StatusCode == 404)
+                else if (statusCode == 404)
                 {
                     onError("Hash not found");
                     break;
                 }
-                else if ((int)response.StatusCode >= 400 && (int)response.StatusCode < 500 && (int)response.StatusCode != 420)
+                else if (statusCode >= 400 && statusCode < 500 && statusCode != 420)
                 {
                     StreamReader response_stream = new StreamReader(response.GetResponseStream());
                     string json_data = "init";
@@ -84,7 +86,7 @@ namespace datasift
                     }
                     else
                     {
-                        onError("Unhandled error code: " + response.StatusCode.ToString() + " " + json_data);
+                        onError("Unhandled error code: " + statusCode.ToString() + " " + json_data);
                     }
                     break;
                 }
@@ -100,10 +102,10 @@ namespace datasift
                     }
                     else
                     {
-                        onError("Received " + response.StatusCode.ToString() + " response, no more retries");
+                        onError("Received " + statusCode.ToString() + " response, no more retries");
                         break;
                     }
-                    onWarning("Received " + response.StatusCode.ToString() + " response, retrying in " + connectionDelay + " seconds");
+                    onWarning("Received " + statusCode.ToString() + " response, retrying in " + connectionDelay + " seconds");
                 }
             }
             onDisconnect();
