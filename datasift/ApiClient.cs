@@ -43,9 +43,12 @@ namespace datasift
                 res = (HttpWebResponse)e.Response;
             }
 
+            int rate_limit = res.GetResponseHeader("x-ratelimit-limit").Length > 0 ? Convert.ToInt16(res.GetResponseHeader("x-ratelimit-limit")) : -1;
+            int rate_limit_remaining = res.GetResponseHeader("x-ratelimit-limit").Length > 0 ? Convert.ToInt16(res.GetResponseHeader("x-ratelimit-remaining")) : -1;
+
             // Get the response and build the return value
             StreamReader response_stream = new StreamReader(res.GetResponseStream());
-            ApiResponse retval = new ApiResponse((int)res.StatusCode, response_stream.ReadToEnd(), Convert.ToInt16(res.GetResponseHeader("x-ratelimit-limit")), Convert.ToInt16(res.GetResponseHeader("x-ratelimit-remaining")));
+            ApiResponse retval = new ApiResponse((int)res.StatusCode, response_stream.ReadToEnd(), rate_limit, rate_limit_remaining);
             response_stream.Close();
 
             return retval;

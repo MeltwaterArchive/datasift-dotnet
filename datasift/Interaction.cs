@@ -17,7 +17,7 @@ namespace datasift
             : base(obj)
         {
         }
-        
+
         public Interaction(string source)
             : base(source)
         {
