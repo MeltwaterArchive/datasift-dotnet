@@ -6,8 +6,15 @@ using Newtonsoft.Json.Linq;
 
 namespace datasift
 {
+    /// <summary>
+    /// This class represents a response from the API. Once created, objects
+    /// are immutable.
+    /// </summary>
     public class ApiResponse
     {
+        /// <summary>
+        /// The HTTP response code.
+        /// </summary>
         private int m_response_code = -1;
         public int response_code
         {
@@ -17,6 +24,9 @@ namespace datasift
             }
         }
 
+        /// <summary>
+        /// The value of the x-rate-limit-limit header.
+        /// </summary>
         private int m_rate_limit = -1;
         public int rate_limit
         {
@@ -26,6 +36,9 @@ namespace datasift
             }
         }
 
+        /// <summary>
+        /// The value of the x-rate-limit-remaining header.
+        /// </summary>
         private int m_rate_limit_remaining = -1;
         public int rate_limit_remaining
         {
@@ -35,6 +48,9 @@ namespace datasift
             }
         }
 
+        /// <summary>
+        /// The data from the response as a JSONdn object.
+        /// </summary>
         private JSONdn m_data = null;
         public JSONdn data
         {
@@ -44,6 +60,13 @@ namespace datasift
             }
         }
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="status_code">The HTTP status code.</param>
+        /// <param name="response_data">The content of the response - expected to be JSON.</param>
+        /// <param name="rate_limit">The value of the x-rate-limit-limit header.</param>
+        /// <param name="rate_limit_remaining">The value of the x-rate-limit-remaining header.</param>
         public ApiResponse(int status_code, string response_data, int rate_limit = -1, int rate_limit_remaining = -1)
         {
             try
