@@ -6,31 +6,77 @@ using Newtonsoft.Json.Linq;
 
 namespace datasift
 {
+    /// <summary>
+    /// A Definition represents a stream. For a Definition object to be valid
+    /// it must either be constructed with a hash or contain CSDL.
+    /// </summary>
     public class Definition
     {
+        /// <summary>
+        /// The user that "owns" this Definition.
+        /// </summary>
         private User m_user = null;
+
+        /// <summary>
+        /// The hash for this definition, or an empty string if it has yet to
+        /// be validated or compiled.
+        /// </summary>
         private string m_hash = "";
+
+        /// <summary>
+        /// The date that this Definition was first created.
+        /// </summary>
         private DateTime m_created_at = DateTime.MinValue;
+
+        /// <summary>
+        /// The total DPU cost of this Definition, or -1 if it has yet to be
+        /// validated or compiled.
+        /// </summary>
         private double m_total_dpu = -1;
+
+        /// <summary>
+        /// The CSDL for this Definition.
+        /// </summary>
         private string m_csdl = "";
 
-        public Definition(User u, string csdl = "", string hash = "")
+        /// <summary>
+        /// Constructor. Note that if you create a Definition with both a
+        /// non-empty CSDL and a non-empty hash the hash will be ignored.
+        /// </summary>
+        /// <param name="u">The user to whom this Definition should belong.</param>
+        /// <param name="csdl">An initial CSDL string.</param>
+        /// <param name="hash">An initial hash string.</param>
+        public Definition(User user, string csdl = "", string hash = "")
         {
-            m_user = u;
+            m_user = user;
             m_hash = hash;
             set(csdl);
         }
 
+        /// <summary>
+        /// Get the User object that created this Definition.
+        /// </summary>
+        /// <returns>The User object.</returns>
         public User getUser()
         {
             return m_user;
         }
 
+        /// <summary>
+        /// Get the CSDL string.
+        /// </summary>
+        /// <returns>The CSDL.</returns>
         public string get()
         {
             return m_csdl;
         }
 
+        /// <summary>
+        /// Set the CSDL for this definition. If it doesn't match the current
+        /// CSDL the hash will be cleared to force a compilation if the hash
+        /// is then subsequently requested.
+        /// </summary>
+        /// <param name="csdl">The new CSDL string.</param>
         public void set(string csdl)
         {
             csdl = csdl.Trim();
@@ -42,6 +88,11 @@ namespace datasift
             }
         }
 
+        /// <summary>
+        /// Get the hash for this Definition. If the hash is empty the CSDL
+        /// will be compiled to obtain it.
+        /// </summary>
+        /// <returns>The hash.</returns>
         public string getHash()
         {
             if (m_hash.Length == 0)
@@ -52,6 +103,10 @@ namespace datasift
             return m_hash;
         }
 
+        /// <summary>
+        /// Clears the details obtained from DataSift when the CSDL was
+        /// compiled.
+        /// </summary>
         public void clearHash()
         {
             if (m_csdl.Length == 0)
@@ -64,6 +119,11 @@ namespace datasift
             m_total_dpu = -1;
         }
 
+        /// <summary>
+        /// Get the date when this definition was first created. The CSDL will
+        /// be validated to obtain the created_at date if necessary.
+        /// </summary>
+        /// <returns>The created_at date.</returns>
         public DateTime getCreatedAt()
         {
             if (m_csdl.Length == 0)
@@ -79,6 +139,11 @@ namespace datasift
             return m_created_at;
         }
 
+        /// <summary>
+        /// Get the total DPU cost for this Definition. The CSDL will be
+        /// validated to obtain this if necessary.
+        /// </summary>
+        /// <returns>The total DPU cost.</returns>
         public double getTotalDpu()
         {
             if (m_csdl.Length == 0)
@@ -92,8 +157,12 @@ namespace datasift
             return m_total_dpu;
         }
 
+        /// <summary>
+        /// Send the CSDL to DataSift for compilation.
+        /// </summary>
         public void compile()
         {
+            // We must have some CSDL in order to compile the CSDL!
             if (m_csdl.Length == 0)
             {
                 throw new InvalidDataException("Cannot compile an empty definition");
@@ -134,8 +203,12 @@ namespace datasift
             }
         }
 
+        /// <summary>
+        /// Send the CSDL to DataSift for validation.
+        /// </summary>
         public void validate()
         {
+            // We must have some CSDL to be validate.
             if (m_csdl.Length == 0)
             {
                 throw new InvalidDataException("Cannot validate an empty definition");
@@ -170,6 +243,10 @@ namespace datasift
             }
         }
 
+        /// <summary>
+        /// Get the DPU cost breakdown for this Definition.
+        /// </summary>
+        /// <returns>A Dpu object.</returns>
         public Dpu getDpuBreakdown()
         {
             if (m_csdl.Length == 0)
@@ -181,6 +258,12 @@ namespace datasift
             return new Dpu(m_user.callApi("dpu", parameters));
         }
 
+        /// <summary>
+        /// Get buffered tweets.
+        /// </summary>
+        /// <param name="count">The number of tweets to get - see http://dev.datasift.com/ for the limit.</param>
+        /// <param name="from_id">The ID of the latest interaction that you received.</param>
+        /// <returns>An array of Interaction objects.</returns>
         public Interaction[] getBuffered(uint count = 0, ulong from_id = 0)
         {
             if (m_csdl.Length == 0)
@@ -217,6 +300,12 @@ namespace datasift
             return retval.ToArray();
         }
 
+        /// <summary>
+        /// Get a consumer object of the given type for this Definition.
+        /// </summary>
+        /// <param name="event_handler">An object that implements the IEventHandler interface.</param>
+        /// <param name="type">The consumer type required.</param>
+        /// <returns>An instance of a class derived from StreamConsumer.</returns>
         public StreamConsumer getConsumer(IEventHandler event_handler, string type = "http")
         {
             return StreamConsumer.factory(m_user, type, this, event_handler);
