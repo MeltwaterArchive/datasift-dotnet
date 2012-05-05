@@ -8,8 +8,20 @@ using System.Web;
 
 namespace datasift
 {
+    /// <summary>
+    /// The ApiClient class is the default implementation for making HTTP
+    /// requests to the DataSift API.
+    /// </summary>
     class ApiClient
     {
+        /// <summary>
+        /// Calls an endpoint on the DataSift HTTP API.
+        /// </summary>
+        /// <param name="username">Your DataSift username.</param>
+        /// <param name="api_key">Your DataSift API key.</param>
+        /// <param name="endpoint">The endpoint to call.</param>
+        /// <param name="parameters">The parameters to pass as POST data.</param>
+        /// <returns>An ApiResponse instance containing the response details.</returns>
         public static ApiResponse callAPI(string username, string api_key, string endpoint, Dictionary<string, string> parameters)
         {
             // Set up the request

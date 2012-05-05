@@ -6,12 +6,26 @@ using Newtonsoft.Json.Linq;
 
 namespace datasift
 {
+    /// <summary>
+    /// A Dpu object represents the cost breakdown of a Definition. Once
+    /// created, an instance of this class is immutable.
+    /// </summary>
     public class Dpu
     {
+        /// <summary>
+        /// Operation (string) => DpuItem
+        /// </summary>
         private Dictionary<string, DpuItem> m_dpu = null;
 
+        /// <summary>
+        /// The total DPU cost.
+        /// </summary>
         private double m_total = 0;
 
+        /// <summary>
+        /// Constructor.
+        /// </summary>
+        /// <param name="data">The JSON API response.</param>
         public Dpu(JSONdn data)
         {
             m_dpu = new Dictionary<string, DpuItem>();
@@ -36,11 +50,19 @@ namespace datasift
             m_total = data.getDoubleVal("dpu");
         }
 
+        /// <summary>
+        /// Get the total DPU cost.
+        /// </summary>
+        /// <returns>The total DPU cost.</returns>
         public double getTotal()
         {
             return m_total;
         }
 
+        /// <summary>
+        /// Get the DPU structure.
+        /// </summary>
+        /// <returns>A dictionary of string => DpuItem.</returns>
         public Dictionary<string, DpuItem> getDpu()
         {
             return m_dpu;
