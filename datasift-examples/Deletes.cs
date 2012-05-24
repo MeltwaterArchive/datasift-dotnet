@@ -27,7 +27,7 @@ namespace datasift_examples
 
         public void stop()
         {
-            if (m_consumer.isRunning())
+            if (m_consumer != null && m_consumer.isRunning())
             {
                 m_consumer.stop();
             }
@@ -52,6 +52,10 @@ namespace datasift_examples
             catch (Exception e)
             {
                 m_form.deletesLog(e.GetType().ToString() + ": " + e.Message);
+                if (m_consumer != null)
+                {
+                    m_consumer.stop();
+                }
             }
         }
 

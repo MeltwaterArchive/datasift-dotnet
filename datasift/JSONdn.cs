@@ -57,8 +57,7 @@ namespace datasift
             {
                 if (retval[parts[i]] == null)
                 {
-                    retval = null;
-                    break;
+                    throw new InvalidDataException("JSON key does not exist");
                 }
                 retval = retval[parts[i]];
             }

@@ -41,11 +41,11 @@
             this.tabFootball = new System.Windows.Forms.TabPage();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.btnFootballStart = new System.Windows.Forms.Button();
+            this.txtFootballLog = new System.Windows.Forms.TextBox();
             this.tabDeletes = new System.Windows.Forms.TabPage();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.btnDeletesStart = new System.Windows.Forms.Button();
             this.txtDeletesLog = new System.Windows.Forms.TextBox();
-            this.txtFootballLog = new System.Windows.Forms.TextBox();
             label2 = new System.Windows.Forms.Label();
             panel1 = new System.Windows.Forms.Panel();
             label4 = new System.Windows.Forms.Label();
@@ -208,6 +208,19 @@
             this.btnFootballStart.UseVisualStyleBackColor = true;
             this.btnFootballStart.Click += new System.EventHandler(this.btnFootballStart_Click);
             // 
+            // txtFootballLog
+            // 
+            this.txtFootballLog.BackColor = System.Drawing.SystemColors.Window;
+            this.txtFootballLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtFootballLog.Location = new System.Drawing.Point(0, 0);
+            this.txtFootballLog.Multiline = true;
+            this.txtFootballLog.Name = "txtFootballLog";
+            this.txtFootballLog.ReadOnly = true;
+            this.txtFootballLog.Size = new System.Drawing.Size(1022, 503);
+            this.txtFootballLog.TabIndex = 1;
+            this.txtFootballLog.TabStop = false;
+            this.txtFootballLog.Text = "Click the \"Start\" button to run this example.";
+            // 
             // tabDeletes
             // 
             this.tabDeletes.Controls.Add(this.splitContainer2);
@@ -261,19 +274,6 @@
             this.txtDeletesLog.TabIndex = 0;
             this.txtDeletesLog.TabStop = false;
             this.txtDeletesLog.Text = "Click the \"Start\" button to run this example.";
-            // 
-            // txtFootballLog
-            // 
-            this.txtFootballLog.BackColor = System.Drawing.SystemColors.Window;
-            this.txtFootballLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.txtFootballLog.Location = new System.Drawing.Point(0, 0);
-            this.txtFootballLog.Multiline = true;
-            this.txtFootballLog.Name = "txtFootballLog";
-            this.txtFootballLog.ReadOnly = true;
-            this.txtFootballLog.Size = new System.Drawing.Size(1022, 503);
-            this.txtFootballLog.TabIndex = 1;
-            this.txtFootballLog.TabStop = false;
-            this.txtFootballLog.Text = "Click the \"Start\" button to run this example.";
             // 
             // Form1
             // 

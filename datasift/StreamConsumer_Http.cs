@@ -88,7 +88,7 @@ namespace datasift
                     break;
                 }
 
-                int statusCode = (int)response.StatusCode;
+                int statusCode = (response == null ? -1 : (int)response.StatusCode);
 
                 if (statusCode == 200)
                 {
@@ -138,11 +138,11 @@ namespace datasift
                     else
                     {
                         // We've hit the retry limit, tell the user and break out of the reconnect loop.
-                        onError("Received " + statusCode.ToString() + " response, no more retries");
+                        onError((statusCode == -1 ? "Connection failed" : "Received " + statusCode.ToString() + " response") + ", no more retries");
                         break;
                     }
                     // Tell the user that we're retrying.
-                    onWarning("Received " + statusCode.ToString() + " response, retrying in " + connectionDelay + " seconds");
+                    onWarning((statusCode == -1 ? "Connection failed" : "Received " + statusCode.ToString() + " response") + ", retrying in " + connectionDelay + " seconds");
                 }
             }
 
@@ -172,7 +172,7 @@ namespace datasift
                 {
                 }
 
-                if (line.Length == 0)
+                if (line == null || line.Length == 0)
                 {
                     // An error occurred, break out of the loop. This will cause the stream to disconnect.
                     break;
