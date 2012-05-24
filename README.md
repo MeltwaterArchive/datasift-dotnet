@@ -20,4 +20,6 @@ more details.
 Changelog
 ---------
 
+* v.0.2.0 Fixed a connection failure bug (2012-05-24)
+
 * v.0.1.0 Initial release (2012-05-01)
