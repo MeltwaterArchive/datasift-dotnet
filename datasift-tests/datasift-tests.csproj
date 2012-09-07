@@ -54,7 +54,6 @@
     <Compile Include="TestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test_Definition.cs" />
-    <Compile Include="Test_LiveApi.cs" />
     <Compile Include="Test_User.cs" />
   </ItemGroup>
   <ItemGroup>
