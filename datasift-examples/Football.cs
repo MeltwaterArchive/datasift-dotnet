@@ -27,7 +27,7 @@ namespace datasift_examples
 
         public void stop()
         {
-            if (m_consumer.isRunning())
+            if (m_consumer != null && m_consumer.isRunning())
             {
                 m_consumer.stop();
             }
