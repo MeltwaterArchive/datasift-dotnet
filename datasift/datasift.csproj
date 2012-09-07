@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AbstractApiClient.cs" />
     <Compile Include="Dpu.cs" />
     <Compile Include="DpuItem.cs" />
     <Compile Include="Exceptions\AccessDeniedException.cs" />
@@ -54,15 +55,22 @@
     <Compile Include="Definition.cs" />
     <Compile Include="Exceptions\InvalidDataException.cs" />
     <Compile Include="Exceptions\RateLimitExceededException.cs" />
+    <Compile Include="Historic.cs" />
+    <Compile Include="HistoricDataAvailability.cs" />
+    <Compile Include="HistoricDataAvailabilitySource.cs" />
+    <Compile Include="HistoricList.cs" />
     <Compile Include="IEventHandler.cs" />
     <Compile Include="Interaction.cs" />
     <Compile Include="JSONdn.cs" />
     <Compile Include="MockApiClient.cs" />
+    <Compile Include="PushSubscription.cs" />
+    <Compile Include="PushSubscriptionList.cs" />
     <Compile Include="StreamConsumer.cs" />
     <Compile Include="StreamConsumer_Http.cs" />
     <Compile Include="Usage.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utils.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

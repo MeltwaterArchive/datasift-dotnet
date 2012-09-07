@@ -16,7 +16,7 @@ namespace datasift_tests
         public void InitTest()
         {
             m_user = new User(TestData.username, TestData.api_key);
-            m_user.setApiClient(new User.CallAPIDelegate(MockApiClient.callAPI));
+            m_user.setApiClient(new MockApiClient(TestData.username, TestData.api_key));
         }
 
         [TestCleanup()]
@@ -36,7 +36,7 @@ namespace datasift_tests
         public void Test_CreateDefinitionEmpty()
         {
             Definition def = m_user.createDefinition();
-            Assert.AreEqual("", def.get(), "Failed to create an empty definition");
+            Assert.AreEqual(String.Empty, def.get(), "Failed to create an empty definition");
         }
 
         [TestMethod]

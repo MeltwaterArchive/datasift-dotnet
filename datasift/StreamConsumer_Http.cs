@@ -156,12 +156,12 @@ namespace datasift
         /// <param name="reader">The StreamReader from the connection.</param>
         private void readStream(StreamReader reader)
         {
-            string line = "";
+            string line = String.Empty;
             // Before we read each line, check that we're still supposed to be running.
             while (isRunning(true))
             {
                 // Empty the line.
-                line = "";
+                line = String.Empty;
 
                 // Read a line, ignoring exceptions - we check for an empty string below.
                 try

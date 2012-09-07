@@ -150,6 +150,17 @@ namespace datasift
         }
 
         /// <summary>
+        /// Get the item at the given key as a unix timestamp and convert it
+        /// to a DateTime object.
+        /// </summary>
+        /// <param name="key">The item key.</param>
+        /// <returns>The DateTime object.</returns>
+        public DateTime getDateTimeFromLongVal(string key)
+        {
+            return Utils.UnixTimestampToDateTime(getLongVal(key));
+        }
+
+        /// <summary>
         /// Get the item at the given key as a string.
         /// </summary>
         /// <param name="key">The item key.</param>
