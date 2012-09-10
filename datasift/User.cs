@@ -165,6 +165,17 @@ namespace datasift
         }
 
         /// <summary>
+        /// Get a list of Historics queries in your account.
+        /// </summary>
+        /// <param name="page">The page number to get.</param>
+        /// <param name="per_page">The number of items per page.</param>
+        /// <returns>A list of Historic objects.</returns>
+        public List<Historic> listHistorics(int page = 1, int per_page = 20)
+        {
+            return Historic.list(this, page, per_page);
+        }
+
+        /// <summary>
         /// Get a StreamConsumer object for the given stream hash.
         /// </summary>
         /// <param name="hash">The stream hash.</param>
@@ -211,6 +222,8 @@ namespace datasift
             switch (res.response_code)
             {
                 case 200:
+                case 202:
+                case 204:
                     return res.data;
                 case 401:
                     errmsg = "Authentication failed";

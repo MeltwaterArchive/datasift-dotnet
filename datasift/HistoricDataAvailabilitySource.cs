@@ -23,7 +23,7 @@ namespace datasift
 
             foreach (JToken version in json.getJVal("versions"))
 	        {
-		        m_versions.Add(Convert.ToInt32(version));
+		        m_versions.Add(Convert.ToInt32(version.ToString()));
 	        }
             
             foreach (string key in json.getKeys("augmentations"))

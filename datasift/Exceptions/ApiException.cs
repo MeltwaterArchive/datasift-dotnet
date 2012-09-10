@@ -3,7 +3,7 @@
 namespace datasift
 {
     [Serializable()]
-    public class ApiException : Exception
+    public class ApiException : DataSiftException
     {
         private int m_code = 0;
         public int Code

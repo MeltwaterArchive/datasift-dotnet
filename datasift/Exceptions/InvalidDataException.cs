@@ -3,7 +3,7 @@
 namespace datasift
 {
     [Serializable()]
-    public class InvalidDataException : Exception
+    public class InvalidDataException : DataSiftException
     {
         public InvalidDataException() : base() { }
         public InvalidDataException(string message) : base(message) { }

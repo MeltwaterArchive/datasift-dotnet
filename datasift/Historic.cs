@@ -12,6 +12,56 @@ namespace datasift
     public class Historic
     {
         /// <summary>
+        /// Status: queued
+        /// </summary>
+        public const string STATUS_QUEUED = "queued";
+        
+        /// <summary>
+        /// Status: running
+        /// </summary>
+        public const string STATUS_RUNNING = "running";
+
+        /// <summary>
+        /// Status: succeeded
+        /// </summary>
+        public const string STATUS_SUCCEEDED = "succeeded";
+
+        /// <summary>
+        /// Status: failed
+        /// </summary>
+        public const string STATUS_FAILED = "failed";
+
+        /// <summary>
+        /// Status: stopped
+        /// </summary>
+        public const string STATUS_STOPPED = "stopped";
+
+        /// <summary>
+        /// Status: deleted
+        /// </summary>
+        public const string STATUS_DELETED = "deleted";
+
+        /// <summary>
+        /// Status: killed
+        /// </summary>
+        public const string STATUS_KILLED = "killed";
+
+        /// <summary>
+        /// Status: init
+        /// </summary>
+        public const string STATUS_INIT = "init";
+
+        /// <summary>
+        /// Status: submitted
+        /// </summary>
+        public const string STATUS_SUBMITTED = "submitted";
+
+        /// <summary>
+        /// Status: prep
+        /// </summary>
+        public const string STATUS_PREP = "prep";
+
+        /// <summary>
         /// Get a list of Historics queries in your account.
         /// </summary>
         /// <param name="user">The user making the request.</param>
@@ -24,7 +74,7 @@ namespace datasift
             {
                 Dictionary<string, string> parameters = new Dictionary<string, string>();
                 parameters.Add("page", page.ToString());
-                parameters.Add("max", per_page.ToString());
+                parameters.Add("per_page", per_page.ToString());
                 JSONdn res = user.callApi("historics/get", parameters);
 
                 if (!res.has("count"))
@@ -33,11 +83,11 @@ namespace datasift
                 }
                 HistoricList retval = new HistoricList(res.getIntVal("count"));
 
-                if (!res.has("historics") && retval.getTotalCount() > 0)
+                if (!res.has("data") && retval.getTotalCount() > 0)
                 {
                     throw new ApiException("No historics in the response");
                 }
-                JToken[] children = res.getChildren("historics");
+                JToken[] children = res.getChildren("data");
                 for (int i = 0; i < children.Length; i++)
                 {
                     retval.Add(new Historic(user, new JSONdn(children[i])));
@@ -125,11 +175,6 @@ namespace datasift
 		private Dictionary<string,int> m_volume_info = null;
 
         /// <summary>
-        /// True if this Historics query has been deleted.
-        /// </summary>
-		private bool m_is_deleted = false;
-
-        /// <summary>
         /// Constructor. Creates a Historic object by fetching an existing query from the API.
         /// </summary>
         /// <param name="user">The User creating the object.</param>
@@ -172,7 +217,6 @@ namespace datasift
 			m_name        = name;
 			m_sample      = sample;
 			m_progress    = 0;
-            m_is_deleted  = false;
         }
 
         /// <summary>
@@ -181,7 +225,7 @@ namespace datasift
         public void reloadData()
         {
             // Can't do this if we've been deleted.
-            if (m_is_deleted)
+            if (isDeleted())
             {
                 throw new InvalidDataException("Cannot reload the data for a deleted Historics query");
             }
@@ -252,7 +296,6 @@ namespace datasift
             {
                 throw new ApiException("No created at timestamp in the response");
             }
-            // TODO: Implement this!
             m_created_at = data.getDateTimeFromLongVal("created_at");
 
             if (!data.has("status"))
@@ -271,7 +314,11 @@ namespace datasift
             {
                 throw new ApiException("No sources in the response");
             }
-            // TODO: Implement this!
+            m_sources.Clear();
+            foreach (JToken source in data.getJVal("sources"))
+            {
+                m_sources.Add(source.ToString());
+            }
 
             if (!data.has("sample"))
             {
@@ -283,9 +330,20 @@ namespace datasift
             {
                 throw new ApiException("No volume_info in the response");
             }
-            // TODO: Implement this!
+            m_volume_info.Clear();
+            foreach (string key in data.getKeys("volume_info"))
+            {
+                m_volume_info.Add(key, data.getIntVal("volume_info." + key));
+            }
+        }
 
-			m_is_deleted = (m_status.CompareTo("deleted") == 0);
+        /// <summary>
+        /// Returns whether this query has been deleted.
+        /// </summary>
+        /// <returns>True if it has been deleted.</returns>
+        public bool isDeleted()
+        {
+            return m_status == STATUS_DELETED;
         }
 
         /// <summary>
@@ -409,7 +467,7 @@ namespace datasift
         /// <param name="new_name">The new name.</param>
         public void setName(string new_name)
         {
-            if (m_is_deleted)
+            if (isDeleted())
             {
                 throw new InvalidDataException("Cannot set the name of a deleted Historics query");
             }
@@ -435,7 +493,7 @@ namespace datasift
         /// </summary>
         public void prepare()
         {
-            if (m_is_deleted)
+            if (isDeleted())
             {
                 throw new InvalidDataException("Cannot set the name of a deleted Historics query");
             }
@@ -492,7 +550,7 @@ namespace datasift
         /// </summary>
         public void start()
         {
-            if (m_is_deleted)
+            if (isDeleted())
             {
                 throw new InvalidDataException("Cannot start a deleted Historics query");
             }
@@ -524,7 +582,7 @@ namespace datasift
         /// </summary>
         public void stop()
         {
-            if (m_is_deleted)
+            if (isDeleted())
             {
                 throw new InvalidDataException("Cannot stop a deleted Historics query");
             }
@@ -556,7 +614,7 @@ namespace datasift
         /// </summary>
         public void delete()
         {
-            if (m_is_deleted)
+            if (isDeleted())
             {
                 throw new InvalidDataException("Cannot delete a deleted Historics query");
             }
@@ -570,7 +628,7 @@ namespace datasift
                 Dictionary<string,string> parameters = new Dictionary<string,string>();
                 parameters.Add("id", m_playback_id);
                 m_user.callApi("historics/delete", parameters);
-                m_is_deleted = true;
+                m_status = STATUS_DELETED;
             }
             catch (ApiException e)
             {

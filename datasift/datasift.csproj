@@ -53,6 +53,7 @@
     <Compile Include="ApiResponse.cs" />
     <Compile Include="Exceptions\CompileFailedException.cs" />
     <Compile Include="Definition.cs" />
+    <Compile Include="Exceptions\DataSiftException.cs" />
     <Compile Include="Exceptions\InvalidDataException.cs" />
     <Compile Include="Exceptions\RateLimitExceededException.cs" />
     <Compile Include="Historic.cs" />
