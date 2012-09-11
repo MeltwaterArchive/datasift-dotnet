@@ -3,7 +3,7 @@
 namespace datasift
 {
     [Serializable()]
-    public class AccessDeniedException : Exception
+    public class AccessDeniedException : DataSiftException
     {
         public AccessDeniedException() : base() { }
         public AccessDeniedException(string message) : base(message) { }

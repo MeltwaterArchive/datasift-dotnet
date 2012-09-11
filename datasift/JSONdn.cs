@@ -150,6 +150,17 @@ namespace datasift
         }
 
         /// <summary>
+        /// Get the item at the given key as a unix timestamp and convert it
+        /// to a DateTime object.
+        /// </summary>
+        /// <param name="key">The item key.</param>
+        /// <returns>The DateTime object.</returns>
+        public DateTime getDateTimeFromLongVal(string key)
+        {
+            return Utils.UnixTimestampToDateTime(getLongVal(key));
+        }
+
+        /// <summary>
         /// Get the item at the given key as a string.
         /// </summary>
         /// <param name="key">The item key.</param>
@@ -169,12 +180,32 @@ namespace datasift
             return resolveString(key) != null;
         }
 
+        public bool hasChildren(string key = "")
+        {
+            if (key.Length == 0)
+            {
+                return m_data.First != null;
+            }
+            else
+            {
+                try
+                {
+                    JToken tok = getJVal(key).First;
+                    return true;
+                }
+                catch (InvalidOperationException)
+                {
+                    return false;
+                }
+            }
+        }
+
         /// <summary>
         /// Get a list of keys below the given key.
         /// </summary>
         /// <param name="key">The item key.</param>
         /// <returns>The list of keys.</returns>
-        public string[] getKeys(string key)
+        public string[] getKeys(string key = "")
         {
             List<string> retval = new List<string>();
 

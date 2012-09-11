@@ -3,7 +3,7 @@
 namespace datasift
 {
     [Serializable()]
-    public class RateLimitExceededException : Exception
+    public class RateLimitExceededException : DataSiftException
     {
         public RateLimitExceededException() : base() { }
         public RateLimitExceededException(string message) : base(message) { }

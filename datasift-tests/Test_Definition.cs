@@ -15,8 +15,9 @@ namespace datasift_tests
         [TestInitialize()]
         public void InitTest()
         {
+            TestData.init();
             m_user = new User(TestData.username, TestData.api_key);
-            m_user.setApiClient(new User.CallAPIDelegate(MockApiClient.callAPI));
+            m_user.setApiClient(new MockApiClient(TestData.username, TestData.api_key));
         }
 
         [TestCleanup()]
@@ -29,7 +30,7 @@ namespace datasift_tests
         public void Test_Construction()
         {
             Definition def = new Definition(m_user);
-            Assert.AreEqual("", def.get(), "Default CSDL is not empty");
+            Assert.AreEqual(String.Empty, def.get(), "Default CSDL is not empty");
         }
 
         [TestMethod]
@@ -43,7 +44,7 @@ namespace datasift_tests
         public void Test_CreateDefinition()
         {
             Definition def = new Definition(m_user);
-            Assert.AreEqual("", def.get(), "Default definition CSDL is not empty");
+            Assert.AreEqual(String.Empty, def.get(), "Default definition CSDL is not empty");
             def.set(TestData.definition);
             Assert.AreEqual(TestData.definition, def.get(), "Definition CSDL not set correctly");
         }
