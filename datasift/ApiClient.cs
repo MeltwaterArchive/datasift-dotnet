@@ -12,32 +12,37 @@ namespace datasift
     /// The ApiClient class is the default implementation for making HTTP
     /// requests to the DataSift API.
     /// </summary>
-    class ApiClient
+    public class ApiClient : AbstractApiClient
     {
+        /// <summary>
+        /// Construct a new instance of this object with the user's username and API key. 
+        /// </summary>
+        /// <param name="username">The user's username.</param>
+        /// <param name="api_key">The user's API key.</param>
+        /// <param name="base_url">The base URL for API requests.</param>
+        /// <param name="user_agent">The user agent to send with all requests.s</param>
+        public ApiClient(string username, string api_key, string base_url = null, string user_agent = null)
+            : base(username, api_key, base_url, user_agent)
+        {
+        }
+
         /// <summary>
         /// Calls an endpoint on the DataSift HTTP API.
         /// </summary>
-        /// <param name="username">Your DataSift username.</param>
-        /// <param name="api_key">Your DataSift API key.</param>
         /// <param name="endpoint">The endpoint to call.</param>
         /// <param name="parameters">The parameters to pass as POST data.</param>
         /// <returns>An ApiResponse instance containing the response details.</returns>
-        public static ApiResponse callAPI(string username, string api_key, string endpoint, Dictionary<string, string> parameters)
+        override public ApiResponse callAPI(string endpoint, Dictionary<string, string> parameters = null)
         {
             // Set up the request
-            string url = "http://" + User.API_BASE_URL + endpoint + ".json";
+            string url = "http://" + m_base_url + endpoint + ".json";
             HttpWebRequest req = (HttpWebRequest)WebRequest.Create(url);
-            req.Headers["Auth"] = username + ":" + api_key;
-            req.UserAgent = User.USER_AGENT;
+            req.Headers["Auth"] = m_username + ":" + m_api_key;
+            req.UserAgent = m_user_agent;
             req.Method = "POST";
 
             // Add the POST data
-            StringBuilder post_data = new StringBuilder();
-            foreach (KeyValuePair<string,string> kv in parameters)
-            {
-                post_data.AppendFormat("{0}={1}&", HttpUtility.UrlEncode(kv.Key), HttpUtility.UrlEncode(kv.Value));
-            }
-            byte[] post_data_bytes = Encoding.UTF8.GetBytes(post_data.Remove(post_data.Length - 1, 1).ToString());
+            byte[] post_data_bytes = Encoding.UTF8.GetBytes(getPostData(parameters));
             req.ContentType = "application/x-www-form-urlencoded";
             req.ContentLength = post_data_bytes.Length;
             Stream post_stream = req.GetRequestStream();

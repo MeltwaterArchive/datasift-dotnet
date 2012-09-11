@@ -21,7 +21,7 @@ namespace datasift
         /// The hash for this definition, or an empty string if it has yet to
         /// be validated or compiled.
         /// </summary>
-        private string m_hash = "";
+        private string m_hash = String.Empty;
 
         /// <summary>
         /// The date that this Definition was first created.
@@ -37,7 +37,7 @@ namespace datasift
         /// <summary>
         /// The CSDL for this Definition.
         /// </summary>
-        private string m_csdl = "";
+        private string m_csdl = String.Empty;
 
         /// <summary>
         /// Constructor. Note that if you create a Definition with both a
@@ -114,7 +114,7 @@ namespace datasift
                 throw new InvalidDataException("Cannot clear the hash of a hash-only definition object");
             }
 
-            m_hash = "";
+            m_hash = String.Empty;
             m_created_at = DateTime.MinValue;
             m_total_dpu = -1;
         }

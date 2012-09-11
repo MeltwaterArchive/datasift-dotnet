@@ -4,6 +4,8 @@ DataSift .NET Client Library
 This is the official .NET library for accessing [Datasift](http://datasift.com/). See the examples
 project for some simple example usage.
 
+Note that we use [git flow](https://github.com/nvie/gitflow) to manage development.
+
 Requirements
 ------------
 
@@ -19,6 +21,10 @@ more details.
 
 Changelog
 ---------
+
+* v.0.3.0 Historics and Push delivery support (2012-09-11)
+
+* Added the develop branch as required by git flow (2012-09-07)
 
 * v.0.2.0 Fixed a connection failure bug (2012-05-24)
 

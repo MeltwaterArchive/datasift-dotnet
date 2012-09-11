@@ -72,7 +72,14 @@ namespace datasift
             try
             {
                 m_response_code = status_code;
-                m_data = new JSONdn(response_data);
+                if (response_data.Length == 0)
+                {
+                    m_data = new JSONdn("{}");
+                }
+                else
+                {
+                    m_data = new JSONdn(response_data);
+                }
                 m_rate_limit = rate_limit;
                 m_rate_limit_remaining = rate_limit_remaining;
             }

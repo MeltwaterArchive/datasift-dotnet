@@ -102,21 +102,11 @@ namespace datasift
         }
 
         /// <summary>
-        /// The delegate used when calling the API.
-        /// </summary>
-        /// <param name="username">The username of the user making the API call.</param>
-        /// <param name="api_key">The API key of the user making the API call.</param>
-        /// <param name="endpoint">The endpoint to be called.</param>
-        /// <param name="parameters">The parameters to be passed as POST data.</param>
-        /// <returns>An ApiResponse object.</returns>
-        public delegate ApiResponse CallAPIDelegate(string username, string api_key, string endpoint, Dictionary<string, string> parameters);
-        
-        /// <summary>
         /// The delegate to be used when making an API call. This enables the
         /// ApiClient object to be replaced. Leave it as null to use the
         /// default ApiClient class.
         /// </summary>
-        CallAPIDelegate m_callapi = null;
+        AbstractApiClient m_apiclient = null;
 
         /// <summary>
         /// Constructor.
@@ -133,9 +123,9 @@ namespace datasift
         /// Set the API client delegate.
         /// </summary>
         /// <param name="callapi">The delegate.</param>
-        public void setApiClient(CallAPIDelegate callapi)
+        public void setApiClient(AbstractApiClient apiclient)
         {
-            m_callapi = callapi;
+            m_apiclient = apiclient;
         }
 
         /// <summary>
@@ -145,10 +135,6 @@ namespace datasift
         /// <returns>A Usage object.</returns>
         public Usage getUsage(string period = "hour")
         {
-            if (period != "hour" && period != "day")
-            {
-                throw new InvalidDataException("The period parameter must be a valid period.");
-            }
             Dictionary<string, string> parameters = new Dictionary<string, string>();
             parameters.Add("period", period);
             return new Usage(callApi("usage", parameters));
@@ -162,6 +148,31 @@ namespace datasift
         public Definition createDefinition(string csdl = "")
         {
             return new Definition(this, csdl);
+        }
+
+        /// <summary>
+        /// Create a new Historics query.
+        /// </summary>
+        /// <param name="hash">The stream hash that this Historic will use.</param>
+        /// <param name="start_date">The start date for the query.</param>
+        /// <param name="end_date">The end date for the query.</param>
+        /// <param name="sources">An array of data sources for the query.</param>
+        /// <param name="sample">The sample rate for the query.</param>
+        /// <param name="name">A friendly name for the query.</param>
+        public Historic createHistoric(string hash, DateTime start_date, DateTime end_date, List<string> sources, double sample, string name)
+        {
+            return new Historic(this, hash, start_date, end_date, sources, sample, name);
+        }
+
+        /// <summary>
+        /// Get a list of Historics queries in your account.
+        /// </summary>
+        /// <param name="page">The page number to get.</param>
+        /// <param name="per_page">The number of items per page.</param>
+        /// <returns>A list of Historic objects.</returns>
+        public List<Historic> listHistorics(int page = 1, int per_page = 20)
+        {
+            return Historic.list(this, page, per_page);
         }
 
         /// <summary>
@@ -196,14 +207,14 @@ namespace datasift
         /// <returns>A JSONdn object containing the JSON response data.</returns>
         public JSONdn callApi(string endpoint, Dictionary<string, string> parameters)
         {
-            string errmsg = "";
+            string errmsg = String.Empty;
 
-            if (m_callapi == null)
+            if (m_apiclient == null)
             {
-                m_callapi = new CallAPIDelegate(ApiClient.callAPI);
+                m_apiclient = new ApiClient(getUsername(), getApiKey(), API_BASE_URL, USER_AGENT);
             }
 
-            ApiResponse res = m_callapi(m_username, m_api_key, endpoint, parameters);
+            ApiResponse res = m_apiclient.callAPI(endpoint, parameters);
 
             m_rate_limit = res.rate_limit;
             m_rate_limit_remaining = res.rate_limit_remaining;
@@ -211,6 +222,8 @@ namespace datasift
             switch (res.response_code)
             {
                 case 200:
+                case 202:
+                case 204:
                     return res.data;
                 case 401:
                     errmsg = "Authentication failed";

@@ -3,7 +3,7 @@
 namespace datasift
 {
     [Serializable()]
-    public class CompileFailedException : Exception
+    public class CompileFailedException : DataSiftException
     {
         public CompileFailedException() : base() { }
         public CompileFailedException(string message) : base(message) { }
