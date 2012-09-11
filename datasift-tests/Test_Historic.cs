@@ -45,8 +45,6 @@ namespace datasift_tests
             Assert.AreEqual("created", m_historic.getStatus(), "Status is incorrect");
             Assert.AreEqual(0, m_historic.getProgress(), "Progress is incorrect");
             Assert.AreEqual(TestData.historic_sample, m_historic.getSample(), "Sample is incorrect");
-
-
         }
     }
 }

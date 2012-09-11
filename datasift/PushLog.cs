@@ -5,9 +5,9 @@ using System.Text;
 
 namespace datasift
 {
-    public class HistoricList : ListWithTotalCount<Historic>
+    public class PushLog : ListWithTotalCount<PushLogEntry>
     {
-        public HistoricList(int total_count)
+        public PushLog(int total_count)
             : base(total_count)
         {
         }

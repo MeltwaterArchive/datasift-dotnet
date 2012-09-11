@@ -83,7 +83,7 @@ namespace datasift
                 }
                 HistoricList retval = new HistoricList(res.getIntVal("count"));
 
-                if (!res.has("data") && retval.getTotalCount() > 0)
+                if (!res.has("data") && retval.TotalCount > 0)
                 {
                     throw new ApiException("No historics in the response");
                 }
@@ -172,7 +172,7 @@ namespace datasift
         /// <summary>
         /// The data availability for this Historics query. 
         /// </summary>
-		private Dictionary<string,int> m_volume_info = null;
+		private Dictionary<string,int> m_volume_info = new Dictionary<string,int>();
 
         /// <summary>
         /// Constructor. Creates a Historic object by fetching an existing query from the API.

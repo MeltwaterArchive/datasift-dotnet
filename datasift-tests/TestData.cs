@@ -45,9 +45,9 @@ namespace datasift_tests
             push_output_params.Add("delivery_frequency", "60");
             push_output_params.Add("max_size", "10240");
             push_output_params.Add("url", "http://www.example.com/push_endpoint");
-            push_output_params.Add("auth_type", "basic");
-            push_output_params.Add("auth_username", "myuser");
-            push_output_params.Add("auth_password", "mypass");
+            push_output_params.Add("auth.type", "basic");
+            push_output_params.Add("auth.username", "myuser");
+            push_output_params.Add("auth.password", "mypass");
         }
     }
 }

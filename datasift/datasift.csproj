@@ -63,7 +63,12 @@
     <Compile Include="IEventHandler.cs" />
     <Compile Include="Interaction.cs" />
     <Compile Include="JSONdn.cs" />
+    <Compile Include="ListWithTotalCount.cs" />
     <Compile Include="MockApiClient.cs" />
+    <Compile Include="PushDefinition.cs" />
+    <Compile Include="PushLog.cs" />
+    <Compile Include="PushLogEntry.cs" />
+    <Compile Include="PushOutputParams.cs" />
     <Compile Include="PushSubscription.cs" />
     <Compile Include="PushSubscriptionList.cs" />
     <Compile Include="StreamConsumer.cs" />
