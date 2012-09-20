@@ -53,6 +53,12 @@
     <Compile Include="AccountCredentialsForm.Designer.cs">
       <DependentUpon>AccountCredentialsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="CreatePushSubscriptionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CreatePushSubscriptionForm.Designer.cs">
+      <DependentUpon>CreatePushSubscriptionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="ListPushSubscriptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -81,6 +87,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="AccountCredentialsForm.resx">
       <DependentUpon>AccountCredentialsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CreatePushSubscriptionForm.resx">
+      <DependentUpon>CreatePushSubscriptionForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ListPushSubscriptionsForm.resx">
       <DependentUpon>ListPushSubscriptionsForm.cs</DependentUpon>

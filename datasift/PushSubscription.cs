@@ -381,13 +381,27 @@ namespace datasift
             {
                 throw new InvalidDataException("No last request date found");
             }
-            m_last_request = Utils.UnixTimestampToDateTime(json.getLongVal("last_request"));
+            try
+            {
+                m_last_request = Utils.UnixTimestampToDateTime(json.getLongVal("last_request"));
+            }
+            catch (Exception)
+            {
+                m_last_request = DateTime.MinValue;
+            }
 
             if (!json.has("last_success"))
             {
                 throw new InvalidDataException("No last success date found");
             }
-            m_last_success = Utils.UnixTimestampToDateTime(json.getLongVal("last_success"));
+            try
+            {
+                m_last_success = Utils.UnixTimestampToDateTime(json.getLongVal("last_success"));
+            }
+            catch (Exception)
+            {
+                m_last_success = DateTime.MinValue;
+            }
 
             if (!json.has("output_type"))
             {

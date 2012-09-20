@@ -57,8 +57,6 @@ namespace DataSiftControlPanel
 
         private void btnPushList_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this, "Not yet implemented", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
-            /*
             if (frmListPushSubscriptions == null || !frmListPushSubscriptions.Visible)
             {
                 frmListPushSubscriptions = new ListPushSubscriptionsForm();
@@ -68,12 +66,11 @@ namespace DataSiftControlPanel
             {
                 frmListPushSubscriptions.Focus();
             }
-            */
         }
 
         private void btnPushCreate_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(this, "Not yet implemented", "Error", MessageBoxButtons.OK, MessageBoxIcon.Hand);
+            (new CreatePushSubscriptionForm(null)).ShowDialog(this);
         }
     }
 }

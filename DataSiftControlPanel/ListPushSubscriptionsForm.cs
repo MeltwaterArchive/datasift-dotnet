@@ -14,9 +14,9 @@ namespace DataSiftControlPanel
     public partial class ListPushSubscriptionsForm : Form
     {
         delegate void DisplayErrorCallback(string error);
-        delegate void AddOrUpdateHistoricItemCallback(Historic h, ListViewItem lvi = null);
+        delegate void AddOrUpdatePushItemCallback(PushSubscription p, ListViewItem lvi = null);
         delegate ListView.SelectedListViewItemCollection GetSelectedItemsCallback();
-        delegate List<Historic> GetSelectedHistoricsCallback();
+        delegate List<PushSubscription> GetSelectedPushSubscriptionsCallback();
 
         public ListPushSubscriptionsForm()
         {
@@ -70,30 +70,30 @@ namespace DataSiftControlPanel
         {
             UseWaitCursor = true;
             Enabled = false;
-            lstHistoricsQueries.BeginUpdate();
-            initProgress("Fetching queries...", 100);
+            lstPushSubscriptions.BeginUpdate();
+            initProgress("Fetching subscriptions...", 100);
             bwRefresh.RunWorkerAsync();
         }
 
-        public void AddOrUpdateHistoricItem(Historic h, ListViewItem lvi = null)
+        public void AddOrUpdatePushItem(PushSubscription p, ListViewItem lvi = null)
         {
-            if (lstHistoricsQueries.InvokeRequired)
+            if (lstPushSubscriptions.InvokeRequired)
             {
-                AddOrUpdateHistoricItemCallback cb = new AddOrUpdateHistoricItemCallback(AddOrUpdateHistoricItem);
-                this.Invoke(cb, new object[] { h, lvi });
+                AddOrUpdatePushItemCallback cb = new AddOrUpdatePushItemCallback(AddOrUpdatePushItem);
+                this.Invoke(cb, new object[] { p, lvi });
             }
             else
             {
-                lstHistoricsQueries.BeginUpdate();
+                lstPushSubscriptions.BeginUpdate();
 
                 try
                 {
                     if (lvi == null)
                     {
                         // No ListViewItem given, try to find a matching row
-                        foreach (ListViewItem lvi_candidate in lstHistoricsQueries.Items)
+                        foreach (ListViewItem lvi_candidate in lstPushSubscriptions.Items)
                         {
-                            if (h.getHash() == ((Historic)lvi_candidate.Tag).getHash())
+                            if (p.getId() == ((PushSubscription)lvi_candidate.Tag).getId())
                             {
                                 lvi = lvi_candidate;
                                 break;
@@ -101,11 +101,11 @@ namespace DataSiftControlPanel
                         }
                     }
 
-                    if (h.isDeleted())
+                    if (p.isDeleted())
                     {
                         if (lvi != null)
                         {
-                            lstHistoricsQueries.Items.Remove(lvi);
+                            lstPushSubscriptions.Items.Remove(lvi);
                         }
                     }
                     else
@@ -113,26 +113,26 @@ namespace DataSiftControlPanel
                         if (lvi == null)
                         {
                             // Still not found it, add it
-                            lvi = lstHistoricsQueries.Items.Add(h.getName());
-                            lvi.SubItems.Add(h.getStatus());
-                            lvi.SubItems.Add(h.getProgress().ToString());
-                            lvi.SubItems.Add(h.getStartDate().ToString());
-                            lvi.SubItems.Add(h.getEndDate().ToString());
-                            lvi.SubItems.Add(string.Join(", ", h.getSources().ToArray()));
+                            lvi = lstPushSubscriptions.Items.Add(p.getName());
+                            lvi.SubItems.Add(p.getCreatedAt().ToString());
+                            lvi.SubItems.Add(p.getStatus());
+                            lvi.SubItems.Add(p.getOutputType());
+                            lvi.SubItems.Add(p.getLastRequest().ToString());
+                            lvi.SubItems.Add(p.getLastSuccess().ToString());
                         }
                         else
                         {
                             // Already exists, update the pieces
-                            lvi.SubItems[0].Text = h.getName();
-                            lvi.SubItems[1].Text = h.getStatus();
-                            lvi.SubItems[2].Text = h.getProgress().ToString();
-                            lvi.SubItems[3].Text = h.getStartDate().ToString();
-                            lvi.SubItems[4].Text = h.getEndDate().ToString();
-                            lvi.SubItems[5].Text = string.Join(", ", h.getSources().ToArray());
+                            lvi.SubItems[0].Text = p.getName();
+                            lvi.SubItems[1].Text = p.getCreatedAt().ToString();
+                            lvi.SubItems[2].Text = p.getStatus();
+                            lvi.SubItems[3].Text = p.getOutputType();
+                            lvi.SubItems[4].Text = p.getLastRequest().ToString();
+                            lvi.SubItems[5].Text = p.getLastSuccess().ToString();
                         }
 
-                        // Store the Historic in the item
-                        lvi.Tag = h;
+                        // Store the Push subscription in the item
+                        lvi.Tag = p;
                     }
                 }
                 catch (Exception ex)
@@ -140,17 +140,17 @@ namespace DataSiftControlPanel
                     MessageBox.Show(this, ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
 
-                lstHistoricsQueries.EndUpdate();
+                lstPushSubscriptions.EndUpdate();
             }
         }
 
-        public void SelectHistoric(string id)
+        public void SelectPushSubscription(string id)
         {
-            foreach (ListViewItem lvi_candidate in lstHistoricsQueries.Items)
+            foreach (ListViewItem lvi_candidate in lstPushSubscriptions.Items)
             {
-                if (id == ((Historic)lvi_candidate.Tag).getHash())
+                if (id == ((PushSubscription)lvi_candidate.Tag).getId())
                 {
-                    lstHistoricsQueries.SelectedItems.Clear();
+                    lstPushSubscriptions.SelectedItems.Clear();
                     lvi_candidate.Selected = true;
                 }
             }
@@ -162,18 +162,18 @@ namespace DataSiftControlPanel
             try
             {
                 User user = Program.Inst().dsuser;
-                List<Historic> historics = user.listHistorics(1, 1000);
-                if (historics.Count > 0)
+                List<PushSubscription> subscriptions = user.listPushSubscriptions(1, 1000);
+                if (subscriptions.Count > 0)
                 {
                     bwRefresh.ReportProgress(50);
-                    double progress_increment = 50 / historics.Count;
+                    double progress_increment = 50 / subscriptions.Count;
                     double progress_current = 50.0;
-                    foreach (Historic h in historics)
+                    foreach (PushSubscription p in subscriptions)
                     {
                         // Add or update it in the list
-                        AddOrUpdateHistoricItem(h);
+                        AddOrUpdatePushItem(p);
                         // Note that we've seen it
-                        touched.Add(h.getHash());
+                        touched.Add(p.getId());
                         // Update the progress
                         progress_current += progress_increment;
                         bwRefresh.ReportProgress((int)progress_current);
@@ -200,64 +200,73 @@ namespace DataSiftControlPanel
 
             // Remove any items we didn't see when we updated
             List<string> touched = (List<string>)e.Result;
-            foreach (ListViewItem lvi in lstHistoricsQueries.Items)
+            foreach (ListViewItem lvi in lstPushSubscriptions.Items)
             {
-                if (!touched.Contains(((Historic)lvi.Tag).getHash()))
+                if (!touched.Contains(((PushSubscription)lvi.Tag).getId()))
                 {
-                    lstHistoricsQueries.Items.Remove(lvi);
+                    lstPushSubscriptions.Items.Remove(lvi);
                 }
             }
 
-            lstHistoricsQueries.EndUpdate();
-            lstHistoricsQueries.Focus();
+            lstPushSubscriptions.EndUpdate();
+            lstPushSubscriptions.Focus();
         }
 
         private ListView.SelectedListViewItemCollection GetSelectedItems()
         {
-            if (lstHistoricsQueries.InvokeRequired)
+            if (lstPushSubscriptions.InvokeRequired)
             {
                 GetSelectedItemsCallback cb = new GetSelectedItemsCallback(GetSelectedItems);
                 return (ListView.SelectedListViewItemCollection)this.Invoke(cb);
             }
             else
             {
-                return lstHistoricsQueries.SelectedItems;
+                return lstPushSubscriptions.SelectedItems;
             }
         }
 
-        private List<Historic> GetSelectedHistorics()
+        private List<PushSubscription> GetSelectedPushSubscriptions()
         {
-            if (lstHistoricsQueries.InvokeRequired)
+            if (lstPushSubscriptions.InvokeRequired)
             {
-                GetSelectedHistoricsCallback cb = new GetSelectedHistoricsCallback(GetSelectedHistorics);
-                return (List<Historic>)this.Invoke(cb);
+                GetSelectedPushSubscriptionsCallback cb = new GetSelectedPushSubscriptionsCallback(GetSelectedPushSubscriptions);
+                return (List<PushSubscription>)this.Invoke(cb);
             }
             else
             {
-                List<Historic> retval = new List<Historic>();
+                List<PushSubscription> retval = new List<PushSubscription>();
                 foreach (ListViewItem lvi in GetSelectedItems())
                 {
-                    retval.Add((Historic)lvi.Tag);
+                    retval.Add((PushSubscription)lvi.Tag);
                 }
                 return retval;
             }
         }
 
-        private void mnuStart_Click(object sender, EventArgs e)
+        private void mnuResume_Click(object sender, EventArgs e)
         {
             UseWaitCursor = true;
             Enabled = false;
-            lstHistoricsQueries.BeginUpdate();
-            initProgress("Starting query...", 100);
-            bwDoOperation.RunWorkerAsync("start");
+            lstPushSubscriptions.BeginUpdate();
+            initProgress("Resuming subscription...", 100);
+            bwDoOperation.RunWorkerAsync("resume");
+        }
+
+        private void mnuPause_Click(object sender, EventArgs e)
+        {
+            UseWaitCursor = true;
+            Enabled = false;
+            lstPushSubscriptions.BeginUpdate();
+            initProgress("Pausing subscription...", 100);
+            bwDoOperation.RunWorkerAsync("pause");
         }
 
         private void mnuStop_Click(object sender, EventArgs e)
         {
             UseWaitCursor = true;
             Enabled = false;
-            lstHistoricsQueries.BeginUpdate();
-            initProgress("Stopping query...", 100);
+            lstPushSubscriptions.BeginUpdate();
+            initProgress("Stopping subscription...", 100);
             bwDoOperation.RunWorkerAsync("stop");
         }
 
@@ -265,35 +274,40 @@ namespace DataSiftControlPanel
         {
             UseWaitCursor = true;
             Enabled = false;
-            lstHistoricsQueries.BeginUpdate();
-            initProgress("Deleting query...", 100);
+            lstPushSubscriptions.BeginUpdate();
+            initProgress("Deleting subscription...", 100);
             bwDoOperation.RunWorkerAsync("delete");
         }
 
         private void bwDoOperation_DoWork(object sender, DoWorkEventArgs e)
         {
             string operation = (string)e.Argument;
-            List<Historic> historics = GetSelectedHistorics();
-            double progress_increment = 50 / historics.Count;
+            List<PushSubscription> subscriptions = GetSelectedPushSubscriptions();
+            double progress_increment = 50 / subscriptions.Count;
             double progress_current = 0.0;
-            foreach (Historic h in historics)
+            foreach (PushSubscription p in subscriptions)
             {
                 try
                 {
                     switch (operation)
                     {
-                        case "start":
-                            h.start();
+                        case "resume":
+                            p.resume();
+                            e.Result = "";
+                            break;
+
+                        case "pause":
+                            p.pause();
                             e.Result = "";
                             break;
 
                         case "stop":
-                            h.stop();
+                            p.stop();
                             e.Result = "";
                             break;
 
                         case "delete":
-                            h.delete();
+                            p.delete();
                             e.Result = "";
                             break;
 
@@ -321,13 +335,13 @@ namespace DataSiftControlPanel
 
             Thread.Sleep(1000);
 
-            foreach (Historic h in historics)
+            foreach (PushSubscription p in subscriptions)
             {
-                if (h.getStatus() != Historic.STATUS_DELETED)
+                if (p.getStatus() != PushSubscription.STATUS_DELETED)
                 {
-                    h.reloadData();
+                    p.reloadData();
                 }
-                AddOrUpdateHistoricItem(h);
+                AddOrUpdatePushItem(p);
 
                 // Update the progress
                 progress_current += progress_increment;
@@ -347,54 +361,65 @@ namespace DataSiftControlPanel
                 MessageBox.Show(this, result, "API Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
-            lstHistoricsQueries.EndUpdate();
-            lstHistoricsQueries.Focus();
+            lstPushSubscriptions.EndUpdate();
+            lstPushSubscriptions.Focus();
         }
 
-        private void lstHistoricsQueries_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        private void lstPushSubscriptions_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
         {
             ListView.SelectedListViewItemCollection lvis = GetSelectedItems();
-            bool start = true;
+            bool resume = true;
+            bool pause = true;
             bool stop = true;
             bool delete = true;
             if (lvis.Count == 0)
             {
-                start = stop = delete = false;
+                resume = pause = stop = delete = false;
             }
             else foreach (ListViewItem lvi in GetSelectedItems())
             {
-                Historic h = (Historic)lvi.Tag;
-                switch (h.getStatus())
+                PushSubscription p = (PushSubscription)lvi.Tag;
+                switch (p.getStatus())
                 {
-                    case "init":
+                    case PushSubscription.STATUS_ACTIVE:
+                        resume = false;
+                        break;
+
+                    case PushSubscription.STATUS_PAUSED:
+                        pause = false;
+                        break;
+
+                    case PushSubscription.STATUS_STOPPED:
                         stop = false;
                         break;
 
-                    case "queued":
-                    case "submitted":
-                    case "prep":
-                    case "running":
-                    case "finishing":
-                        start = false;
+                    case PushSubscription.STATUS_DELETED:
+                        resume = false;
+                        pause = false;
+                        stop = false;
+                        delete = false;
                         break;
 
-                    case "finished":
-                    case "succeeded":
+                    case PushSubscription.STATUS_FINISHING:
+                    case PushSubscription.STATUS_FINISHED:
+                    case PushSubscription.STATUS_FAILED:
                     default:
-                        start = false;
+                        resume = false;
+                        pause = false;
                         stop = false;
                         break;
                 }
             }
 
-            mnuStart.Enabled = btnStart.Enabled = start;
+            mnuResume.Enabled = btnResume.Enabled = resume;
+            mnuPause.Enabled = btnPause.Enabled = pause;
             mnuStop.Enabled = btnStop.Enabled = stop;
             mnuDelete.Enabled = btnDelete.Enabled = delete;
         }
 
-        private void btnCreateNewHistoricsQuery_Click(object sender, EventArgs e)
+        private void btnCreateNewPushSubscription_Click(object sender, EventArgs e)
         {
-            //(new CreateHistoricsQueryForm(this)).ShowDialog(this);
+            (new CreatePushSubscriptionForm(this)).ShowDialog(this);
         }
     }
 }
