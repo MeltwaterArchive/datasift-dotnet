@@ -176,6 +176,68 @@ namespace datasift
         }
 
         /// <summary>
+        /// Create a new PushDefinition object belonging to this user.
+        /// </summary>
+        /// <returns>An empty PushDefinition object.</returns>
+        public PushDefinition createPushDefinition()
+        {
+            return new PushDefinition(this);
+        }
+
+        /// <summary>
+        /// Get a page of Push subscriptions for the given stream hash in the
+        /// user's account, where each page contains up to per_page
+        /// items. Results will be ordered according to the supplied ordering
+        /// parameters.
+        /// </summary>
+        /// <param name="hash">The stream hash.</param>
+        /// <param name="page">The page number to get.</param>
+        /// <param name="per_page">The number of items per page.</param>
+        /// <param name="order_by">The field by which to order the results.</param>
+        /// <param name="order_dir">Ascending or descending.</param>
+        /// <returns>A PushSubscriptionList object.</returns>
+        public PushSubscriptionList listPushSubscriptionsByStreamHash(string hash, int page, int per_page, string order_by = PushSubscription.ORDERBY_CREATED_AT, string order_dir = PushSubscription.ORDERDIR_ASC)
+        {
+            return PushSubscription.listByStreamHash(this, hash, page, per_page, order_by, order_dir);
+        }
+
+        /// <summary>
+        /// Get a page of Push subscriptions for the given Historics query
+        /// playback ID in the given user's account, where each page contains
+        /// up to per_page items. Results will be ordered according to the
+        /// supplied ordering parameters.
+        /// </summary>
+        /// <param name="playback_id">The playback ID.</param>
+        /// <param name="page">The page number to get.</param>
+        /// <param name="per_page">The number of items per page.</param>
+        /// <param name="order_by">The field by which to order the results.</param>
+        /// <param name="order_dir">Ascending or descending.</param>
+        /// <param name="include_finished">True to include subscriptions against finished Historics queries.</param>
+        /// <returns>A PushSubscriptionList object.</returns>
+        public PushSubscriptionList listPushSubscriptionsByPlaybackId(string playback_id, int page, int per_page, string order_by = PushSubscription.ORDERBY_CREATED_AT, string order_dir = PushSubscription.ORDERDIR_ASC, bool include_finished = false)
+        {
+            return PushSubscription.listByPlaybackId(this, playback_id, page, per_page, order_by, order_dir, include_finished);
+        }
+        
+        /// <summary>
+        /// Get a page of Push subscriptions the user's account,
+        /// where each page contains up to per_page items. Results will be
+        /// ordered according to the supplied ordering parameters.
+        /// </summary>
+        /// <param name="page">The page number to get.</param>
+        /// <param name="per_page">The number of items per page.</param>
+        /// <param name="order_by">The field by which to order the results.</param>
+        /// <param name="order_dir">Ascending or descending.</param>
+        /// <param name="include_finished">True to include subscriptions against finished Historics queries.</param>
+        /// <param name="hash_type">Optional hash type to look for (hash is also required)</param>
+        /// <param name="hash">Optional hash to look for (hash_type is also required)</param>
+        /// <returns>A PushSubscriptionList object.</returns>
+        public PushSubscriptionList listPushSubscriptions(int page, int per_page, string order_by = PushSubscription.ORDERBY_CREATED_AT, string order_dir = PushSubscription.ORDERDIR_ASC, bool include_finished = false)
+        {
+            return PushSubscription.list(this, page, per_page, order_by, order_dir, include_finished);
+        }
+
+        /// <summary>
         /// Get a StreamConsumer object for the given stream hash.
         /// </summary>
         /// <param name="hash">The stream hash.</param>
