@@ -22,6 +22,9 @@ more details.
 Changelog
 ---------
 
+* v.0.4.0 Completed the Historics and Push delivery example app and
+          added some missing related methods in the User class (2012-09-20)
+
 * v.0.3.0 Historics and Push delivery support (2012-09-11)
 
 * Added the develop branch as required by git flow (2012-09-07)
