@@ -1,1 +1,0 @@
-This example demonstrates how to use the Historics and Push delivery parts of the library. Please note that this is just an example and as such the UI is not very well polished, but it does show how to use the main parts of the API.
