@@ -23,13 +23,13 @@ sets of docs for the GitHub pages for this project.
 
     `cd tmp`
 
-5. Clone the datasift/NodeJS-Consumer into master directory
+5. Clone the DataSift .NET Client Library into master directory
 
-    `git clone https://github.com/datasift/NodeJS-Consumer master`
+    `git clone https://github.com/datasift/datasift-dotnet.git master`
 
-6. Clone the datasift/NodeJS-Consumer into gh-pages directory
+6. Clone the DataSift .NET Client Library into gh-pages directory
 
-    `git clone https://github.com/datasift/NodeJS-Consumer gh-pages`
+    `git clone https://github.com/datasift/datasift-dotnet.git gh-pages`
 
 7. Change the current working directory to gh-pages
 
@@ -53,9 +53,7 @@ sets of docs for the GitHub pages for this project.
 
 12. Stage new documentation in git
 
-    `git add *.html`
-
-    `git add *.css`
+    `git add *`
 
 13. Commit the new documentation
 
