@@ -224,7 +224,7 @@ namespace datasift
                 {
                     throw new CompileFailedException("Validated successfully but no created_at in the response");
                 }
-                m_created_at = res.getDateTimeVal("hash", "yyyy-MM-dd HH:mm:ss");
+                m_created_at = res.getDateTimeVal("created_at", "yyyy-MM-dd HH:mm:ss");
 
                 if (!res.has("dpu"))
                 {
