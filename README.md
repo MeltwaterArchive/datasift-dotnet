@@ -11,6 +11,11 @@ Requirements
 
 * Compiler for .NET 3.5+
 
+Known issues
+------------
+
+* Only two connections can be created to the streaming server. Further attempts to establish a connection will hang.
+
 License
 -------
 
