@@ -119,11 +119,11 @@ namespace datasift
             {
                 throw new InvalidDataException("No license data available for stream " + stream_hash);
             }
-            if (!m_data.has("streams." + stream_hash + ".licenses." + type))
+            if (!m_data.has("streams." + stream_hash + ".licenses." + JSONdn.EscapeDotsInKey(type)))
             {
                 throw new InvalidDataException("No " + type + " license data available for stream " + stream_hash);
             }
-            return m_data.getIntVal("streams." + stream_hash + ".licenses." + type);
+            return m_data.getIntVal("streams." + stream_hash + ".licenses." + JSONdn.EscapeDotsInKey(type));
         }
     }
 }
