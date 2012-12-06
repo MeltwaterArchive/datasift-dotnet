@@ -84,9 +84,18 @@ namespace datasift
             return Result;
         }
 
-        public static string EscapeDots(string str)
+        /// <summary>
+        /// If a key that has dots in it is used in dot notation, then things will be bad,
+        /// because if is an ambiguous grama,
+        /// use this routine to escape the dots, it will replace a . with a \. 
+        /// (a \. is ilegal in json, so is unambiguous)
+        /// The other methods will split on an unescaped dot, and unescape these dots.
+        /// </summary>
+        /// <param name="key">input key</param>
+        /// <returns>escaped key</returns>
+        public static string EscapeDotsInKey(string key)
         {
-            return str.Replace(".", "\\.");
+            return key.Replace(".", "\\.");
         }
 
         /// <summary>

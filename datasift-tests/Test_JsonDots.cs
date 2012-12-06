@@ -35,9 +35,9 @@ namespace datasift_tests {
         [TestMethod]
         public void Test_JsonDot3() {
             Assert.IsTrue(decoder.has("streams.cfc973789e670fe91aceb4b91cbae4db.licenses"));
-            Assert.IsTrue(decoder.has("streams.cfc973789e670fe91aceb4b91cbae4db.licenses."+ datasift.JSONdn.EscapeDots("klout.score")));
-            Assert.AreEqual(decoder.getStringVal("streams.cfc973789e670fe91aceb4b91cbae4db.licenses." + datasift.JSONdn.EscapeDots( "klout.score" )), "30271");
-            Assert.AreEqual(decoder.getLongVal("streams.cfc973789e670fe91aceb4b91cbae4db.licenses." +datasift.JSONdn.EscapeDots("klout.score" )), 30271);
+            Assert.IsTrue(decoder.has("streams.cfc973789e670fe91aceb4b91cbae4db.licenses."+ datasift.JSONdn.EscapeDotsInKey("klout.score")));
+            Assert.AreEqual(decoder.getStringVal("streams.cfc973789e670fe91aceb4b91cbae4db.licenses." + datasift.JSONdn.EscapeDotsInKey( "klout.score" )), "30271");
+            Assert.AreEqual(decoder.getLongVal("streams.cfc973789e670fe91aceb4b91cbae4db.licenses." +datasift.JSONdn.EscapeDotsInKey("klout.score" )), 30271);
         }
     }
 

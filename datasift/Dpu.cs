@@ -32,12 +32,12 @@ namespace datasift
 
             foreach (string key in data.getKeys("detail"))
             {
-                DpuItem item = new DpuItem(data.getIntVal("detail." + JSONdn.EscapeDots(key) + ".count"), data.getDoubleVal("detail." + JSONdn.EscapeDots(key) + ".dpu"));
+                DpuItem item = new DpuItem(data.getIntVal("detail." + JSONdn.EscapeDotsInKey(key) + ".count"), data.getDoubleVal("detail." + JSONdn.EscapeDotsInKey(key) + ".dpu"));
 
-                if (data.has("detail." + JSONdn.EscapeDots(key) + ".targets"))
+                if (data.has("detail." + JSONdn.EscapeDotsInKey(key) + ".targets"))
                 {
-                    JToken t = data.getJVal("detail." + JSONdn.EscapeDots(key) + ".targets");
-                    foreach (string targetkey in data.getKeys("detail." + JSONdn.EscapeDots(key) + ".targets"))
+                    JToken t = data.getJVal("detail." + JSONdn.EscapeDotsInKey(key) + ".targets");
+                    foreach (string targetkey in data.getKeys("detail." + JSONdn.EscapeDotsInKey(key) + ".targets"))
                     {
                         JSONdn t2 = new JSONdn(t[targetkey]);
                         item.addTarget(targetkey, new DpuItem(t2.getIntVal("count"), t2.getDoubleVal("dpu")));

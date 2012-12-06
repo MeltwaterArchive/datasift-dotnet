@@ -108,7 +108,7 @@ namespace datasift_tests
         public void dotEscape(string s, string Expected)
         {
             Assert.That(
-                datasift.JSONdn.EscapeDots(s),
+                datasift.JSONdn.EscapeDotsInKey(s),
                 Is.EqualTo(Expected));
         }
     }
