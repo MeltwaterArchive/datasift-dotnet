@@ -43,23 +43,80 @@ namespace datasift
             m_data = JObject.Parse(source).Root;
         }
 
+        public static string[] Split(string str)
+        {
+            var Result = new string[0];
+            var prevChar = '\0';
+            var thisWord = "";
+            foreach (var thisChar in str)
+            {
+                if (prevChar == '\\' && thisChar == '.')
+                {
+                    prevChar = '\0';
+                    thisWord = thisWord + thisChar;
+                }
+                else if (prevChar == '\\')
+                {
+                    prevChar = '\0';
+                    thisWord = thisWord + '\\' + thisChar;
+                }
+                else if (thisChar == '.')
+                {
+                    //split
+                    Array.Resize(ref Result, Result.Length + 1);
+                    Result.SetValue(thisWord, Result.Length - 1);
+                    thisWord = "";
+                    //
+                    prevChar = '\0';
+                }
+                else if (thisChar == '\\')
+                {
+                    prevChar = thisChar;
+                }
+                else
+                {
+                    prevChar = thisChar;
+                    thisWord = thisWord + thisChar;
+                }
+            }
+            Array.Resize(ref Result, Result.Length + 1);
+            Result.SetValue(thisWord, Result.Length - 1);
+            return Result;
+        }
+
+        public static string EscapeDots(string str)
+        {
+            return str.Replace(".", "\\.");
+        }
+
         /// <summary>
         /// Walk down the JSON data and return the object that represents the
         /// last element of the dot-separated key.
         /// </summary>
         /// <param name="key">The item key.</param>
         /// <returns>A JToken object.</returns>
-        public JToken resolveString(string key)
+        public JToken resolveString(string key) 
         {
-            string[] parts = key.Split(new Char[] { '.' });
-            JToken retval = m_data[parts[0]];
-            for (int i = 1; i < parts.Length; i++)
+            string[] parts = Split(key);
+            return resolveString(parts);
+        }
+
+        /// <summary>
+        /// Walk down the JSON data and return the object that represents the
+        /// last element of the listed keys.
+        /// </summary>
+        /// <param name="key">The item key.</param>
+        /// <returns>A JToken object.</returns>
+        public JToken resolveString(string[] keys)
+        {
+            JToken retval = m_data[keys[0]];
+            for (int i = 1; i < keys.Length; i++)
             {
-                if (retval[parts[i]] == null)
+                if (retval[keys[i]] == null)
                 {
                     throw new InvalidDataException("JSON key does not exist");
                 }
-                retval = retval[parts[i]];
+                retval = retval[keys[i]];
             }
             return retval;
         }
