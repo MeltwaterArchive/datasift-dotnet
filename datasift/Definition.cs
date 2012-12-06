@@ -249,7 +249,7 @@ namespace datasift
         /// <returns>A Dpu object.</returns>
         public Dpu getDpuBreakdown()
         {
-            if (m_csdl.Length == 0)
+            if (m_csdl.Length == 0 && m_hash.Length == 0)
             {
                 throw new InvalidDataException("Cannot get the DPU breakdown for an empty definition");
             }
