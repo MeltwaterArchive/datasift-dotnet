@@ -43,21 +43,28 @@ namespace datasift
             m_data = JObject.Parse(source).Root;
         }
 
-        public static string[] Split(string str)
+        /// <summary>
+        /// Split a string with . as a delimeter,
+        /// However escaped dots are not a delimeter
+        /// </summary>
+        /// <param name="str">String to split</param>
+        /// <returns>array of substrings</returns>
+        internal static string[] _Split(string str)
         {
+            const char NotADotOrEscape = '\0';
             var Result = new string[0];
-            var prevChar = '\0';
+            var prevChar = NotADotOrEscape;
             var thisWord = "";
             foreach (var thisChar in str)
             {
                 if (prevChar == '\\' && thisChar == '.')
                 {
-                    prevChar = '\0';
+                    prevChar = NotADotOrEscape;
                     thisWord = thisWord + thisChar;
                 }
                 else if (prevChar == '\\')
                 {
-                    prevChar = '\0';
+                    prevChar = NotADotOrEscape;
                     thisWord = thisWord + '\\' + thisChar;
                 }
                 else if (thisChar == '.')
@@ -67,7 +74,7 @@ namespace datasift
                     Result.SetValue(thisWord, Result.Length - 1);
                     thisWord = "";
                     //
-                    prevChar = '\0';
+                    prevChar = NotADotOrEscape;
                 }
                 else if (thisChar == '\\')
                 {
@@ -106,7 +113,7 @@ namespace datasift
         /// <returns>A JToken object.</returns>
         public JToken resolveString(string key) 
         {
-            string[] parts = Split(key);
+            string[] parts = _Split(key);
             return resolveString(parts);
         }
 
