@@ -51,21 +51,26 @@ namespace datasift
         /// <returns>array of substrings</returns>
         internal static string[] _Split(string str)
         {
-            const char NotADotOrEscape = '\0';
+            //split on dot(.), but not esscaped dots(\.)
+            //Also being aware of escaped escapes(\\) before dots(.) e.g. don't split \\. but do split \\\.
+            //see tests: Test_Split
+            const char NotADotOrEscape = 'h';
             var Result = new string[0];
             var prevChar = NotADotOrEscape;
             var thisWord = "";
             foreach (var thisChar in str)
             {
-                if (prevChar == '\\' && thisChar == '.')
+                if (prevChar == '\\')
                 {
+                    if (thisChar == '.')
+                    {
+                        thisWord = thisWord + thisChar;
+                    }
+                    else
+                    {
+                        thisWord = thisWord + '\\' + thisChar;
+                    }
                     prevChar = NotADotOrEscape;
-                    thisWord = thisWord + thisChar;
-                }
-                else if (prevChar == '\\')
-                {
-                    prevChar = NotADotOrEscape;
-                    thisWord = thisWord + '\\' + thisChar;
                 }
                 else if (thisChar == '.')
                 {
