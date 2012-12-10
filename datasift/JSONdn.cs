@@ -54,7 +54,7 @@ namespace datasift
             //split on dot(.), but not esscaped dots(\.)
             //Also being aware of escaped escapes(\\) before dots(.) e.g. don't split \\. but do split \\\.
             //see tests: Test_Split
-            const char NotADotOrEscape = 'h';
+            const char NotADotOrEscape = 'h'; //could be any thing, but \ or .
             var Result = new string[0];
             var prevChar = NotADotOrEscape;
             var thisWord = "";
