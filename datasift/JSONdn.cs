@@ -43,6 +43,26 @@ namespace datasift
             m_data = JObject.Parse(source).Root;
         }
 
+        /// Walk down the JSON data and return the object that represents the
+        /// last element of the dot-separated key.
+        /// </summary>
+        /// <param name="key">The item key.</param>
+        /// <returns>A JToken object.</returns>
+        public JToken resolveString_old(string key)
+        {
+            string[] parts = key.Split(new Char[] { '.' });
+            JToken retval = m_data[parts[0]];
+            for (int i = 1; i < parts.Length; i++)
+            {
+                if (retval[parts[i]] == null)
+                {
+                    throw new InvalidDataException("JSON key does not exist");
+                }
+                retval = retval[parts[i]];
+            }
+            return retval;
+        }
+
         /// <summary>
         /// Split a string with . as a delimeter,
         /// However escaped dots are not a delimeter
