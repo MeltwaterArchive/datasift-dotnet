@@ -8,7 +8,7 @@ namespace datasift_tests
     {
         public string[] Split(string str)
         {
-            return datasift.JSONdn.Split(str);
+            return datasift.JSONdn._Split(str);
         }
 
         [Test]
