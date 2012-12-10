@@ -11,76 +11,22 @@ namespace datasift_tests
             return datasift.JSONdn._Split(str);
         }
 
-        [Test]
-        public void split2()
+        [TestCase(@"hhh\.ggg",             new string[] { @"hhh.ggg"})]
+        [TestCase(@"hhh\\.ggg",            new string[] { @"hhh\\",@"ggg"})]
+        [TestCase(@"hhh\\\.ggg",           new string[] { @"hhh\\.ggg"})]
+        [TestCase(@"nnn\\\\.ggg",          new string[] { @"nnn\\\\", @"ggg"})]
+        [TestCase(@"hhh\\\\.ggg",          new string[] { @"hhh\\\\", @"ggg" })]
+        [TestCase(@"hhh\..ggg",            new string[] { @"hhh.", @"ggg" })]
+        [TestCase(@"hhh\.\.ggg",           new string[] { @"hhh..ggg" })]
+        [TestCase(@"hhh\\\.",              new string[] { @"hhh\\." })]
+        [TestCase(@"\\\.hhh",              new string[] { @"\\.hhh" })]
+        [TestCase(@"aaa\nbbb\.g.gg",       new string[] { @"aaa\nbbb.g", @"gg" })]
+        [TestCase(@"key1\.0.b\.key.\.net", new string[] { @"key1.0", @"b.key", @".net" })]
+        public void dot_split(string input, string[] expected)
         {
             Assert.That(
-                Split(@"hhh\.ggg"),
-                Is.EqualTo(new string[] { @"hhh.ggg" }));
-        }
-        [Test]
-        public void split3()
-        {
-            Assert.That(
-                Split(@"hhh\\.ggg"),
-                Is.EqualTo(new string[]{@"hhh\\",@"ggg"} ));
-        }
-        [Test]
-        public void split4()
-        {
-            Assert.That(
-                Split(@"hhh\\\.ggg"),
-                Is.EqualTo(new string[] { @"hhh\\.ggg" }));
-        }
-        [Test]
-        public void split5()
-        {
-            Assert.That(
-                Split(@"hhh\\\\.ggg"),
-                Is.EqualTo(new string[] { @"hhh\\\\", @"ggg" }));
-        }
-        [Test]
-        public void split6()
-        {
-            Assert.That(
-                Split(@"hhh\..ggg"),
-                Is.EqualTo(new string[] { @"hhh.", @"ggg" }));
-        }
-        [Test]
-        public void split7()
-        {
-            Assert.That(
-                Split(@"hhh\.\.ggg"),
-                Is.EqualTo(new string[] { @"hhh..ggg" }));
-        }
-        [Test]
-        public void split8()
-        {
-            Assert.That(
-                Split(@"hhh\\\."),
-                Is.EqualTo(new string[] { @"hhh\\." }));
-        }
-        public void split9()
-        {
-            Assert.That(
-                Split(@"\\\.hhh"),
-                Is.EqualTo(new string[] { @"\\.hhh" }));
-        }
-
-        [Test]
-        public void split_otherEscape()
-        {
-            Assert.That(
-                Split(@"aaa\nbbb\.g.gg"),
-                Is.EqualTo(new string[] { @"aaa\nbbb.g", @"gg" }));
-
-        }
-        [Test]
-        public void split()
-        {
-            Assert.That(
-                Split(@"key1\.0.b\.key.\.net"),
-                Is.EqualTo(new string[] { @"key1.0", @"b.key", @".net" }));
+                Split(input),
+                Is.EqualTo( expected ));
         }
 
         [TestCase("")]
@@ -94,21 +40,23 @@ namespace datasift_tests
         [TestCase(@"world\\.")]
         [TestCase(@"\\.world")]
         [TestCase(@"hello\\world")]
-        public void split_BackwardCompatible(string s)
+        [TestCase(@"hello\nworld")]
+        [TestCase(@"h.ello\nworl.d")]
+        public void dot_split_BackwardCompatible(string input)
         {
             Assert.That(
-                Split(s),
-                Is.EqualTo(s.Split('.')));
+                Split(input),
+                Is.EqualTo(input.Split('.')));
         }
 
         [TestCase("", "")]
         [TestCase(@".", @"\.")]
         [TestCase(@"a.b", @"a\.b")]
         [TestCase(@"a\n.b", @"a\n\.b")]
-        public void dotEscape(string s, string Expected)
+        public void dot_Escape(string input, string Expected)
         {
             Assert.That(
-                datasift.JSONdn.EscapeDotsInKey(s),
+                datasift.JSONdn.EscapeDotsInKey(input),
                 Is.EqualTo(Expected));
         }
     }
