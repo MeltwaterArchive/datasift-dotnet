@@ -59,7 +59,7 @@
     <Compile Include="Test_Historic.cs" />
     <Compile Include="Test_PushOutputParams.cs" />
     <Compile Include="Test_User.cs" />
-    <Compile Include="DotTests.cs" />
+    <Compile Include="Test_Split.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\datasift\datasift.csproj">

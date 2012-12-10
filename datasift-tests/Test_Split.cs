@@ -4,13 +4,8 @@ using NUnit.Framework;
 namespace datasift_tests
 {
     [TestFixture]
-    public class SplitTests
+    public class Test_Split
     {
-        public string[] Split(string str)
-        {
-            return datasift.JSONdn._Split(str);
-        }
-
         [TestCase(@"hhh\.ggg",             new string[] { @"hhh.ggg"})]
         [TestCase(@"hhh\\.ggg",            new string[] { @"hhh\\",@"ggg"})]
         [TestCase(@"hhh\\\.ggg",           new string[] { @"hhh\\.ggg"})]
@@ -25,7 +20,7 @@ namespace datasift_tests
         public void dot_split(string input, string[] expected)
         {
             Assert.That(
-                Split(input),
+                datasift.JSONdn._Split(input),
                 Is.EqualTo( expected ));
         }
 
@@ -45,10 +40,13 @@ namespace datasift_tests
         public void dot_split_BackwardCompatible(string input)
         {
             Assert.That(
-                Split(input),
+                datasift.JSONdn._Split(input),
                 Is.EqualTo(input.Split('.')));
         }
+    }
 
+    [TestFixture]
+    public class Test_DotEscape {
         [TestCase("", "")]
         [TestCase(@".", @"\.")]
         [TestCase(@"a.b", @"a\.b")]
