@@ -30,17 +30,17 @@ namespace datasift
 
         public double getCredit()
         {
-            return 0;
+            return m_data.getDoubleVal("balance.credit");
         }
 
         public string getPlan()
         {
-            return "";
+            return m_data.getStringVal("balance.plan");
         }
 
         public double getThreshold()
         {
-            return 0;
+            return m_data.getDoubleVal("balance.threshold");
         }
     }
 
