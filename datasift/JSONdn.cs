@@ -74,7 +74,7 @@ namespace datasift
             //split on dot(.), but not esscaped dots(\.)
             //Also being aware of escaped escapes(\\) before dots(.) e.g. don't split \\. but do split \\\.
             //see tests: Test_Split
-            const char NotADotOrEscape = 'h'; //could be anything, but not \ or .
+            const char NotADotOrEscape = '\0'; //could be anything, but not \ or .
             var Result = new LinkedList<string>();
             var prevChar = NotADotOrEscape;
             var begining = 0;
@@ -84,11 +84,12 @@ namespace datasift
                 var thisChar = str[index];
                 if (prevChar == '\\')
                 {
+                    //:tricky: sometimes we lie about the prevchar, if there is \\a then when on a (a being any char) then prevChar is not \
                     if (thisChar == '.')
                     {
                         //unescape the (not splitting) dots
                         //:tricky: we are scanning left to right, and now adjust the char one behind the one we are on, and as a consequence everything to the right of us.
-                        str = str.Substring(0, index - 1) + str.Substring(index);
+                        str=str.Remove(index - 1, 1);
                         index--;
                         len--;
                     }
