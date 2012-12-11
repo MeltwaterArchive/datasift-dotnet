@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractApiClient.cs" />
+    <Compile Include="Balance.cs" />
     <Compile Include="Dpu.cs" />
     <Compile Include="DpuItem.cs" />
     <Compile Include="Exceptions\AccessDeniedException.cs" />
