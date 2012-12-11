@@ -53,6 +53,7 @@
   <ItemGroup>
     <Compile Include="TestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test_Balance.cs" />
     <Compile Include="Test_Definition.cs" />
     <Compile Include="Test_Historic.cs" />
     <Compile Include="Test_PushOutputParams.cs" />

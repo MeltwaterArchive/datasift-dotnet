@@ -9,7 +9,7 @@ namespace datasift_tests
         [TestMethod]
         public void Test_BalanceConstruct()
         {
-            
+            new datasift.Balance(new datasift.JSONdn("{\"balance\":{\"credit\":10,\"plan\":\"free\",\"threshold\":2}}"));
         }
     }
 }
