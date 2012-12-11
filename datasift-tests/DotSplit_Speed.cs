@@ -60,30 +60,104 @@ namespace datasift_tests
             var finish_time = System.DateTime.Now;
 
             var duration = finish_time - start_time;
-            System.Console.WriteLine("old split duration=" + duration.TotalSeconds);
+            System.Console.WriteLine("old      split  duration=" + duration.TotalSeconds);
         }
 
         [Test]
-        public void speed_split_handmade()
+        public void speed_split_handmade1()
         {
             var start_time = System.DateTime.Now;
             for (var i = 0; i < 1000000; i++)
             {
-                var t = HandMadeSplit(someDotText);
+                var t = HandMadeSplit1(someDotText);
             }
             var finish_time = System.DateTime.Now;
 
             var duration = finish_time - start_time;
-            System.Console.WriteLine("handmade split duration=" + duration.TotalSeconds);
+            System.Console.WriteLine("handmade split1 duration=" + duration.TotalSeconds);
         }
 
         [Test]
-        public void Test_Split()
+        public void speed_split_handmade2()
         {
-            Assert.That(HandMadeSplit(someDotText), Is.EqualTo(someDotTestAsList as IEnumerable<string>));
+            var start_time = System.DateTime.Now;
+            for (var i = 0; i < 1000000; i++)
+            {
+                var t = HandMadeSplit2(someDotText);
+            }
+            var finish_time = System.DateTime.Now;
+
+            var duration = finish_time - start_time;
+            System.Console.WriteLine("handmade split2 duration=" + duration.TotalSeconds);
         }
 
-        private IEnumerable<string> HandMadeSplit(string input)
+        [Test]
+        public void speed_split_handmade3()
+        {
+            var start_time = System.DateTime.Now;
+            for (var i = 0; i < 1000000; i++)
+            {
+                var t = HandMadeSplit3(someDotText);
+            }
+            var finish_time = System.DateTime.Now;
+
+            var duration = finish_time - start_time;
+            System.Console.WriteLine("handmade split3 duration=" + duration.TotalSeconds);
+        }
+
+        [Test]
+        public void speed_split_handmade4()
+        {
+            var start_time = System.DateTime.Now;
+            for (var i = 0; i < 1000000; i++)
+            {
+                var t = HandMadeSplit4(someDotText);
+            }
+            var finish_time = System.DateTime.Now;
+
+            var duration = finish_time - start_time;
+            System.Console.WriteLine("handmade split4 duration=" + duration.TotalSeconds);
+        }
+
+        [Test]
+        public void speed_split_newsplit()
+        {
+            var start_time = System.DateTime.Now;
+            for (var i = 0; i < 1000000; i++)
+            {
+                var t = datasift.JSONdn._SplitAndUnescape(someDotText);
+            }
+            var finish_time = System.DateTime.Now;
+
+            var duration = finish_time - start_time;
+            System.Console.WriteLine("new      split  duration=" + duration.TotalSeconds);
+        }
+
+        [Test]
+        public void Test_Split1()
+        {
+            Assert.That(HandMadeSplit1(someDotText), Is.EqualTo(someDotTestAsList as IEnumerable<string>));
+        }
+
+        [Test]
+        public void Test_Split2()
+        {
+            Assert.That(HandMadeSplit2(someDotText), Is.EqualTo(someDotTestAsList as IEnumerable<string>));
+        }
+
+        [Test]
+        public void Test_Split3()
+        {
+            Assert.That(HandMadeSplit3(someDotText), Is.EqualTo(someDotTestAsList as IEnumerable<string>));
+        }
+
+        [Test]
+        public void Test_Split4()
+        {
+            Assert.That(HandMadeSplit4(someDotText), Is.EqualTo(someDotTestAsList as IEnumerable<string>));
+        }
+
+        private IEnumerable<string> HandMadeSplit1(string input)
         {
             var Result = new LinkedList<string>();
             var word = new StringBuilder();
@@ -100,6 +174,45 @@ namespace datasift_tests
                 }
             }
             Result.AddLast(word.ToString());
+            return Result;
+        }
+
+        private IEnumerable<string> HandMadeSplit2(string input)
+        {
+            var Result = new LinkedList<string>();
+            var begining = 0;
+            var len = input.Length;
+            for (var index=0;index<len;index++)
+            {
+                if (input[index] == '.')
+                {
+                    Result.AddLast(input.Substring(begining,index-begining));
+                    begining = index+1;
+                }
+            }
+            Result.AddLast(input.Substring(begining));
+            return Result;
+        }
+
+        private IEnumerable<string> HandMadeSplit3(string input)
+        {
+            var Result = new LinkedList<string>();
+            var begining=0;
+            var index = input.IndexOf('.');
+            while (index>0)
+            {
+                Result.AddLast(input.Substring(begining, index - begining));
+                begining = index + 1;
+                index = input.IndexOf('.',begining);
+            }
+            Result.AddLast(input.Substring(begining));
+            return Result;
+        }
+
+        System.Text.RegularExpressions.Regex SplitExp = new System.Text.RegularExpressions.Regex("\\.",System.Text.RegularExpressions.RegexOptions.CultureInvariant | System.Text.RegularExpressions.RegexOptions.Compiled);
+        private IEnumerable<string> HandMadeSplit4(string input)
+        {
+            var Result= SplitExp.Split(input);
             return Result;
         }
     }

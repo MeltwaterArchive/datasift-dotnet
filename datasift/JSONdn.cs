@@ -69,48 +69,45 @@ namespace datasift
         /// </summary>
         /// <param name="str">String to split</param>
         /// <returns>array of substrings</returns>
-        internal static IEnumerable<string> _Split(string str)
+        internal static IEnumerable<string> _SplitAndUnescape(string str)
         {
             //split on dot(.), but not esscaped dots(\.)
             //Also being aware of escaped escapes(\\) before dots(.) e.g. don't split \\. but do split \\\.
             //see tests: Test_Split
-            const char NotADotOrEscape = 'h'; //could be any thing, but \ or .
+            const char NotADotOrEscape = 'h'; //could be anything, but not \ or .
             var Result = new LinkedList<string>();
             var prevChar = NotADotOrEscape;
-            var thisWord = new StringBuilder();
-            foreach (var thisChar in str)
+            var begining = 0;
+            var len = str.Length;
+            for (var index =0; index <len;index++)
             {
+                var thisChar = str[index];
                 if (prevChar == '\\')
                 {
                     if (thisChar == '.')
                     {
-                        thisWord.Append( thisChar );
-                    }
-                    else
-                    {
-                        thisWord.Append('\\').Append(thisChar);
+                        //unescape the (not splitting) dots
+                        //:tricky: we are scanning left to right, and now adjust the char one behind the one we are on, and as a consequence everything to the right of us.
+                        str = str.Substring(0, index - 1) + str.Substring(index);
+                        index--;
+                        len--;
                     }
                     prevChar = NotADotOrEscape;
                 }
                 else if (thisChar == '.')
                 {
                     //split
-                    Result.AddLast(thisWord.ToString());
-                    thisWord.Length = 0;
+                    Result.AddLast(str.Substring(begining, index - begining));
+                    begining = index + 1;
                     //
                     prevChar = NotADotOrEscape;
-                }
-                else if (thisChar == '\\')
-                {
-                    prevChar = thisChar;
                 }
                 else
                 {
                     prevChar = thisChar;
-                    thisWord.Append(thisChar);
                 }
             }
-            Result.AddLast(thisWord.ToString());
+            Result.AddLast(str.Substring(begining));
             return Result;
         }
 
@@ -136,7 +133,7 @@ namespace datasift
         /// <returns>A JToken object.</returns>
         public JToken resolveString(string key) 
         {
-            IEnumerable<string> parts = _Split(key);
+            IEnumerable<string> parts = _SplitAndUnescape(key);
            
             var cursor = parts.GetEnumerator();
             cursor.MoveNext();

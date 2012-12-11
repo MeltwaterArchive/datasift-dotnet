@@ -20,7 +20,7 @@ namespace datasift_tests
         public void dot_split(string input, string[] expected)
         {
             Assert.That(
-                datasift.JSONdn._Split(input),
+                datasift.JSONdn._SplitAndUnescape(input),
                 Is.EqualTo( expected ));
         }
 
@@ -40,7 +40,7 @@ namespace datasift_tests
         public void dot_split_BackwardCompatible(string input)
         {
             Assert.That(
-                datasift.JSONdn._Split(input),
+                datasift.JSONdn._SplitAndUnescape(input),
                 Is.EqualTo(input.Split('.')));
         }
     }
