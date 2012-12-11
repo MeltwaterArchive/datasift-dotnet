@@ -49,6 +49,22 @@ namespace datasift_tests
             Assert.That(balance.getPlan(), Is.InstanceOf<string>());
             Assert.That(balance.getPlan(), Is.EqualTo("free"));
         }
+    }
 
+    [TestFixture]
+    [Ignore] // not a "unit" test, depends on to much and is fragile (it passed at least once), will replace with functional test.
+    public class UserBalance
+    {
+        [Test]
+        public void Test_BalanceUser()
+        {
+            var user = new datasift.User("abc", "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"); //user data removed
+            var balance = user.getBalance();
+            //These values are for a particular user at a particular time, so this test will not pass for you as is.
+            //Therefore test is set to be ignored.
+            Assert.That(balance.getCredit(), Is.EqualTo(9.93));
+            Assert.That(balance.getThreshold(), Is.EqualTo(2));
+            Assert.That(balance.getPlan(), Is.EqualTo("free"));
+        }
     }
 }
