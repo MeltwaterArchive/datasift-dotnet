@@ -25,7 +25,7 @@ namespace datasift
             {
                 foreach (string key in json.getKeys("sources"))
                 {
-			        m_sources.Add(key, new HistoricDataAvailabilitySource(new JSONdn(json.getJVal("sources." + key))));
+			        m_sources.Add(key, new HistoricDataAvailabilitySource(new JSONdn(json.getJVal("sources." + JSONdn.EscapeDotsInKey(key)))));
                 }
             }
 	    }

@@ -43,13 +43,12 @@ namespace datasift
             m_data = JObject.Parse(source).Root;
         }
 
-        /// <summary>
         /// Walk down the JSON data and return the object that represents the
         /// last element of the dot-separated key.
         /// </summary>
         /// <param name="key">The item key.</param>
         /// <returns>A JToken object.</returns>
-        public JToken resolveString(string key)
+        public JToken resolveString_old(string key)
         {
             string[] parts = key.Split(new Char[] { '.' });
             JToken retval = m_data[parts[0]];
@@ -60,6 +59,94 @@ namespace datasift
                     throw new InvalidDataException("JSON key does not exist");
                 }
                 retval = retval[parts[i]];
+            }
+            return retval;
+        }
+
+        /// <summary>
+        /// Split a string with . as a delimeter,
+        /// However escaped dots are not a delimeter
+        /// </summary>
+        /// <param name="str">String to split</param>
+        /// <returns>array of substrings</returns>
+        internal static IEnumerable<string> _SplitAndUnescape(string str)
+        {
+            //split on dot(.), but not esscaped dots(\.)
+            //Also being aware of escaped escapes(\\) before dots(.) e.g. don't split \\. but do split \\\.
+            //see tests: Test_Split
+            const char NotADotOrEscape = '\0'; //could be anything, but not \ or .
+            var Result = new List<string>();
+            var prevChar = NotADotOrEscape;
+            var begining = 0;
+            var len = str.Length;
+            for (var index =0; index <len;index++)
+            {
+                var thisChar = str[index];
+                if (prevChar == '\\')
+                {
+                    //:tricky: sometimes we lie about the prevchar, if there is \\a then when on a (a being any char) then prevChar is not \
+                    if (thisChar == '.')
+                    {
+                        //unescape the (not splitting) dots
+                        //:tricky: we are scanning left to right, and now adjust the char one behind the one we are on, and as a consequence everything to the right of us.
+                        str=str.Remove(index - 1, 1);
+                        index--;
+                        len--;
+                    }
+                    prevChar = NotADotOrEscape;
+                }
+                else if (thisChar == '.')
+                {
+                    //split
+                    Result.Add(str.Substring(begining, index - begining));
+                    begining = index + 1;
+                    //
+                    prevChar = NotADotOrEscape;
+                }
+                else
+                {
+                    prevChar = thisChar;
+                }
+            }
+            Result.Add(str.Substring(begining));
+            return Result;
+        }
+
+        /// <summary>
+        /// If a key that has dots in it is used in dot notation, then things will be bad,
+        /// because if is an ambiguous grama,
+        /// use this routine to escape the dots, it will replace a . with a \. 
+        /// (a \. is ilegal in json, so is unambiguous)
+        /// The other methods will split on an unescaped dot, and unescape these dots.
+        /// </summary>
+        /// <param name="key">input key</param>
+        /// <returns>escaped key</returns>
+        public static string EscapeDotsInKey(string key)
+        {
+            return key.Replace(".", "\\.");
+        }
+
+        /// <summary>
+        /// Walk down the JSON data and return the object that represents the
+        /// last element of the dot-separated key.
+        /// </summary>
+        /// <param name="key">The item key.</param>
+        /// <returns>A JToken object.</returns>
+        public JToken resolveString(string key) 
+        {
+            IEnumerable<string> parts = _SplitAndUnescape(key);
+           
+            var cursor = parts.GetEnumerator();
+            cursor.MoveNext();
+            JToken retval = m_data;
+            retval = retval[cursor.Current];
+            while(cursor.MoveNext())
+            {
+                if (retval[cursor.Current] == null)
+                {
+                    throw new InvalidDataException("JSON key does not exist");
+                }
+                retval = retval[cursor.Current];
             }
             return retval;
         }

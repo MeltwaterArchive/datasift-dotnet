@@ -124,7 +124,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="E:\datasift\datasift.csproj">
+    <ProjectReference Include="..\datasift\datasift.csproj">
       <Project>{9181A4F9-CCDF-4C53-9162-C7C9C4F28FE8}</Project>
       <Name>datasift</Name>
     </ProjectReference>

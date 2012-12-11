@@ -28,7 +28,7 @@ namespace datasift
             
             foreach (string key in json.getKeys("augmentations"))
             {
-			    m_augmentations.Add(key, json.getIntVal("augmentations." + key));
+			    m_augmentations.Add(key, json.getIntVal("augmentations." + JSONdn.EscapeDotsInKey(key)));
 		    }
 	    }
 	
