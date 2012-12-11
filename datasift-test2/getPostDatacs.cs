@@ -33,13 +33,11 @@ namespace datasift_test2
                 new Dictionary<string, string>(){{"hello","world"}},
                 "hello=world"
             },
-#if false
             //zero args
             new object[] {
                 new Dictionary<string, string>(),
                 ""
-            },
-#endif
+            }
         };
     }
 }
