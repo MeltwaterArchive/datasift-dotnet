@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="getPostDatacs.cs" />
+    <Compile Include="getPostData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test_Balance.cs" />
   </ItemGroup>

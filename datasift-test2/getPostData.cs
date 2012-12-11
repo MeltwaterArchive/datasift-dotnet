@@ -7,7 +7,7 @@ using NUnit.Framework;
 namespace datasift_test2
 {
     [TestFixture]
-    class getPostDatacs
+    class getPostData
     {
         [TestCaseSource("TestCases")]
         public void Test_AbstractApiClient_getPostData(
