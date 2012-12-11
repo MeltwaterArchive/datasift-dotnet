@@ -43,7 +43,4 @@ namespace datasift
             return m_data.getDoubleVal("balance.threshold");
         }
     }
-
-
-
 }
