@@ -91,11 +91,13 @@ namespace datasift
         public string getPostData(Dictionary<string, string> parameters = null)
         {
             StringBuilder post_data = new StringBuilder();
+            var is_first = true;
             foreach (KeyValuePair<string, string> kv in (parameters == null ? m_parameters : parameters))
             {
-                post_data.AppendFormat("{0}={1}&", HttpUtility.UrlEncode(kv.Key), HttpUtility.UrlEncode(kv.Value));
+                post_data.AppendFormat(is_first?"{0}={1}":"&{0}={1}", HttpUtility.UrlEncode(kv.Key), HttpUtility.UrlEncode(kv.Value));
+                is_first = false;
             }
-            return post_data.Remove(post_data.Length - 1, 1).ToString();
+            return post_data.ToString();
         }
 
         /// <summary>
