@@ -75,7 +75,7 @@ namespace datasift
             //Also being aware of escaped escapes(\\) before dots(.) e.g. don't split \\. but do split \\\.
             //see tests: Test_Split
             const char NotADotOrEscape = '\0'; //could be anything, but not \ or .
-            var Result = new LinkedList<string>();
+            var Result = new List<string>();
             var prevChar = NotADotOrEscape;
             var begining = 0;
             var len = str.Length;
@@ -98,7 +98,7 @@ namespace datasift
                 else if (thisChar == '.')
                 {
                     //split
-                    Result.AddLast(str.Substring(begining, index - begining));
+                    Result.Add(str.Substring(begining, index - begining));
                     begining = index + 1;
                     //
                     prevChar = NotADotOrEscape;
@@ -108,7 +108,7 @@ namespace datasift
                     prevChar = thisChar;
                 }
             }
-            Result.AddLast(str.Substring(begining));
+            Result.Add(str.Substring(begining));
             return Result;
         }
 

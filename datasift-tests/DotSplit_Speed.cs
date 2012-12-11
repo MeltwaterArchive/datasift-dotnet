@@ -74,7 +74,7 @@ namespace datasift_tests
             var finish_time = System.DateTime.Now;
 
             var duration = finish_time - start_time;
-            System.Console.WriteLine("handmade split1 duration=" + duration.TotalSeconds);
+            System.Console.WriteLine("handmade simple split1 (string builder) duration=" + duration.TotalSeconds);
         }
 
         [Test]
@@ -88,7 +88,21 @@ namespace datasift_tests
             var finish_time = System.DateTime.Now;
 
             var duration = finish_time - start_time;
-            System.Console.WriteLine("handmade split2 duration=" + duration.TotalSeconds);
+            System.Console.WriteLine("handmade simple split2 (substring) duration=" + duration.TotalSeconds);
+        }
+
+        [Test]
+        public void speed_split_handmade2b()
+        {
+            var start_time = System.DateTime.Now;
+            for (var i = 0; i < 1000000; i++)
+            {
+                var t = HandMadeSplit2b(someDotText);
+            }
+            var finish_time = System.DateTime.Now;
+
+            var duration = finish_time - start_time;
+            System.Console.WriteLine("handmade simple split2b (2+list not linkedlist) duration=" + duration.TotalSeconds);
         }
 
         [Test]
@@ -102,7 +116,7 @@ namespace datasift_tests
             var finish_time = System.DateTime.Now;
 
             var duration = finish_time - start_time;
-            System.Console.WriteLine("handmade split3 duration=" + duration.TotalSeconds);
+            System.Console.WriteLine("handmade simple split3 (indexof) duration=" + duration.TotalSeconds);
         }
 
         [Test]
@@ -116,7 +130,7 @@ namespace datasift_tests
             var finish_time = System.DateTime.Now;
 
             var duration = finish_time - start_time;
-            System.Console.WriteLine("handmade split4 duration=" + duration.TotalSeconds);
+            System.Console.WriteLine("handmade simple split4 (regex)   duration=" + duration.TotalSeconds);
         }
 
         [Test]
@@ -143,6 +157,12 @@ namespace datasift_tests
         public void Test_Split2()
         {
             Assert.That(HandMadeSplit2(someDotText), Is.EqualTo(someDotTestAsList as IEnumerable<string>));
+        }
+
+        [Test]
+        public void Test_Split2b()
+        {
+            Assert.That(HandMadeSplit2b(someDotText), Is.EqualTo(someDotTestAsList as IEnumerable<string>));
         }
 
         [Test]
@@ -177,17 +197,35 @@ namespace datasift_tests
             return Result;
         }
 
-        private IEnumerable<string> HandMadeSplit2(string input)
+        private IEnumerable<string> HandMadeSplit2b(string input)
         {
-            var Result = new LinkedList<string>();
+            //this one is margenaly better that the second best 2, but makes the resolver (its client much faster), nealy as fast as original.
+            var Result = new List<string>();
             var begining = 0;
             var len = input.Length;
             for (var index=0;index<len;index++)
             {
                 if (input[index] == '.')
                 {
-                    Result.AddLast(input.Substring(begining,index-begining));
+                    Result.Add(input.Substring(begining,index-begining));
                     begining = index+1;
+                }
+            }
+            Result.Add(input.Substring(begining));
+            return Result;
+        }
+
+        private IEnumerable<string> HandMadeSplit2(string input)
+        {
+            var Result = new LinkedList<string>();
+            var begining = 0;
+            var len = input.Length;
+            for (var index = 0; index < len; index++)
+            {
+                if (input[index] == '.')
+                {
+                    Result.AddLast(input.Substring(begining, index - begining));
+                    begining = index + 1;
                 }
             }
             Result.AddLast(input.Substring(begining));
