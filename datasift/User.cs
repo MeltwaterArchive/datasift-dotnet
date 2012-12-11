@@ -144,10 +144,10 @@ namespace datasift
         /// Get the balance for this user
         /// </summary>
         /// <returns>A Balance object.</returns>
-        public Usage getBalance()
+        public Balance getBalance()
         {
             Dictionary<string, string> parameters = new Dictionary<string, string>();
-            return new Usage(callApi("balance",parameters));
+            return new Balance(callApi("balance",parameters));
         }
 
         /// <summary>
