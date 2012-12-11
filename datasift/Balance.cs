@@ -27,6 +27,21 @@ namespace datasift
             // Save it for later.
             m_data = data;
         }
+
+        public double getCredit()
+        {
+            return 0;
+        }
+
+        public string getPlan()
+        {
+            return "";
+        }
+
+        public double getThreshold()
+        {
+            return 0;
+        }
     }
 
 
