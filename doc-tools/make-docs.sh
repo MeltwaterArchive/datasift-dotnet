@@ -1,36 +1,43 @@
-#!/bin/sh -v
-if [ -z "$1" ]; then
-    echo 'You must run this script with branch name as its argument, e.g.'
-    echo 'sh ./make-docs.sh master'
-    exit
-fi
-echo 'working on branch '$1
-echo 'installing tools'
+#!/bin/bash
+#-v
+
+export BASE_DIR="$( cd "$( dirname $0 )/../../../.." && pwd )/"
+
+source ${BASE_DIR}ms-tools/doc-tools/docathon/sub/make-docs-util-defs.sh
+initialise $*
+
+### .NET-specific parameters
+parameters "dotnet"
+
+### installation of .NET-specific tools
+message 'installing tools'
 sudo apt-get install git
 sudo apt-get install doxygen
-echo 'making temporary directory'
-mkdir tmp
-cd tmp
-echo 'cloning repos'
-git clone https://github.com/datasift/datasift-dotnet.git code
-git clone https://github.com/datasift/datasift-dotnet.git gh-pages
-cd code
-git checkout $1
-cd ..
-cd gh-pages
-git checkout gh-pages
 
-cp doc-tools/Doxyfile ../code/Doxyfile
-mv ./doc-tools ./.doc-tools
-cd ../code
-doxygen
-cp -a gh-pages/html/* ../gh-pages
-cd ../gh-pages
-mv .doc-tools doc-tools
+pre_build
 
-git add *
-git commit -m 'Updated to reflect the latest changes to '$1
-echo 'You are going to update the gh-pages branch to reflect the latest changes to '$1
-git push origin gh-pages
-echo 'finished'
+### .NET-specific build steps
 
+message "preparing to build documents"
+cp ${GH_PAGES_DIR}doc-tools/Doxyfile ${CODE_DIR}Doxyfile ; stop_on_error
+mv ${GH_PAGES_DIR}doc-tools ${GH_PAGES_ALT_DIR}.doc-tools ; stop_on_error
+
+### (build/copy docs steps commbined in this case)
+(
+	message "building documents"
+	cd ${CODE_DIR}datasift/doc ; stop_on_error
+	doxygen ; stop_on_error
+	cp -a ${GH_PAGES_DIR}html/* ${GH_PAGES_DIR} ; stop_on_error
+) || error "stopped parent"
+
+message "tidying after document build"
+mv ${GH_PAGES_DIR}.doc-tools ${GH_PAGES_ALT_DIR}doc-tools ; stop_on_error
+
+(
+	cd ${GH_PAGES_DIR} ; stop_on_error
+	git add *
+) || error "stopped parent"
+
+post_build
+
+finalise
