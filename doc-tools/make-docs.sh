@@ -20,8 +20,6 @@ pre_build
 ### .NET-specific build steps
 
 message "preparing to build documents"
-echo $CODE_DIR
-echo $GH_PAGES_DIR
 cp ${GH_PAGES_DIR}doc-tools/Doxyfile ${CODE_DIR}Doxyfile ; stop_on_error
 mv ${GH_PAGES_DIR}doc-tools ${GH_PAGES_DIR}.doc-tools ; stop_on_error
 
