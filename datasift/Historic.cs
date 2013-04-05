@@ -170,11 +170,6 @@ namespace datasift
         private HistoricDataAvailability m_availability = null;
 
         /// <summary>
-        /// The data availability for this Historics query. 
-        /// </summary>
-		private Dictionary<string,int> m_volume_info = new Dictionary<string,int>();
-
-        /// <summary>
         /// Constructor. Creates a Historic object by fetching an existing query from the API.
         /// </summary>
         /// <param name="user">The User creating the object.</param>
@@ -326,15 +321,6 @@ namespace datasift
             }
             m_sample = data.getDoubleVal("sample");
 
-            if (!data.has("volume_info"))
-            {
-                throw new ApiException("No volume_info in the response");
-            }
-            m_volume_info.Clear();
-            foreach (string key in data.getKeys("volume_info"))
-            {
-                m_volume_info.Add(key, data.getIntVal("volume_info." + key));
-            }
         }
 
         /// <summary>
@@ -409,15 +395,6 @@ namespace datasift
         public string getStatus()
         {
             return m_status;
-        }
-
-        /// <summary>
-        /// Get the data volume information for this query.
-        /// </summary>
-        /// <returns>A Dictionary of string => int.</returns>
-        public Dictionary<string, int> getVolumeInfo()
-        {
-            return m_volume_info;
         }
 
         /// <summary>
