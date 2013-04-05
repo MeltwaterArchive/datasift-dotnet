@@ -55,6 +55,8 @@ namespace datasift
 
                 byte[] buffer = new byte[65536];
                 HttpWebResponse response;
+
+                // TODO: check status in exception handler to treat timeouts differently if needed
                 WebExceptionStatus status;
 
                 try
