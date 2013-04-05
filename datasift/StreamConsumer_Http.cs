@@ -56,10 +56,15 @@ namespace datasift
                 byte[] buffer = new byte[65536];
                 HttpWebResponse response;
 
+                // TODO: check status in exception handler to treat timeouts differently if needed
+                WebExceptionStatus status;
+
                 try
                 {
                     // Build the request.
                     HttpWebRequest request = (HttpWebRequest)WebRequest.Create(getUrl());
+                    request.Timeout = 65000;
+                    request.ReadWriteTimeout = 65000;
                     request.Headers["Auth"] = getAuthHeader();
                     request.UserAgent = getUserAgent();
 
@@ -70,6 +75,7 @@ namespace datasift
                 {
                     // An error occurred, but we handle the response with the same code below.
                     response = (HttpWebResponse)e.Response;
+                    status = e.Status;
                 }
                 catch (Exception e)
                 {
