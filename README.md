@@ -27,6 +27,8 @@ more details.
 Changelog
 ---------
 
+* v.0.5.0 Shortened timeout for reconnect, removed volume_info references
+
 * v.0.4.1 Bugfix in the definition.validate() method [richard-delorenzi](https://github.com/richard-delorenzi) (2012-11-28)
 
 * v.0.4.0 Completed the Historics and Push delivery example app and
