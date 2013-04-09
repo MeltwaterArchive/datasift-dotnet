@@ -9,7 +9,5 @@ var searchData=
   ['widgetidjsonconverter',['WidgetIdJsonConverter',['../d8/d3d/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1WidgetIdJsonConverter.html',1,'Newtonsoft::Json::Tests::Serialization']]],
   ['withenums',['WithEnums',['../d8/d5f/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1WithEnums.html',1,'Newtonsoft::Json::Tests::Serialization']]],
   ['workspace',['Workspace',['../d5/d66/classNewtonsoft_1_1Json_1_1Tests_1_1Schema_1_1Workspace.html',1,'Newtonsoft::Json::Tests::Schema']]],
-  ['wrapper',['Wrapper',['../d4/dba/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1TypeNameHandlingTests_1_1Wrapper.html',1,'Newtonsoft::Json::Tests::Serialization::TypeNameHandlingTests']]],
-  ['wrapperdictionary',['WrapperDictionary',['../d1/d0a/classNewtonsoft_1_1Json_1_1Utilities_1_1WrapperDictionary.html',1,'Newtonsoft::Json::Utilities']]],
-  ['wrappermethodbuilder',['WrapperMethodBuilder',['../d9/d63/classNewtonsoft_1_1Json_1_1Utilities_1_1WrapperMethodBuilder.html',1,'Newtonsoft::Json::Utilities']]]
+  ['wrapper',['Wrapper',['../d4/dba/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1TypeNameHandlingTests_1_1Wrapper.html',1,'Newtonsoft::Json::Tests::Serialization::TypeNameHandlingTests']]]
 ];

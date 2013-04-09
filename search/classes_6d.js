@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['mathutils',['MathUtils',['../d8/dc8/classNewtonsoft_1_1Json_1_1Utilities_1_1MathUtils.html',1,'Newtonsoft::Json::Utilities']]],
   ['memberconverterclass',['MemberConverterClass',['../d2/d70/classNewtonsoft_1_1Json_1_1Tests_1_1TestObjects_1_1MemberConverterClass.html',1,'Newtonsoft::Json::Tests::TestObjects']]],
   ['memberconverterprecedenceclassconverter',['MemberConverterPrecedenceClassConverter',['../da/daa/classNewtonsoft_1_1Json_1_1Tests_1_1TestObjects_1_1MemberConverterPrecedenceClassConverter.html',1,'Newtonsoft::Json::Tests::TestObjects']]],
   ['message',['Message',['../d8/d25/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1Message.html',1,'Newtonsoft::Json::Tests::Serialization']]],

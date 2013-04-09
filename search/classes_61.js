@@ -2,9 +2,9 @@ var searchData=
 [
   ['a',['A',['../d8/d9b/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1JsonSerializerTest_1_1A.html',1,'Newtonsoft::Json::Tests::Serialization::JsonSerializerTest']]],
   ['aa',['AA',['../d8/d1a/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1JsonSerializerTest_1_1AA.html',1,'Newtonsoft::Json::Tests::Serialization::JsonSerializerTest']]],
-  ['aa',['Aa',['../d9/df9/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1Aa.html',1,'Newtonsoft::Json::Tests::Serialization']]],
   ['abstractapiclient',['AbstractApiClient',['../d1/dc0/classdatasift_1_1AbstractApiClient.html',1,'datasift']]],
   ['abstractgenericbase_2dg',['AbstractGenericBase-g',['../d1/d1e/classNewtonsoft_1_1Json_1_1Tests_1_1TestObjects_1_1AbstractGenericBase-g.html',1,'Newtonsoft::Json::Tests::TestObjects']]],
+  ['abstractgenericbase_2dg_3c_20int_20_3e',['AbstractGenericBase-g&lt; int &gt;',['../d1/d1e/classNewtonsoft_1_1Json_1_1Tests_1_1TestObjects_1_1AbstractGenericBase-g.html',1,'Newtonsoft::Json::Tests::TestObjects']]],
   ['accessdeniedexception',['AccessDeniedException',['../d7/d08/classdatasift_1_1AccessDeniedException.html',1,'datasift']]],
   ['accountcredentialsform',['AccountCredentialsForm',['../de/d77/classDataSiftControlPanel_1_1AccountCredentialsForm.html',1,'DataSiftControlPanel']]],
   ['address',['Address',['../d1/db6/classNewtonsoft_1_1Json_1_1Tests_1_1Address.html',1,'Newtonsoft::Json::Tests']]],

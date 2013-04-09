@@ -10,8 +10,6 @@ var searchData=
   ['enumcontainer_2dg',['EnumContainer-g',['../d9/da3/classNewtonsoft_1_1Json_1_1Tests_1_1Converters_1_1StringEnumConverterTests_1_1EnumContainer-g.html',1,'Newtonsoft::Json::Tests::Converters::StringEnumConverterTests']]],
   ['enumerablearraypropertyclass',['EnumerableArrayPropertyClass',['../d7/df6/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1JsonSerializerTest_1_1EnumerableArrayPropertyClass.html',1,'Newtonsoft::Json::Tests::Serialization::JsonSerializerTest']]],
   ['enumerableclass',['EnumerableClass',['../de/dcd/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1JsonSerializerTest_1_1EnumerableClass.html',1,'Newtonsoft::Json::Tests::Serialization::JsonSerializerTest']]],
-  ['enumvalue_2dg',['EnumValue-g',['../da/d00/classNewtonsoft_1_1Json_1_1Utilities_1_1EnumValue-g.html',1,'Newtonsoft::Json::Utilities']]],
-  ['enumvalues_2dg',['EnumValues-g',['../d6/d27/classNewtonsoft_1_1Json_1_1Utilities_1_1EnumValues-g.html',1,'Newtonsoft::Json::Utilities']]],
   ['errorcontext',['ErrorContext',['../d7/d38/classNewtonsoft_1_1Json_1_1Serialization_1_1ErrorContext.html',1,'Newtonsoft::Json::Serialization']]],
   ['erroreventargs',['ErrorEventArgs',['../df/d54/classNewtonsoft_1_1Json_1_1Serialization_1_1ErrorEventArgs.html',1,'Newtonsoft::Json::Serialization']]],
   ['errorsettingdynamicobject',['ErrorSettingDynamicObject',['../d9/de0/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1DynamicTests_1_1ErrorSettingDynamicObject.html',1,'Newtonsoft::Json::Tests::Serialization::DynamicTests']]],

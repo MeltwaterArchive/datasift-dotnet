@@ -19,7 +19,6 @@ var searchData=
   ['decimaltest',['DecimalTest',['../d8/d70/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1JsonSerializerTest_1_1DecimalTest.html',1,'Newtonsoft::Json::Tests::Serialization::JsonSerializerTest']]],
   ['decimaltestclass',['DecimalTestClass',['../dc/da0/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1DecimalTestClass.html',1,'Newtonsoft::Json::Tests::Serialization']]],
   ['defaultcontractresolver',['DefaultContractResolver',['../d2/d47/classNewtonsoft_1_1Json_1_1Serialization_1_1DefaultContractResolver.html',1,'Newtonsoft::Json::Serialization']]],
-  ['defaultreferenceresolver',['DefaultReferenceResolver',['../dc/d3e/classNewtonsoft_1_1Json_1_1Serialization_1_1DefaultReferenceResolver.html',1,'Newtonsoft::Json::Serialization']]],
   ['defaultserializationbinder',['DefaultSerializationBinder',['../d6/d31/classNewtonsoft_1_1Json_1_1Serialization_1_1DefaultSerializationBinder.html',1,'Newtonsoft::Json::Serialization']]],
   ['defaultvalueattributetestclass',['DefaultValueAttributeTestClass',['../d3/d6a/classNewtonsoft_1_1Json_1_1Tests_1_1TestObjects_1_1DefaultValueAttributeTestClass.html',1,'Newtonsoft::Json::Tests::TestObjects']]],
   ['defaultvaluehandlingtests',['DefaultValueHandlingTests',['../d9/df0/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1DefaultValueHandlingTests.html',1,'Newtonsoft::Json::Tests::Serialization']]],
@@ -36,7 +35,6 @@ var searchData=
   ['dictionaryinterfaceclass',['DictionaryInterfaceClass',['../d5/d41/classNewtonsoft_1_1Json_1_1Tests_1_1TestObjects_1_1DictionaryInterfaceClass.html',1,'Newtonsoft::Json::Tests::TestObjects']]],
   ['dictionarykey',['DictionaryKey',['../d6/d2c/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1JsonSerializerTest_1_1DictionaryKey.html',1,'Newtonsoft::Json::Tests::Serialization::JsonSerializerTest']]],
   ['dictionarywithnodefaultconstructor',['DictionaryWithNoDefaultConstructor',['../da/dcd/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1JsonSerializerTest_1_1DictionaryWithNoDefaultConstructor.html',1,'Newtonsoft::Json::Tests::Serialization::JsonSerializerTest']]],
-  ['dictionarywrapper_2dg',['DictionaryWrapper-g',['../df/d73/classNewtonsoft_1_1Json_1_1Utilities_1_1DictionaryWrapper-g.html',1,'Newtonsoft::Json::Utilities']]],
   ['dmdslbase',['DMDSLBase',['../de/d84/classNewtonsoft_1_1Json_1_1Tests_1_1Schema_1_1DMDSLBase.html',1,'Newtonsoft::Json::Tests::Schema']]],
   ['doubleclass',['DoubleClass',['../dc/dc8/classNewtonsoft_1_1Json_1_1Tests_1_1TestObjects_1_1DoubleClass.html',1,'Newtonsoft::Json::Tests::TestObjects']]],
   ['dpu',['Dpu',['../d9/ddc/classdatasift_1_1Dpu.html',1,'datasift']]],
@@ -44,12 +42,8 @@ var searchData=
   ['dynamicchildobject',['DynamicChildObject',['../d4/dda/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1DynamicTests_1_1DynamicChildObject.html',1,'Newtonsoft::Json::Tests::Serialization::DynamicTests']]],
   ['dynamiccontractresolver',['DynamicContractResolver',['../d5/db4/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1DynamicContractResolver.html',1,'Newtonsoft::Json::Tests::Serialization']]],
   ['dynamicdictionary',['DynamicDictionary',['../d7/d46/classNewtonsoft_1_1Json_1_1Tests_1_1Linq_1_1DynamicTests_1_1DynamicDictionary.html',1,'Newtonsoft::Json::Tests::Linq::DynamicTests']]],
-  ['dynamicproxy_2dg',['DynamicProxy-g',['../d3/d4a/classNewtonsoft_1_1Json_1_1Utilities_1_1DynamicProxy-g.html',1,'Newtonsoft::Json::Utilities']]],
-  ['dynamicproxymetaobject_2dg',['DynamicProxyMetaObject-g',['../dd/d4b/classNewtonsoft_1_1Json_1_1Utilities_1_1DynamicProxyMetaObject-g.html',1,'Newtonsoft::Json::Utilities']]],
-  ['dynamicreflectiondelegatefactory',['DynamicReflectionDelegateFactory',['../d6/d7c/classNewtonsoft_1_1Json_1_1Utilities_1_1DynamicReflectionDelegateFactory.html',1,'Newtonsoft::Json::Utilities']]],
   ['dynamicreflectiondelegatefactorytests',['DynamicReflectionDelegateFactoryTests',['../df/d26/classNewtonsoft_1_1Json_1_1Tests_1_1Utilities_1_1DynamicReflectionDelegateFactoryTests.html',1,'Newtonsoft::Json::Tests::Utilities']]],
   ['dynamictests',['DynamicTests',['../dd/def/classNewtonsoft_1_1Json_1_1Tests_1_1Linq_1_1DynamicTests.html',1,'Newtonsoft::Json::Tests::Linq']]],
   ['dynamictests',['DynamicTests',['../d1/d8d/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1DynamicTests.html',1,'Newtonsoft::Json::Tests::Serialization']]],
-  ['dynamicvalueprovider',['DynamicValueProvider',['../d2/d82/classNewtonsoft_1_1Json_1_1Serialization_1_1DynamicValueProvider.html',1,'Newtonsoft::Json::Serialization']]],
-  ['dynamicwrapperbase',['DynamicWrapperBase',['../d9/d2f/classNewtonsoft_1_1Json_1_1Utilities_1_1DynamicWrapperBase.html',1,'Newtonsoft::Json::Utilities']]]
+  ['dynamicvalueprovider',['DynamicValueProvider',['../d2/d82/classNewtonsoft_1_1Json_1_1Serialization_1_1DynamicValueProvider.html',1,'Newtonsoft::Json::Serialization']]]
 ];

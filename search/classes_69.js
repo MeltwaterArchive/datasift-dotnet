@@ -1,19 +1,19 @@
 var searchData=
 [
-  ['ibinary',['IBinary',['../d4/d6b/interfaceNewtonsoft_1_1Json_1_1Converters_1_1IBinary.html',1,'Newtonsoft::Json::Converters']]],
   ['ico',['ICo',['../d6/de7/interfaceNewtonsoft_1_1Json_1_1Tests_1_1TestObjects_1_1ICo.html',1,'Newtonsoft::Json::Tests::TestObjects']]],
   ['icontractresolver',['IContractResolver',['../db/dd2/interfaceNewtonsoft_1_1Json_1_1Serialization_1_1IContractResolver.html',1,'Newtonsoft::Json::Serialization']]],
   ['icorrelatedmessage',['ICorrelatedMessage',['../d4/d66/interfaceNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1TypeNameHandlingTests_1_1ICorrelatedMessage.html',1,'Newtonsoft::Json::Tests::Serialization::TypeNameHandlingTests']]],
-  ['ientitykeymember',['IEntityKeyMember',['../db/d5b/interfaceNewtonsoft_1_1Json_1_1Converters_1_1IEntityKeyMember.html',1,'Newtonsoft::Json::Converters']]],
+  ['ienumerable_2dg',['IEnumerable-g',['../d4/dbc/classIEnumerable-g.html',1,'']]],
   ['ieventhandler',['IEventHandler',['../d7/db0/interfacedatasift_1_1IEventHandler.html',1,'datasift']]],
   ['iexample',['IExample',['../d7/dd3/interfaceNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1IExample.html',1,'Newtonsoft::Json::Tests::Serialization']]],
   ['iinterfaceobject',['IInterfaceObject',['../d1/d53/interfaceNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1JsonSerializerTest_1_1IInterfaceObject.html',1,'Newtonsoft::Json::Tests::Serialization::JsonSerializerTest']]],
   ['iinterfacepropertytestclass',['IInterfacePropertyTestClass',['../da/dac/interfaceNewtonsoft_1_1Json_1_1Tests_1_1TestObjects_1_1IInterfacePropertyTestClass.html',1,'Newtonsoft::Json::Tests::TestObjects']]],
   ['ijenumerable_2dg',['IJEnumerable-g',['../dd/d65/interfaceNewtonsoft_1_1Json_1_1Linq_1_1IJEnumerable-g.html',1,'Newtonsoft::Json::Linq']]],
+  ['ijenumerable_2dg_3c_20jtoken_20_3e',['IJEnumerable-g&lt; JToken &gt;',['../dd/d65/interfaceNewtonsoft_1_1Json_1_1Linq_1_1IJEnumerable-g.html',1,'Newtonsoft::Json::Linq']]],
+  ['ijenumerable_2dg_3c_20t_20_3e',['IJEnumerable-g&lt; T &gt;',['../dd/d65/interfaceNewtonsoft_1_1Json_1_1Linq_1_1IJEnumerable-g.html',1,'Newtonsoft::Json::Linq']]],
   ['ijsonlineinfo',['IJsonLineInfo',['../d8/da0/interfaceNewtonsoft_1_1Json_1_1IJsonLineInfo.html',1,'Newtonsoft::Json']]],
   ['ikeyvalueid',['IKeyValueId',['../d4/d5f/interfaceNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1JsonSerializerTest_1_1IKeyValueId.html',1,'Newtonsoft::Json::Tests::Serialization::JsonSerializerTest']]],
   ['image',['Image',['../d0/d6d/classNewtonsoft_1_1Json_1_1Tests_1_1Image.html',1,'Newtonsoft::Json::Tests']]],
-  ['imetadatatypeattribute',['IMetadataTypeAttribute',['../df/d2c/interfaceNewtonsoft_1_1Json_1_1Serialization_1_1IMetadataTypeAttribute.html',1,'Newtonsoft::Json::Serialization']]],
   ['implementinterfaceobject',['ImplementInterfaceObject',['../dd/d15/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1JsonSerializerTest_1_1ImplementInterfaceObject.html',1,'Newtonsoft::Json::Tests::Serialization::JsonSerializerTest']]],
   ['incompatiblejsonattributeclass',['IncompatibleJsonAttributeClass',['../de/da7/classNewtonsoft_1_1Json_1_1Tests_1_1TestObjects_1_1IncompatibleJsonAttributeClass.html',1,'Newtonsoft::Json::Tests::TestObjects']]],
   ['inheritedtype',['InheritedType',['../d1/d4f/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1InheritedType.html',1,'Newtonsoft::Json::Tests::Serialization']]],
@@ -34,12 +34,5 @@ var searchData=
   ['item',['Item',['../df/d8b/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1Item.html',1,'Newtonsoft::Json::Tests::Serialization']]],
   ['itembase',['ItemBase',['../dd/d59/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1JsonSerializerTest_1_1ItemBase.html',1,'Newtonsoft::Json::Tests::Serialization::JsonSerializerTest']]],
   ['ithing',['IThing',['../d0/df7/interfaceNewtonsoft_1_1Json_1_1Tests_1_1Converters_1_1CustomCreationConverterTests_1_1IThing.html',1,'Newtonsoft::Json::Tests::Converters::CustomCreationConverterTests']]],
-  ['ivalueprovider',['IValueProvider',['../d4/de7/interfaceNewtonsoft_1_1Json_1_1Serialization_1_1IValueProvider.html',1,'Newtonsoft::Json::Serialization']]],
-  ['iwrappedcollection',['IWrappedCollection',['../d8/d07/interfaceNewtonsoft_1_1Json_1_1Utilities_1_1IWrappedCollection.html',1,'Newtonsoft::Json::Utilities']]],
-  ['iwrappeddictionary',['IWrappedDictionary',['../d9/d3d/interfaceNewtonsoft_1_1Json_1_1Utilities_1_1IWrappedDictionary.html',1,'Newtonsoft::Json::Utilities']]],
-  ['iwrappedlist',['IWrappedList',['../da/d1a/interfaceNewtonsoft_1_1Json_1_1Utilities_1_1IWrappedList.html',1,'Newtonsoft::Json::Utilities']]],
-  ['ixmldeclaration',['IXmlDeclaration',['../d3/ddc/interfaceNewtonsoft_1_1Json_1_1Converters_1_1IXmlDeclaration.html',1,'Newtonsoft::Json::Converters']]],
-  ['ixmldocument',['IXmlDocument',['../d9/d65/interfaceNewtonsoft_1_1Json_1_1Converters_1_1IXmlDocument.html',1,'Newtonsoft::Json::Converters']]],
-  ['ixmlelement',['IXmlElement',['../d8/d03/interfaceNewtonsoft_1_1Json_1_1Converters_1_1IXmlElement.html',1,'Newtonsoft::Json::Converters']]],
-  ['ixmlnode',['IXmlNode',['../d2/d20/interfaceNewtonsoft_1_1Json_1_1Converters_1_1IXmlNode.html',1,'Newtonsoft::Json::Converters']]]
+  ['ivalueprovider',['IValueProvider',['../d4/de7/interfaceNewtonsoft_1_1Json_1_1Serialization_1_1IValueProvider.html',1,'Newtonsoft::Json::Serialization']]]
 ];
