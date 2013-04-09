@@ -4,6 +4,32 @@ using System.Linq;
 using System.Text;
 using Newtonsoft.Json.Linq;
 
+/*! \mainpage DataSift .Net API Client Test
+ *
+ * \section Introduction
+ *
+ * This is the <a href='https://github.com/datasift/datasift-dotnet'>official .Net library</a> for accessing <a href='http://datasift.com'>DataSift</a>.
+ *
+ * \section Examples
+ *
+ * See the <a href='https://github.com/datasift/datasift-dotnet/tree/master/datasift-examples'>examples</a> folder for some simple example usage.
+ *
+ * This is the <a href='https://github.com/datasift/datasift-dotnet'>official .Net library</a> for accessing <a href='http://detasift.com'>DataSift</a>.
+ *
+ * \section Source Code
+ *
+ * The DataSift API Library is available for <a href='https://github.com/datasift/datasift-dotnet'>download</a>.
+ *
+ * \section Documentation
+ *
+ * The DataSift API Library is used to access the <a href='http://datasift.com/'>DataSift</a> platform via its Application Programming Interface. You can learn more about the DataSift API on our <a href='http://dev.datasift.com/docs/'>documentation</a> site.
+ *
+ * \section Licensing
+ *
+ * The DataSift .Net API Library is Open Source software. Please read the <a href="https://github.com/datasift/datasift-dotnet/blob/master/LICENSE">license</a>.
+ *
+ */
+
 namespace datasift
 {
     /// <summary>
