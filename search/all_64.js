@@ -32,8 +32,8 @@ var searchData=
   ['deepclone',['DeepClone',['../d1/dfe/classNewtonsoft_1_1Json_1_1Linq_1_1JToken.html#a5c98ff31cc64748b3d8577d33dee1ff4',1,'Newtonsoft::Json::Linq::JToken']]],
   ['deepequals',['DeepEquals',['../d1/dfe/classNewtonsoft_1_1Json_1_1Linq_1_1JToken.html#ae04bf63f1febc0815154dc2608780295',1,'Newtonsoft::Json::Linq::JToken']]],
   ['default',['Default',['../d7/d5b/classNewtonsoft_1_1Json_1_1Schema_1_1JsonSchema.html#a0d0d68c7f4c058393576514c2fc5f939',1,'Newtonsoft::Json::Schema::JsonSchema']]],
-  ['defaultcontractresolver',['DefaultContractResolver',['../d2/d47/classNewtonsoft_1_1Json_1_1Serialization_1_1DefaultContractResolver.html',1,'Newtonsoft::Json::Serialization']]],
   ['defaultcontractresolver',['DefaultContractResolver',['../d2/d47/classNewtonsoft_1_1Json_1_1Serialization_1_1DefaultContractResolver.html#a65c85e779c046167bff93083ed2c2638',1,'Newtonsoft.Json.Serialization.DefaultContractResolver.DefaultContractResolver()'],['../d2/d47/classNewtonsoft_1_1Json_1_1Serialization_1_1DefaultContractResolver.html#aad1d8184541c566821d5e01ccfa81196',1,'Newtonsoft.Json.Serialization.DefaultContractResolver.DefaultContractResolver(bool shareCache)']]],
+  ['defaultcontractresolver',['DefaultContractResolver',['../d2/d47/classNewtonsoft_1_1Json_1_1Serialization_1_1DefaultContractResolver.html',1,'Newtonsoft::Json::Serialization']]],
   ['defaultcreator',['DefaultCreator',['../db/daf/classNewtonsoft_1_1Json_1_1Serialization_1_1JsonContract.html#a11fc2a4a7069ec9243de1c714e110843',1,'Newtonsoft::Json::Serialization::JsonContract']]],
   ['defaultcreatornonpublic',['DefaultCreatorNonPublic',['../db/daf/classNewtonsoft_1_1Json_1_1Serialization_1_1JsonContract.html#a5174cf9852dba32f81c008eb0efd7240',1,'Newtonsoft::Json::Serialization::JsonContract']]],
   ['defaultmemberssearchflags',['DefaultMembersSearchFlags',['../d2/d47/classNewtonsoft_1_1Json_1_1Serialization_1_1DefaultContractResolver.html#af535f3acd8aae4f8e5d065be757386cd',1,'Newtonsoft::Json::Serialization::DefaultContractResolver']]],
@@ -70,8 +70,8 @@ var searchData=
   ['divisibleby',['DivisibleBy',['../d7/d5b/classNewtonsoft_1_1Json_1_1Schema_1_1JsonSchema.html#a7c2a6131bda4aeb70bf47068b3b53218',1,'Newtonsoft::Json::Schema::JsonSchema']]],
   ['dmdslbase',['DMDSLBase',['../de/d84/classNewtonsoft_1_1Json_1_1Tests_1_1Schema_1_1DMDSLBase.html',1,'Newtonsoft::Json::Tests::Schema']]],
   ['doubleclass',['DoubleClass',['../dc/dc8/classNewtonsoft_1_1Json_1_1Tests_1_1TestObjects_1_1DoubleClass.html',1,'Newtonsoft::Json::Tests::TestObjects']]],
-  ['dpu',['Dpu',['../d9/ddc/classdatasift_1_1Dpu.html#a05a3869f4c5e91583dcfec0a3e296b4a',1,'datasift::Dpu']]],
   ['dpu',['Dpu',['../d9/ddc/classdatasift_1_1Dpu.html',1,'datasift']]],
+  ['dpu',['Dpu',['../d9/ddc/classdatasift_1_1Dpu.html#a05a3869f4c5e91583dcfec0a3e296b4a',1,'datasift::Dpu']]],
   ['dpuitem',['DpuItem',['../da/de1/classdatasift_1_1DpuItem.html#a243d46a0138dc9e0aa83dd62d24ebc85',1,'datasift::DpuItem']]],
   ['dpuitem',['DpuItem',['../da/de1/classdatasift_1_1DpuItem.html',1,'datasift']]],
   ['dynamicchildobject',['DynamicChildObject',['../d4/dda/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1DynamicTests_1_1DynamicChildObject.html',1,'Newtonsoft::Json::Tests::Serialization::DynamicTests']]],
@@ -81,8 +81,9 @@ var searchData=
   ['dynamicreflectiondelegatefactorytests',['DynamicReflectionDelegateFactoryTests',['../df/d26/classNewtonsoft_1_1Json_1_1Tests_1_1Utilities_1_1DynamicReflectionDelegateFactoryTests.html',1,'Newtonsoft::Json::Tests::Utilities']]],
   ['dynamictests',['DynamicTests',['../dd/def/classNewtonsoft_1_1Json_1_1Tests_1_1Linq_1_1DynamicTests.html',1,'Newtonsoft::Json::Tests::Linq']]],
   ['dynamictests',['DynamicTests',['../d1/d8d/classNewtonsoft_1_1Json_1_1Tests_1_1Serialization_1_1DynamicTests.html',1,'Newtonsoft::Json::Tests::Serialization']]],
-  ['dynamicvalueprovider',['DynamicValueProvider',['../d2/d82/classNewtonsoft_1_1Json_1_1Serialization_1_1DynamicValueProvider.html#ac6be10b7c7a283f755e5375cc8421cad',1,'Newtonsoft::Json::Serialization::DynamicValueProvider']]],
   ['dynamicvalueprovider',['DynamicValueProvider',['../d2/d82/classNewtonsoft_1_1Json_1_1Serialization_1_1DynamicValueProvider.html',1,'Newtonsoft::Json::Serialization']]],
-  ['properties',['Properties',['../dd/d4e/namespacedatasift__examples_1_1Properties.html',1,'datasift_examples']]],
-  ['properties',['Properties',['../d5/da4/namespaceDataSiftControlPanel_1_1Properties.html',1,'DataSiftControlPanel']]]
+  ['dynamicvalueprovider',['DynamicValueProvider',['../d2/d82/classNewtonsoft_1_1Json_1_1Serialization_1_1DynamicValueProvider.html#ac6be10b7c7a283f755e5375cc8421cad',1,'Newtonsoft::Json::Serialization::DynamicValueProvider']]],
+  ['datasift_20_2enet_20api_20client_20test',['DataSift .Net API Client Test',['../index.html',1,'']]],
+  ['properties',['Properties',['../d5/da4/namespaceDataSiftControlPanel_1_1Properties.html',1,'DataSiftControlPanel']]],
+  ['properties',['Properties',['../dd/d4e/namespacedatasift__examples_1_1Properties.html',1,'datasift_examples']]]
 ];
