@@ -141,6 +141,16 @@ namespace datasift
         }
 
         /// <summary>
+        /// Get the balance for this user
+        /// </summary>
+        /// <returns>A Balance object.</returns>
+        public Balance getBalance()
+        {
+            Dictionary<string, string> parameters = new Dictionary<string, string>();
+            return new Balance(callApi("balance",parameters));
+        }
+
+        /// <summary>
         /// Create a definition object for this user.
         /// </summary>
         /// <param name="csdl">Optional initial CSDL for the definition.</param>
