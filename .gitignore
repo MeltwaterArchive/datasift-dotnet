@@ -10,3 +10,6 @@ datasift.vsmdi
 
 # VS options files
 *.suo
+
+# NuGet packages directory
+packages
