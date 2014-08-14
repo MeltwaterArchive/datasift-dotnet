@@ -12,11 +12,9 @@ You can sign up to DataSift for free at [http://datasift.com](http://datasift.co
 
 Once you've registered you can find your username and API key on your [Dashboard](http://datasift.com/dashboard).
 
-### 2) Install Nuget Package
+### 2) Reference DataSift library
 
-```
-    Install-Package DataSift-DotNet -Pre
-```
+Soon the library will be on NuGet. In the meantime you will need to reference the 'DataSift' library within this solution in your project.
 
 ## Usage: REST API Calls
 
