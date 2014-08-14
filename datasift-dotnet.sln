@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSift", "DataSift\DataSift.csproj", "{80D719FA-7305-4DA0-9392-784533A4D87A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSiftTests", "DataSiftTests\DataSiftTests.csproj", "{E459E38D-E944-4A15-AE65-7DC209094CDE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{5D72781A-FE74-4802-9C51-963258ADA2B5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{8BD70B2E-4B70-4E51-B0A2-5ED23E6D7C36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataSiftExamples", "DataSiftExamples\DataSiftExamples.csproj", "{8C724B0C-6F3C-4CCC-AE9E-13CFF805520F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{C1778644-03A6-4CCA-AFB6-D7CB4B7CAFAC}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickStart", "QuickStart\QuickStart.csproj", "{B2AE8CC5-DA48-4201-BFC9-0F341EF93DBA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{80D719FA-7305-4DA0-9392-784533A4D87A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80D719FA-7305-4DA0-9392-784533A4D87A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80D719FA-7305-4DA0-9392-784533A4D87A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80D719FA-7305-4DA0-9392-784533A4D87A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E459E38D-E944-4A15-AE65-7DC209094CDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E459E38D-E944-4A15-AE65-7DC209094CDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E459E38D-E944-4A15-AE65-7DC209094CDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E459E38D-E944-4A15-AE65-7DC209094CDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C724B0C-6F3C-4CCC-AE9E-13CFF805520F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C724B0C-6F3C-4CCC-AE9E-13CFF805520F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C724B0C-6F3C-4CCC-AE9E-13CFF805520F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C724B0C-6F3C-4CCC-AE9E-13CFF805520F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B2AE8CC5-DA48-4201-BFC9-0F341EF93DBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2AE8CC5-DA48-4201-BFC9-0F341EF93DBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2AE8CC5-DA48-4201-BFC9-0F341EF93DBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2AE8CC5-DA48-4201-BFC9-0F341EF93DBA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E459E38D-E944-4A15-AE65-7DC209094CDE} = {5D72781A-FE74-4802-9C51-963258ADA2B5}
+		{8C724B0C-6F3C-4CCC-AE9E-13CFF805520F} = {8BD70B2E-4B70-4E51-B0A2-5ED23E6D7C36}
+		{B2AE8CC5-DA48-4201-BFC9-0F341EF93DBA} = {8BD70B2E-4B70-4E51-B0A2-5ED23E6D7C36}
+	EndGlobalSection
+EndGlobal

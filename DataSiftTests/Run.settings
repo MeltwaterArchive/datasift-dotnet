@@ -1,0 +1,12 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DataSiftTests" GeneratedClassName="Run">
+  <Profiles />
+  <Settings>
+    <Setting Name="username" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">username</Value>
+    </Setting>
+    <Setting Name="apikey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">b09z345fe2f1fed748c12268fd473662</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
