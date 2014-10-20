@@ -154,7 +154,7 @@ namespace DataSift.Streaming
 
             Trace.TraceInformation("Unsubscribing from stream: " + hash);
 
-            var message = new { action = "subscribe", hash = hash };
+            var message = new { action = "unsubscribe", hash = hash };
             _connection.Send(JsonConvert.SerializeObject(message));
         }
 

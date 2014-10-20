@@ -99,4 +99,5 @@ This code is released under the BSD license. Please see the LICENSE file for mor
 
 ## Change Log
 
-
+1.0.0 - Completed rewrite of library
+1.0.2 - Fixed issue 17 - Fixed unsubscribing from a stream
