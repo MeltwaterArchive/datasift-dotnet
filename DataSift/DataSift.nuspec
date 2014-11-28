@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Datasift.net</id>
-        <version>1.0.2</version>
+        <version>1.0.3</version>
         <authors>Datasift</authors>
         <licenseUrl>https://github.com/datasift/datasift-dotnet/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/datasift/datasift-dotnet/tree/master</projectUrl>
@@ -18,4 +18,10 @@
             <dependency id="WebSocket4Net" version="0.10" />
         </dependencies>
     </metadata>
+  <files>
+    <file src="bin\Release\DataSift.dll.config" target="lib\net45" />
+    <file src="bin\Release\DataSift.pdb" target="lib\net45" />
+    <file src="bin\Release\CodeContracts\DataSift.Contracts.dll" target="lib\net45\CodeContracts" />
+    <file src="bin\Release\CodeContracts\DataSift.Contracts.pdb" target="lib\net45\CodeContracts" />
+  </files>
 </package>
