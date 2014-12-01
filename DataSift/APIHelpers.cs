@@ -117,9 +117,9 @@ namespace DataSift
             return result;
         }
 
-        public static List<Parameter> ParseParameters(string endpoint, dynamic parameters)
+        public static dynamic ParseParameters(string endpoint, dynamic parameters)
         {
-            List<Parameter> result = new List<Parameter>();
+            var result = new ExpandoObject();
 
             foreach (var prop in parameters.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public))
             {
@@ -140,15 +140,13 @@ namespace DataSift
                         val = ToUnixTime(val);
                     else if (val.GetType() == typeof(List<HistoricsPreviewParameter>))
                         val = String.Join<HistoricsPreviewParameter>(";", val);
-                    else if (val.GetType().IsGenericType || val.GetType() == typeof(ExpandoObject))
+                    else if ( 
+                                !(endpoint.StartsWith("analysis/analyze"))
+                                && (val.GetType().IsGenericType || val.GetType() == typeof(ExpandoObject))
+                            )
                         val = JsonConvert.SerializeObject(val);
 
-                    result.Add(new Parameter()
-                    {
-                        Name = prop.Name,
-                        Value = val,
-                        Type = ParameterType.GetOrPost
-                    });
+                    ((IDictionary<string, object>)result)[prop.Name] = val;
                 }
             }
 

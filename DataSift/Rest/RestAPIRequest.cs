@@ -18,11 +18,11 @@ namespace DataSift.Rest
     {
         private RestClient _client;
 
-        internal RestAPIRequest(string username, string apikey)
+        internal RestAPIRequest(string username, string apikey, string baseUrl)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
 
-            _client = new RestClient("https://api.datasift.com/v1");
+            _client = new RestClient(baseUrl);
             _client.Authenticator = new HttpBasicAuthenticator(username, apikey);
 
             var version = Assembly.GetExecutingAssembly().GetName().Version;
@@ -32,9 +32,27 @@ namespace DataSift.Rest
         public RestAPIResponse Request(string endpoint, dynamic parameters = null, RestSharp.Method method = Method.GET)
         {
             var request = new RestRequest(endpoint, method);
+
             RestAPIResponse result = null;
 
-            if (parameters != null) request.Parameters.AddRange(APIHelpers.ParseParameters(endpoint, parameters));
+            if(parameters != null)
+            {
+                var parsedParams = APIHelpers.ParseParameters(endpoint, parameters);
+
+                if (method == Method.POST)
+                {
+                    request.RequestFormat = DataFormat.Json;
+                    request.AddBody(parsedParams);
+                }
+                else
+                {
+                    foreach (var prm in (IDictionary<string, object>)parsedParams)
+                    {
+                        request.AddParameter(prm.Key, prm.Value, ParameterType.GetOrPost);
+                    }
+                }
+            }
+
 
             IRestResponse response = _client.Execute(request);
 

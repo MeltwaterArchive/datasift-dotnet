@@ -59,6 +59,10 @@ namespace DataSiftExamples
                     List.Run(username, apikey);
                     break;
 
+                case ConsoleKey.D7:
+                    Analysis.Run(username, apikey);
+                    break;
+
                 default:
                     Console.WriteLine("Unknown example, please try again.\n");
                     WaitForExampleChoice();
@@ -75,7 +79,8 @@ namespace DataSiftExamples
             Console.WriteLine("    3. Historics preview API endpoints");
             Console.WriteLine("    4. Historics API endpoints");
             Console.WriteLine("    5. Source API endpoints");
-            Console.WriteLine("    6. List API endpoints"); 
+            Console.WriteLine("    6. List API endpoints");
+            Console.WriteLine("    7. Analysis API endpoints"); 
             Console.WriteLine("\nPress a key to continue...\n");
         }
     }

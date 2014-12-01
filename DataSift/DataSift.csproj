@@ -135,6 +135,7 @@
     <Compile Include="Enum\UsagePeriod.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rest\Analysis.cs" />
     <Compile Include="Rest\Historics.cs" />
     <Compile Include="Rest\HistoricsPreview.cs" />
     <Compile Include="Rest\HistoricsPreviewParameter.cs" />

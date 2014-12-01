@@ -101,7 +101,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="AnalysisAPIResponses.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>AnalysisAPIResponses.settings</DependentUpon>
+    </Compile>
     <Compile Include="List.cs" />
+    <Compile Include="MockAPIResponses.cs" />
     <Compile Include="MockAPIResponses.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -122,12 +128,17 @@
     <Compile Include="HistoricsPreview.cs" />
     <Compile Include="Source.cs" />
     <Compile Include="Streaming.cs" />
+    <Compile Include="Analysis.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AnalysisAPIResponses.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>AnalysisAPIResponses.Designer.cs</LastGenOutput>
+    </None>
     <None Include="app.config" />
     <None Include="MockAPIResponses.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>MockAPIResponses.Designer.cs</LastGenOutput>
+      <LastGenOutput>MockAPIResponses1.Designer.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Run.settings">

@@ -27,5 +27,9 @@ namespace DataSift
         internal const string PUSH_ONLY_HASH_OR_HISTORIC = "You cannot specify both a hash AND historicsId";
 
         internal const string UNRECOGNISED_DATA_FORMAT = "Unrecognised serialization format for data";
+
+        internal const string ANALYSIS_START_TOO_LATE = "Start cannot be in the future";
+        internal const string ANALYSIS_END_TOO_LATE = "End cannot be in the future";
+        internal const string ANALYSIS_START_MUST_BE_BEFORE_END = "Start date must be before end date";
     }
 }

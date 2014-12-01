@@ -22,7 +22,7 @@ namespace DataSiftTests
             string response = null;
             RestAPIResponse result = new RestAPIResponse();
 
-            List<Parameter> prms = new List<Parameter>();
+            IDictionary<string, object> prms = null;
             if(parameters != null) prms = APIHelpers.ParseParameters(endpoint, parameters);
 
             switch (endpoint)
@@ -54,12 +54,12 @@ namespace DataSiftTests
 
 
                 case "historics/get":
-
-                    if (prms.Exists(p => p.Name == "id"))
+                    
+                    if (prms.ContainsKey("id"))
                         response = MockAPIResponses.Default.HistoricsGetById;
-                    else if (prms.Exists(p => p.Name == "max"))
+                    else if (prms.ContainsKey("max"))
                         response = MockAPIResponses.Default.HistoricsGetMax1;
-                    else if (prms.Exists(p => p.Name == "with_estimate"))
+                    else if (prms.ContainsKey("with_estimate"))
                         response = MockAPIResponses.Default.HistoricsGetWithCompletion;
                     else
                         response = MockAPIResponses.Default.HistoricsGet;
@@ -103,15 +103,15 @@ namespace DataSiftTests
 
                 case "push/get":
 
-                    if (prms.Exists(p => p.Name == "id"))
+                    if (prms.ContainsKey("id"))
                         response = MockAPIResponses.Default.PushGetById;
-                    else if (prms.Exists(p => p.Name == "hash"))
+                    else if (prms.ContainsKey("hash"))
                         response = MockAPIResponses.Default.PushGetByHash;
-                    else if (prms.Exists(p => p.Name == "historics_id"))
+                    else if (prms.ContainsKey("historics_id"))
                         response = MockAPIResponses.Default.PushGetByHistoricsId;
-                    else if (prms.Exists(p => p.Name == "page"))
+                    else if (prms.ContainsKey("page"))
                         response = MockAPIResponses.Default.PushGetPage;
-                    else if (prms.Exists(p => p.Name == "per_page"))
+                    else if (prms.ContainsKey("per_page"))
                         response = MockAPIResponses.Default.PushGetPage;
                     else
                         response = MockAPIResponses.Default.PushGet;
@@ -145,11 +145,11 @@ namespace DataSiftTests
 
                 case "push/log":
 
-                    if (prms.Exists(p => p.Name == "id"))
+                    if (prms.ContainsKey("id"))
                         response = MockAPIResponses.Default.PushLogById;
-                    else if (prms.Exists(p => p.Name == "page"))
+                    else if (prms.ContainsKey("page"))
                         response = MockAPIResponses.Default.PushLogPage;
-                    else if (prms.Exists(p => p.Name == "per_page"))
+                    else if (prms.ContainsKey("per_page"))
                         response = MockAPIResponses.Default.PushLogPage;
                     else
                         response = MockAPIResponses.Default.PushLog;
@@ -163,7 +163,7 @@ namespace DataSiftTests
                     break;
 
                 case "preview/get":
-                    var id = (string)prms.First(p => p.Name == "id").Value;
+                    var id = (string)prms.First(p => p.Key == "id").Value;
 
                     switch (id)
                     {
@@ -185,11 +185,11 @@ namespace DataSiftTests
 
                 case "source/get":
 
-                    if (prms.Exists(p => p.Name == "id"))
+                    if (prms.ContainsKey("id"))
                         response = MockAPIResponses.Default.SourceGetById;
-                    else if (prms.Exists(p => p.Name == "page"))
+                    else if (prms.ContainsKey("page"))
                         response = MockAPIResponses.Default.SourceGetPage;
-                    else if (prms.Exists(p => p.Name == "per_page"))
+                    else if (prms.ContainsKey("per_page"))
                         response = MockAPIResponses.Default.SourceGetPage;
                     else
                         response = MockAPIResponses.Default.SourceGet;
@@ -223,9 +223,9 @@ namespace DataSiftTests
 
                 case "source/log":
 
-                    if (prms.Exists(p => p.Name == "page"))
+                    if (prms.ContainsKey("page"))
                         response = MockAPIResponses.Default.SourceLogPage;
-                    else if (prms.Exists(p => p.Name == "per_page"))
+                    else if (prms.ContainsKey("per_page"))
                         response = MockAPIResponses.Default.SourceLogPage;
                     else
                         response = MockAPIResponses.Default.SourceLog;
@@ -296,6 +296,38 @@ namespace DataSiftTests
                 case "list/replace/add":
                     result.StatusCode = HttpStatusCode.NoContent;
                     break;
+
+                case "analysis/get":
+                    if (prms.ContainsKey("hash"))
+                        response = AnalysisAPIResponses.Default.GetOne;
+                    else
+                        response = AnalysisAPIResponses.Default.Get;
+                    
+                    result.StatusCode = HttpStatusCode.OK;
+                    break;
+
+                case "analysis/validate":
+                    response = AnalysisAPIResponses.Default.Validate;
+                    result.StatusCode = HttpStatusCode.OK;
+                    break;
+
+                case "analysis/compile":
+                    response = AnalysisAPIResponses.Default.Compile;
+                    result.StatusCode = HttpStatusCode.OK;
+                    break;
+
+                case "analysis/start":
+                    result.StatusCode = HttpStatusCode.NoContent;
+                    break;
+
+                case "analysis/stop":
+                    result.StatusCode = HttpStatusCode.NoContent;
+                    break;
+
+                case "analysis/analyze":
+                    response = AnalysisAPIResponses.Default.Analyze;
+                    result.StatusCode = HttpStatusCode.OK;
+                    break;
             }
 
             if(response != null)
@@ -307,12 +339,12 @@ namespace DataSiftTests
             
         }
 
-        public PullAPIResponse PullRequest(List<Parameter> prms)
+        public PullAPIResponse PullRequest(IDictionary<string, object> prms)
         {
             string response = null;
             PullAPIResponse result = new PullAPIResponse() { PullDetails = new PullInfo() };
 
-            var id = (string)prms.First(p => p.Name == "id").Value;
+            var id = (string)prms.First(p => p.Key == "id").Value;
 
             switch (id)
             {
