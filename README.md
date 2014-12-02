@@ -1,4 +1,4 @@
-# DataSift .NET Client Library - BETA
+# DataSift .NET Client Library
 
 This is the official .NET library for accessing Datasift.
 
