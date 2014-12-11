@@ -40,7 +40,9 @@ namespace DataSift
 
             _username = username;
             _apikey = apikey;
-            _baseUrl = baseUrl;
+
+            if(!String.IsNullOrEmpty(baseUrl))
+                _baseUrl = baseUrl;
 
             if (requestCreator == null)
                 _getRequest = GetRequestDefault;
