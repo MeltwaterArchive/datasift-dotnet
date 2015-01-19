@@ -41,5 +41,8 @@
     <Setting Name="Analyze" Type="System.String" Scope="Application">
       <Value Profile="(Default)">{"interactions":0,"unique_authors":0,"analysis":{"analysis_type":"freqDist","parameters":{"threshold":5,"target":"fb.author.age"},"results":[],"redacted":false}}</Value>
     </Setting>
+    <Setting Name="Tags" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">["tag.one","tag.two","tag.three"]</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

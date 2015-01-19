@@ -94,5 +94,14 @@ namespace DataSiftTests {
                 return ((string)(this["Analyze"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("[\"tag.one\",\"tag.two\",\"tag.three\"]")]
+        public string Tags {
+            get {
+                return ((string)(this["Tags"]));
+            }
+        }
     }
 }

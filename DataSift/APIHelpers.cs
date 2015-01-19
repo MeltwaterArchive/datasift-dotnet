@@ -51,10 +51,16 @@ namespace DataSift
             else
             {
                 // Standard API responses
-
                 if (data.StartsWith("["))
                 {
-                    return JsonConvert.DeserializeObject<List<ExpandoObject>>(data, converter);
+                    // Data is an array of items
+                    if (data.StartsWith("[\""))
+                    {
+                        // Is an array of strings
+                        return JsonConvert.DeserializeObject<List<string>>(data, converter);
+                    }
+                    else
+                        return JsonConvert.DeserializeObject<List<ExpandoObject>>(data, converter);
                 }
                 else
                 {

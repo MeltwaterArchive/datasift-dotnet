@@ -328,6 +328,11 @@ namespace DataSiftTests
                     response = AnalysisAPIResponses.Default.Analyze;
                     result.StatusCode = HttpStatusCode.OK;
                     break;
+
+                case "analysis/tags":
+                    response = AnalysisAPIResponses.Default.Tags;
+                    result.StatusCode = HttpStatusCode.OK;
+                    break;
             }
 
             if(response != null)

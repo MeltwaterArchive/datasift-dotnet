@@ -179,7 +179,7 @@ namespace DataSiftTests
 
         #endregion
 
-        #region Stop
+        #region Analyze
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
@@ -229,6 +229,32 @@ namespace DataSiftTests
         {
             var response = Client.Analysis.Analyze(VALID_HASH, DummyParameters);
             Assert.AreEqual(false, response.Data.analysis.redacted);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        #endregion
+
+        #region Tags
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Tags_Null_Hash_Fails()
+        {
+            Client.Analysis.Tags(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Tags_Empty_Hash_Fails()
+        {
+            Client.Analysis.Tags("");
+        }
+
+        [TestMethod]
+        public void Tags_Succeeds()
+        {
+            var response = Client.Analysis.Tags(VALID_HASH);
+            Assert.AreEqual("tag.one", response.Data[0]);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 

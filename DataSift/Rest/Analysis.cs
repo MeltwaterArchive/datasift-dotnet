@@ -60,7 +60,7 @@ namespace DataSift.Rest
             return _client.GetRequest().Request("analysis/stop", new { hash = hash }, Method.POST);
         }
 
-        public RestAPIResponse Analyze(string hash, dynamic parameters, string filter = null, DateTimeOffset? start = null, DateTimeOffset? end = null, bool? includeParametersInReply = false)
+        public RestAPIResponse Analyze(string hash, dynamic parameters, string filter = null, DateTimeOffset? start = null, DateTimeOffset? end = null)
         {
             Contract.Requires<ArgumentNullException>(hash != null);
             Contract.Requires<ArgumentException>(hash.Trim().Length > 0);
@@ -70,7 +70,15 @@ namespace DataSift.Rest
             Contract.Requires<ArgumentException>((end != null) ? end <= DateTimeOffset.Now : true, Messages.ANALYSIS_END_TOO_LATE);
             Contract.Requires<ArgumentException>((end != null && start != null) ? end > start : true, Messages.ANALYSIS_START_MUST_BE_BEFORE_END);
 
-            return _client.GetRequest().Request("analysis/analyze", new { hash = hash, parameters = parameters, filter = filter, start = start, end = end, includeParametersInReply = includeParametersInReply }, Method.POST);
+            return _client.GetRequest().Request("analysis/analyze", new { hash = hash, parameters = parameters, filter = filter, start = start, end = end }, Method.POST);
+        }
+
+        public RestAPIResponse Tags(string hash)
+        {
+            Contract.Requires<ArgumentNullException>(hash != null);
+            Contract.Requires<ArgumentException>(hash.Trim().Length > 0);
+
+            return _client.GetRequest().Request("analysis/tags", new { hash = hash });
         }
 
     }

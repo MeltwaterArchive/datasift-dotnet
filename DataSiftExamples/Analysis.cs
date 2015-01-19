@@ -49,6 +49,9 @@ namespace DataSiftExamples
             var analysisWithFilter = client.Analysis.Analyze(compile.Data.hash, analysisParams, filter: "fb.author.gender == \"male\"");
             Console.WriteLine("\nAnalysis (with filter) result: " + JsonConvert.SerializeObject(analysisWithFilter.Data));
 
+            var tags = client.Analysis.Tags(compile.Data.hash);
+            Console.WriteLine("\nTags: " + JsonConvert.SerializeObject(tags.Data));
+
             client.Analysis.Stop(compile.Data.hash);
             Console.WriteLine("Recording stopped");
 
