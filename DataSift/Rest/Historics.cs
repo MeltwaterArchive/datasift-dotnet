@@ -91,8 +91,7 @@ namespace DataSift.Rest
             Contract.Requires<ArgumentException>(end < DateTimeOffset.Now, Messages.HISTORICS_END_CANNOT_BE_IN_FUTURE);
             Contract.Requires<ArgumentException>(end > start, Messages.HISTORICS_START_MUST_BE_BEFORE_END);
 
-            Contract.Requires<ArgumentNullException>(sources != null);
-            Contract.Requires<ArgumentException>(sources.Length > 0);
+            Contract.Requires<ArgumentException>((sources != null) ? sources.Length > 0 : true);
 
             return _client.GetRequest().Request("historics/status", new { start = start, end = end, sources = sources });
         }

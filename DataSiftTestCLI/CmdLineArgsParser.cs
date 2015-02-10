@@ -5,6 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using DataSift.Rest;
+using System.Dynamic;
+using Newtonsoft.Json.Converters;
 
 namespace DataSiftTestCLI
 {
@@ -282,6 +285,43 @@ namespace DataSiftTestCLI
                 {
                     val = bool.Parse(sValue);
                 }
+                else if (type == typeof(DateTimeOffset))
+                {
+                    double epoch = double.Parse(sValue);
+                    val = UnixTimeStampToDateTimeOffset(epoch);
+                }
+                else if (type == typeof(string[]))
+                {
+                    val = sValue.Split(',');
+                }
+                else if (type == typeof(List<HistoricsPreviewParameter>))
+                {
+                    var prevParams = sValue.Split(';');
+                    var parsedParams = new List<HistoricsPreviewParameter>();
+
+                    foreach (var prevP in prevParams)
+                    {
+                        var detail = prevP.Split(',');
+
+                        parsedParams.Add(new HistoricsPreviewParameter() { 
+                            Target = detail[0],
+                            Analysis = detail[1],
+                            Argument = detail[2]
+                        });
+                    }
+
+                    val = parsedParams;
+                }
+                else if (type == typeof(ExpandoObject))
+                {
+                    var converter = new ExpandoObjectConverter();
+                    val = JsonConvert.DeserializeObject<ExpandoObject>(sValue, converter);
+                }
+                else if (type == typeof(List<ExpandoObject>))
+                {   
+                    var converter = new ExpandoObjectConverter();
+                    val = JsonConvert.DeserializeObject<List<ExpandoObject>>(sValue, converter);
+                }
 
                 var t = typeof(T);
 
@@ -301,5 +341,13 @@ namespace DataSiftTestCLI
             return default(T);
         }
 
+        internal DateTimeOffset UnixTimeStampToDateTimeOffset(double unixTimeStamp)
+        {
+            // Unix timestamp is seconds past epoch
+            DateTimeOffset dtDateTime = new DateTimeOffset(1970, 1, 1, 0, 0, 0, 0, TimeSpan.Zero);
+            dtDateTime = dtDateTime.AddSeconds(unixTimeStamp);
+            return dtDateTime;
+        }
     }
+
 }
