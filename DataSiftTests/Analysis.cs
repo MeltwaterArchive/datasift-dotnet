@@ -132,17 +132,17 @@ namespace DataSiftTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Start_Null_Name_Fails()
+        public void Start_Null_Name_Succeeds()
         {
-            Client.Analysis.Start(VALID_HASH, null);
+            var response = Client.Analysis.Start(VALID_HASH, null);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void Start_Empty_Name_Fails()
+        public void Start_Empty_Name_Succeeds()
         {
-            Client.Analysis.Start(VALID_HASH, "");
+            var response = Client.Analysis.Start(VALID_HASH, "");
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
         [TestMethod]
@@ -204,6 +204,20 @@ namespace DataSiftTests
         }
 
         [TestMethod]
+        public void Analyze_With_Null_Filter_Succeeds()
+        {
+            var response = Client.Analysis.Analyze(VALID_HASH, DummyParameters, filter: null);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
+        public void Analyze_With_Filter_Succeeds()
+        {
+            var response = Client.Analysis.Analyze(VALID_HASH, DummyParameters, filter: "interaction.content contains 'apple'");
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Analyze_Too_Late_Start_Fails()
         {
@@ -223,6 +237,35 @@ namespace DataSiftTests
         {
             Client.Analysis.Analyze(VALID_HASH, DummyParameters, start: VALID_START, end: DateTimeOffset.Now.AddDays(-31));
         }
+
+        [TestMethod]
+        public void Analyze_With_Null_Start_Succeeds()
+        {
+            var response = Client.Analysis.Analyze(VALID_HASH, DummyParameters, start: null, end: DateTimeOffset.Now);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
+        public void Analyze_With_Null_End_Succeeds()
+        {
+            var response = Client.Analysis.Analyze(VALID_HASH, DummyParameters, start: DateTimeOffset.Now.AddDays(-1), end: null);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
+        public void Analyze_With_Start_And_End_Succeeds()
+        {
+            var response = Client.Analysis.Analyze(VALID_HASH, DummyParameters, start: DateTimeOffset.Now.AddDays(-1), end: DateTimeOffset.Now);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Analyze_With_Null_Parameters_Fails()
+        {
+            Client.Analysis.Analyze(VALID_HASH, parameters: null, start: DateTimeOffset.Now.AddDays(-1), end: DateTimeOffset.Now);
+        }
+
 
         [TestMethod]
         public void Analyze_Succeeds()
