@@ -135,14 +135,14 @@ namespace DataSiftTests
         public void Start_Null_Name_Succeeds()
         {
             var response = Client.Analysis.Start(VALID_HASH, null);
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual(HttpStatusCode.NoContent, response.StatusCode);
         }
 
         [TestMethod]
-        public void Start_Empty_Name_Succeeds()
+        [ExpectedException(typeof(ArgumentException))]
+        public void Start_Empty_Name_Fails()
         {
             var response = Client.Analysis.Start(VALID_HASH, "");
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
         [TestMethod]

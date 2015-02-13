@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Diagnostics.Contracts;
 using RestSharp;
+using System.Dynamic;
 
 namespace DataSift.Rest
 {
@@ -46,8 +47,7 @@ namespace DataSift.Rest
             Contract.Requires<ArgumentNullException>(hash != null);
             Contract.Requires<ArgumentException>(hash.Trim().Length > 0);
 
-            Contract.Requires<ArgumentNullException>(name != null);
-            Contract.Requires<ArgumentException>(name.Trim().Length > 0);
+            Contract.Requires<ArgumentException>((name != null) ? name.Trim().Length > 0 : true);
 
             return _client.GetRequest().Request("analysis/start", new { hash = hash, name = name }, Method.POST);
         }
@@ -69,6 +69,11 @@ namespace DataSift.Rest
             Contract.Requires<ArgumentException>((start != null) ? start <= DateTimeOffset.Now : true, Messages.ANALYSIS_START_TOO_LATE);
             Contract.Requires<ArgumentException>((end != null) ? end <= DateTimeOffset.Now : true, Messages.ANALYSIS_END_TOO_LATE);
             Contract.Requires<ArgumentException>((end != null && start != null) ? end > start : true, Messages.ANALYSIS_START_MUST_BE_BEFORE_END);
+
+            if(ReferenceEquals(null, parameters))
+            {
+                throw new ArgumentNullException("parameters");
+            }
 
             return _client.GetRequest().Request("analysis/analyze", new { hash = hash, parameters = parameters, filter = filter, start = start, end = end }, Method.POST);
         }
