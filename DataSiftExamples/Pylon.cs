@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace DataSiftExamples
 {
-    static class Analysis
+    static class Pylon
     {
         internal static void Run(string username, string apikey)
         {
@@ -19,19 +19,19 @@ namespace DataSiftExamples
 
             Console.WriteLine("Running 'Analysis' example...");
 
-            var get = client.Analysis.Get();
+            var get = client.Pylon.Get();
             Console.WriteLine("\nCurrent of recordings / tasks: " + JsonConvert.SerializeObject(get.Data));
 
-            client.Analysis.Validate(csdl);
+            client.Pylon.Validate(csdl);
             Console.WriteLine("CSDL for recording validated");
 
-            var compile = client.Analysis.Compile(csdl);
+            var compile = client.Pylon.Compile(csdl);
             Console.WriteLine("Hash for stream: " + compile.Data.hash);
 
-            client.Analysis.Start(compile.Data.hash, "Example recording");
+            client.Pylon.Start(compile.Data.hash, "Example recording");
             Console.WriteLine("Recording started");
 
-            var getRecording = client.Analysis.Get(hash: compile.Data.hash);
+            var getRecording = client.Pylon.Get(hash: compile.Data.hash);
             Console.WriteLine("\nThis recording: " + JsonConvert.SerializeObject(get.Data));
 
             var analysisParams = new  {
@@ -43,16 +43,16 @@ namespace DataSiftExamples
                     }
                 };
 
-            var analysis = client.Analysis.Analyze(compile.Data.hash, analysisParams);
+            var analysis = client.Pylon.Analyze(compile.Data.hash, analysisParams);
             Console.WriteLine("\nAnalysis result: " + JsonConvert.SerializeObject(analysis.Data));
 
-            var analysisWithFilter = client.Analysis.Analyze(compile.Data.hash, analysisParams, filter: "fb.author.gender == \"male\"");
+            var analysisWithFilter = client.Pylon.Analyze(compile.Data.hash, analysisParams, filter: "fb.author.gender == \"male\"");
             Console.WriteLine("\nAnalysis (with filter) result: " + JsonConvert.SerializeObject(analysisWithFilter.Data));
 
-            var tags = client.Analysis.Tags(compile.Data.hash);
+            var tags = client.Pylon.Tags(compile.Data.hash);
             Console.WriteLine("\nTags: " + JsonConvert.SerializeObject(tags.Data));
 
-            client.Analysis.Stop(compile.Data.hash);
+            client.Pylon.Stop(compile.Data.hash);
             Console.WriteLine("Recording stopped");
 
         }

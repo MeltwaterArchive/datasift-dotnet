@@ -110,10 +110,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="AnalysisAPIResponses.Designer.cs">
+    <Compile Include="PylonAPIResponses.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>AnalysisAPIResponses.settings</DependentUpon>
+      <DependentUpon>PylonAPIResponses.settings</DependentUpon>
     </Compile>
     <Compile Include="List.cs" />
     <Compile Include="MockAPIResponses.cs" />
@@ -137,12 +137,12 @@
     <Compile Include="HistoricsPreview.cs" />
     <Compile Include="Source.cs" />
     <Compile Include="Streaming.cs" />
-    <Compile Include="Analysis.cs" />
+    <Compile Include="Pylon.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="AnalysisAPIResponses.settings">
+    <None Include="PylonAPIResponses.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>AnalysisAPIResponses.Designer.cs</LastGenOutput>
+      <LastGenOutput>PylonAPIResponses.Designer.cs</LastGenOutput>
     </None>
     <None Include="app.config" />
     <None Include="MockAPIResponses.settings">

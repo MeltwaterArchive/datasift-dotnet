@@ -26,7 +26,7 @@ namespace DataSift
         private Source _source;
         private Push _push;
         private List _list;
-        private Analysis _analysis;
+        private Pylon _pylon;
         public delegate IRestAPIRequest GetAPIRequestDelegate(string username, string apikey, string baseUrl);
         public delegate IStreamConnection GetStreamConnectionDelegate(string url);
 
@@ -77,12 +77,12 @@ namespace DataSift
             }
         }
 
-        public Analysis Analysis
+        public Pylon Pylon
         {
             get
             {
-                if (_analysis == null) _analysis = new Analysis(this);
-                return _analysis;
+                if (_pylon == null) _pylon = new Pylon(this);
+                return _pylon;
             }
         }
 

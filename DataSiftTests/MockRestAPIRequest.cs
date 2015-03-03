@@ -297,40 +297,40 @@ namespace DataSiftTests
                     result.StatusCode = HttpStatusCode.NoContent;
                     break;
 
-                case "analysis/get":
+                case "pylon/get":
                     if (prms.ContainsKey("hash"))
-                        response = AnalysisAPIResponses.Default.GetOne;
+                        response = PylonAPIResponses.Default.GetOne;
                     else
-                        response = AnalysisAPIResponses.Default.Get;
+                        response = PylonAPIResponses.Default.Get;
                     
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
-                case "analysis/validate":
-                    response = AnalysisAPIResponses.Default.Validate;
+                case "pylon/validate":
+                    response = PylonAPIResponses.Default.Validate;
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
-                case "analysis/compile":
-                    response = AnalysisAPIResponses.Default.Compile;
+                case "pylon/compile":
+                    response = PylonAPIResponses.Default.Compile;
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
-                case "analysis/start":
+                case "pylon/start":
                     result.StatusCode = HttpStatusCode.NoContent;
                     break;
 
-                case "analysis/stop":
+                case "pylon/stop":
                     result.StatusCode = HttpStatusCode.NoContent;
                     break;
 
-                case "analysis/analyze":
-                    response = AnalysisAPIResponses.Default.Analyze;
+                case "pylon/analyze":
+                    response = PylonAPIResponses.Default.Analyze;
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
-                case "analysis/tags":
-                    response = AnalysisAPIResponses.Default.Tags;
+                case "pylon/tags":
+                    response = PylonAPIResponses.Default.Tags;
                     result.StatusCode = HttpStatusCode.OK;
                     break;
             }

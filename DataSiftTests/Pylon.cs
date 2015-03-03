@@ -5,7 +5,7 @@ using System.Net;
 namespace DataSiftTests
 {
     [TestClass]
-    public class Analysis : TestBase
+    public class Pylon : TestBase
     {
 
         private const string VALID_CSDL = "fb.content contains_any \"BMW, Mercedes, Cadillac\"";
@@ -35,7 +35,7 @@ namespace DataSiftTests
         [TestMethod]
         public void Get_Succeeds()
         {
-            var response = Client.Analysis.Get();
+            var response = Client.Pylon.Get();
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
@@ -43,20 +43,20 @@ namespace DataSiftTests
         [ExpectedException(typeof(ArgumentException))]
         public void Get_By_Hash_Empty_Fails()
         {
-            Client.Analysis.Get(hash: "");
+            Client.Pylon.Get(hash: "");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Get_By_Hash_Bad_Format_Fails()
         {
-            Client.Analysis.Get(hash: "invalid");
+            Client.Pylon.Get(hash: "invalid");
         }
 
         [TestMethod]
         public void Get_By_Hash_Complete_Succeeds()
         {
-            var response = Client.Analysis.Get(hash: VALID_HASH);
+            var response = Client.Pylon.Get(hash: VALID_HASH);
             Assert.AreEqual(VALID_HASH, response.Data.hash);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
@@ -68,20 +68,20 @@ namespace DataSiftTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Validate_Null_CSDL_Fails()
         {
-            Client.Analysis.Validate(null);
+            Client.Pylon.Validate(null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Validate_Empty_CSDL_Fails()
         {
-            Client.Analysis.Validate("");
+            Client.Pylon.Validate("");
         }
 
         [TestMethod]
         public void Validate_Complete_CSDL_Succeeds()
         {
-            var response = Client.Analysis.Validate(VALID_CSDL);
+            var response = Client.Pylon.Validate(VALID_CSDL);
             Assert.AreEqual("0.1", response.Data.dpu);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
@@ -94,20 +94,20 @@ namespace DataSiftTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Compile_Null_CSDL_Fails()
         {
-            Client.Analysis.Compile(null);
+            Client.Pylon.Compile(null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Compile_Empty_CSDL_Fails()
         {
-            Client.Analysis.Compile("");
+            Client.Pylon.Compile("");
         }
 
         [TestMethod]
         public void Compile_Complete_CSDL_Succeeds()
         {
-            var response = Client.Analysis.Compile(VALID_CSDL);
+            var response = Client.Pylon.Compile(VALID_CSDL);
             Assert.AreEqual("0.1", response.Data.dpu);
             Assert.AreEqual("58eb8c4b74257406547ab1ed3be346a8", response.Data.hash);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
@@ -121,20 +121,20 @@ namespace DataSiftTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Start_Null_Hash_Fails()
         {
-            Client.Analysis.Start(null, VALID_NAME);
+            Client.Pylon.Start(null, VALID_NAME);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Start_Empty_Hash_Fails()
         {
-            Client.Analysis.Start("", VALID_NAME);
+            Client.Pylon.Start("", VALID_NAME);
         }
 
         [TestMethod]
         public void Start_Null_Name_Succeeds()
         {
-            var response = Client.Analysis.Start(VALID_HASH, null);
+            var response = Client.Pylon.Start(VALID_HASH, null);
             Assert.AreEqual(HttpStatusCode.NoContent, response.StatusCode);
         }
 
@@ -142,13 +142,13 @@ namespace DataSiftTests
         [ExpectedException(typeof(ArgumentException))]
         public void Start_Empty_Name_Fails()
         {
-            var response = Client.Analysis.Start(VALID_HASH, "");
+            var response = Client.Pylon.Start(VALID_HASH, "");
         }
 
         [TestMethod]
         public void Start_Succeeds()
         {
-            var response = Client.Analysis.Start(VALID_HASH, VALID_NAME);
+            var response = Client.Pylon.Start(VALID_HASH, VALID_NAME);
             Assert.AreEqual(HttpStatusCode.NoContent, response.StatusCode);
         }
 
@@ -160,20 +160,20 @@ namespace DataSiftTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Stop_Null_Hash_Fails()
         {
-            Client.Analysis.Stop(null);
+            Client.Pylon.Stop(null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Stop_Empty_Hash_Fails()
         {
-            Client.Analysis.Stop("");
+            Client.Pylon.Stop("");
         }
 
         [TestMethod]
         public void Stop_Succeeds()
         {
-            var response = Client.Analysis.Stop(VALID_HASH);
+            var response = Client.Pylon.Stop(VALID_HASH);
             Assert.AreEqual(HttpStatusCode.NoContent, response.StatusCode);
         }
 
@@ -185,14 +185,14 @@ namespace DataSiftTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Analyze_Null_Hash_Fails()
         {
-            Client.Analysis.Analyze(null, DummyParameters);
+            Client.Pylon.Analyze(null, DummyParameters);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Analyze_Empty_Hash_Fails()
         {
-            Client.Analysis.Analyze("", DummyParameters);
+            Client.Pylon.Analyze("", DummyParameters);
         }
 
 
@@ -200,20 +200,20 @@ namespace DataSiftTests
         [ExpectedException(typeof(ArgumentException))]
         public void Analyze_Empty_Filter_Fails()
         {
-            Client.Analysis.Analyze(VALID_HASH, DummyParameters, filter: "");
+            Client.Pylon.Analyze(VALID_HASH, DummyParameters, filter: "");
         }
 
         [TestMethod]
         public void Analyze_With_Null_Filter_Succeeds()
         {
-            var response = Client.Analysis.Analyze(VALID_HASH, DummyParameters, filter: null);
+            var response = Client.Pylon.Analyze(VALID_HASH, DummyParameters, filter: null);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
         [TestMethod]
         public void Analyze_With_Filter_Succeeds()
         {
-            var response = Client.Analysis.Analyze(VALID_HASH, DummyParameters, filter: "interaction.content contains 'apple'");
+            var response = Client.Pylon.Analyze(VALID_HASH, DummyParameters, filter: "interaction.content contains 'apple'");
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
@@ -221,41 +221,41 @@ namespace DataSiftTests
         [ExpectedException(typeof(ArgumentException))]
         public void Analyze_Too_Late_Start_Fails()
         {
-            Client.Analysis.Analyze(VALID_HASH, DummyParameters, start: DateTimeOffset.Now.AddDays(1), end: DateTimeOffset.Now.AddDays(3));
+            Client.Pylon.Analyze(VALID_HASH, DummyParameters, start: DateTimeOffset.Now.AddDays(1), end: DateTimeOffset.Now.AddDays(3));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Analyze_Too_Late_End_Fails()
         {
-            Client.Analysis.Analyze(VALID_HASH, DummyParameters, start: VALID_START, end: DateTimeOffset.Now.AddDays(1));
+            Client.Pylon.Analyze(VALID_HASH, DummyParameters, start: VALID_START, end: DateTimeOffset.Now.AddDays(1));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Analyze_End_Before_Start_Fails()
         {
-            Client.Analysis.Analyze(VALID_HASH, DummyParameters, start: VALID_START, end: DateTimeOffset.Now.AddDays(-31));
+            Client.Pylon.Analyze(VALID_HASH, DummyParameters, start: VALID_START, end: DateTimeOffset.Now.AddDays(-31));
         }
 
         [TestMethod]
         public void Analyze_With_Null_Start_Succeeds()
         {
-            var response = Client.Analysis.Analyze(VALID_HASH, DummyParameters, start: null, end: DateTimeOffset.Now);
+            var response = Client.Pylon.Analyze(VALID_HASH, DummyParameters, start: null, end: DateTimeOffset.Now);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
         [TestMethod]
         public void Analyze_With_Null_End_Succeeds()
         {
-            var response = Client.Analysis.Analyze(VALID_HASH, DummyParameters, start: DateTimeOffset.Now.AddDays(-1), end: null);
+            var response = Client.Pylon.Analyze(VALID_HASH, DummyParameters, start: DateTimeOffset.Now.AddDays(-1), end: null);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
         [TestMethod]
         public void Analyze_With_Start_And_End_Succeeds()
         {
-            var response = Client.Analysis.Analyze(VALID_HASH, DummyParameters, start: DateTimeOffset.Now.AddDays(-1), end: DateTimeOffset.Now);
+            var response = Client.Pylon.Analyze(VALID_HASH, DummyParameters, start: DateTimeOffset.Now.AddDays(-1), end: DateTimeOffset.Now);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
@@ -263,14 +263,14 @@ namespace DataSiftTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Analyze_With_Null_Parameters_Fails()
         {
-            Client.Analysis.Analyze(VALID_HASH, parameters: null, start: DateTimeOffset.Now.AddDays(-1), end: DateTimeOffset.Now);
+            Client.Pylon.Analyze(VALID_HASH, parameters: null, start: DateTimeOffset.Now.AddDays(-1), end: DateTimeOffset.Now);
         }
 
 
         [TestMethod]
         public void Analyze_Succeeds()
         {
-            var response = Client.Analysis.Analyze(VALID_HASH, DummyParameters);
+            var response = Client.Pylon.Analyze(VALID_HASH, DummyParameters);
             Assert.AreEqual(false, response.Data.analysis.redacted);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
@@ -283,20 +283,20 @@ namespace DataSiftTests
         [ExpectedException(typeof(ArgumentNullException))]
         public void Tags_Null_Hash_Fails()
         {
-            Client.Analysis.Tags(null);
+            Client.Pylon.Tags(null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Tags_Empty_Hash_Fails()
         {
-            Client.Analysis.Tags("");
+            Client.Pylon.Tags("");
         }
 
         [TestMethod]
         public void Tags_Succeeds()
         {
-            var response = Client.Analysis.Tags(VALID_HASH);
+            var response = Client.Pylon.Tags(VALID_HASH);
             Assert.AreEqual("tag.one", response.Data[0]);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }

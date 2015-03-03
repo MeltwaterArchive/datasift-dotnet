@@ -9,11 +9,11 @@ using System.Dynamic;
 
 namespace DataSift.Rest
 {
-    public class Analysis
+    public class Pylon
     {
         DataSiftClient _client = null;
 
-        internal Analysis(DataSiftClient client)
+        internal Pylon(DataSiftClient client)
         {
             _client = client;
         }
@@ -23,7 +23,7 @@ namespace DataSift.Rest
             Contract.Requires<ArgumentException>((hash != null) ? hash.Trim().Length > 0 : true);
             Contract.Requires<ArgumentException>((hash != null) ? Constants.STREAM_HASH_FORMAT.IsMatch(hash) : true, Messages.INVALID_STREAM_HASH);
 
-            return _client.GetRequest().Request("analysis/get", new { hash = hash });
+            return _client.GetRequest().Request("pylon/get", new { hash = hash });
         }
 
         public RestAPIResponse Validate(string csdl)
@@ -31,7 +31,7 @@ namespace DataSift.Rest
             Contract.Requires<ArgumentNullException>(csdl != null);
             Contract.Requires<ArgumentException>(csdl.Trim().Length > 0);
 
-            return _client.GetRequest().Request("analysis/validate", new { csdl = csdl }, Method.POST);
+            return _client.GetRequest().Request("pylon/validate", new { csdl = csdl }, Method.POST);
         }
 
         public RestAPIResponse Compile(string csdl)
@@ -39,7 +39,7 @@ namespace DataSift.Rest
             Contract.Requires<ArgumentNullException>(csdl != null);
             Contract.Requires<ArgumentException>(csdl.Trim().Length > 0);
 
-            return _client.GetRequest().Request("analysis/compile", new { csdl = csdl }, Method.POST);
+            return _client.GetRequest().Request("pylon/compile", new { csdl = csdl }, Method.POST);
         }
 
         public RestAPIResponse Start(string hash, string name)
@@ -49,7 +49,7 @@ namespace DataSift.Rest
 
             Contract.Requires<ArgumentException>((name != null) ? name.Trim().Length > 0 : true);
 
-            return _client.GetRequest().Request("analysis/start", new { hash = hash, name = name }, Method.POST);
+            return _client.GetRequest().Request("pylon/start", new { hash = hash, name = name }, Method.POST);
         }
 
         public RestAPIResponse Stop(string hash)
@@ -57,7 +57,7 @@ namespace DataSift.Rest
             Contract.Requires<ArgumentNullException>(hash != null);
             Contract.Requires<ArgumentException>(hash.Trim().Length > 0);
 
-            return _client.GetRequest().Request("analysis/stop", new { hash = hash }, Method.POST);
+            return _client.GetRequest().Request("pylon/stop", new { hash = hash }, Method.POST);
         }
 
         public RestAPIResponse Analyze(string hash, dynamic parameters, string filter = null, DateTimeOffset? start = null, DateTimeOffset? end = null)
@@ -75,7 +75,7 @@ namespace DataSift.Rest
                 throw new ArgumentNullException("parameters");
             }
 
-            return _client.GetRequest().Request("analysis/analyze", new { hash = hash, parameters = parameters, filter = filter, start = start, end = end }, Method.POST);
+            return _client.GetRequest().Request("pylon/analyze", new { hash = hash, parameters = parameters, filter = filter, start = start, end = end }, Method.POST);
         }
 
         public RestAPIResponse Tags(string hash)
@@ -83,7 +83,7 @@ namespace DataSift.Rest
             Contract.Requires<ArgumentNullException>(hash != null);
             Contract.Requires<ArgumentException>(hash.Trim().Length > 0);
 
-            return _client.GetRequest().Request("analysis/tags", new { hash = hash });
+            return _client.GetRequest().Request("pylon/tags", new { hash = hash });
         }
 
     }

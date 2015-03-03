@@ -60,7 +60,7 @@ namespace DataSiftExamples
                     break;
 
                 case ConsoleKey.D7:
-                    Analysis.Run(username, apikey);
+                    Pylon.Run(username, apikey);
                     break;
 
                 default:
@@ -80,7 +80,7 @@ namespace DataSiftExamples
             Console.WriteLine("    4. Historics API endpoints");
             Console.WriteLine("    5. Source API endpoints");
             Console.WriteLine("    6. List API endpoints");
-            Console.WriteLine("    7. Analysis API endpoints"); 
+            Console.WriteLine("    7. Pylon API endpoints"); 
             Console.WriteLine("\nPress a key to continue...\n");
         }
     }

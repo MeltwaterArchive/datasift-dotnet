@@ -99,7 +99,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Analysis.cs" />
+    <Compile Include="Pylon.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Historics.cs" />
     <Compile Include="HistoricsPreview.cs" />

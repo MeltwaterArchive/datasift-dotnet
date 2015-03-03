@@ -58,8 +58,8 @@ namespace DataSiftTestCLI
                 case "push":
                     response = Push(datasift, command);
                     break;
-                case "analysis":
-                    response = Analysis(datasift, command);
+                case "pylon":
+                    response = Pylon(datasift, command);
                     break;
             }
 
@@ -280,32 +280,32 @@ namespace DataSiftTestCLI
             return response;
         }
 
-        private static RestAPIResponse Analysis(DataSiftClient client, string command)
+        private static RestAPIResponse Pylon(DataSiftClient client, string command)
         {
             RestAPIResponse response = null;
 
             switch (command)
             {
                 case "validate":
-                    response = client.Analysis.Validate(_argsParser.GetParameter<string>("csdl"));
+                    response = client.Pylon.Validate(_argsParser.GetParameter<string>("csdl"));
                     break;
                 case "compile":
-                    response = client.Analysis.Compile(_argsParser.GetParameter<string>("csdl"));
+                    response = client.Pylon.Compile(_argsParser.GetParameter<string>("csdl"));
                     break;
                 case "start":
-                    response = client.Analysis.Start(_argsParser.GetParameter<string>("hash"), _argsParser.GetParameter<string>("name"));
+                    response = client.Pylon.Start(_argsParser.GetParameter<string>("hash"), _argsParser.GetParameter<string>("name"));
                     break;
                 case "stop":
-                    response = client.Analysis.Stop(_argsParser.GetParameter<string>("hash"));
+                    response = client.Pylon.Stop(_argsParser.GetParameter<string>("hash"));
                     break;
                 case "get":
-                    response = client.Analysis.Get(_argsParser.GetParameter<string>("hash"));
+                    response = client.Pylon.Get(_argsParser.GetParameter<string>("hash"));
                     break;
                 case "tags":
-                    response = client.Analysis.Get(_argsParser.GetParameter<string>("hash"));
+                    response = client.Pylon.Get(_argsParser.GetParameter<string>("hash"));
                     break;
                 case "analyze":
-                    response = client.Analysis.Analyze(_argsParser.GetParameter<string>("hash"),
+                    response = client.Pylon.Analyze(_argsParser.GetParameter<string>("hash"),
                         _argsParser.GetParameter<ExpandoObject>("parameters"), _argsParser.GetParameter<string>("filter"),
                         _argsParser.GetParameter<DateTimeOffset?>("start"), _argsParser.GetParameter<DateTimeOffset?>("end"));
                     break;
