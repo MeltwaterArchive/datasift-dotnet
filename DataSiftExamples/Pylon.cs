@@ -17,7 +17,7 @@ namespace DataSiftExamples
 
             var csdl = "fb.content contains_any \"BMW, Mercedes, Cadillac\"";
 
-            Console.WriteLine("Running 'Analysis' example...");
+            Console.WriteLine("Running 'Pylon' example...");
 
             var get = client.Pylon.Get();
             Console.WriteLine("\nCurrent of recordings / tasks: " + JsonConvert.SerializeObject(get.Data));
