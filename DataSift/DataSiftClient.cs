@@ -18,6 +18,7 @@ namespace DataSift
     {
         private string _username;
         private string _apikey;
+        private string _baseUrl = "https://api.datasift.com/v1";
         private GetAPIRequestDelegate _getRequest;
         private GetStreamConnectionDelegate _getConnection;
         private Historics _historics;
@@ -25,10 +26,11 @@ namespace DataSift
         private Source _source;
         private Push _push;
         private List _list;
-        public delegate IRestAPIRequest GetAPIRequestDelegate(string username, string apikey);
+        private Pylon _pylon;
+        public delegate IRestAPIRequest GetAPIRequestDelegate(string username, string apikey, string baseUrl);
         public delegate IStreamConnection GetStreamConnectionDelegate(string url);
 
-        public DataSiftClient(string username, string apikey, GetAPIRequestDelegate requestCreator = null, GetStreamConnectionDelegate connectionCreator = null)
+        public DataSiftClient(string username, string apikey, GetAPIRequestDelegate requestCreator = null, GetStreamConnectionDelegate connectionCreator = null, string baseUrl = null)
         {
             Contract.Requires<ArgumentNullException>(username != null);
             Contract.Requires<ArgumentException>(username.Trim().Length > 0);
@@ -38,6 +40,9 @@ namespace DataSift
 
             _username = username;
             _apikey = apikey;
+
+            if(!String.IsNullOrEmpty(baseUrl))
+                _baseUrl = baseUrl;
 
             if (requestCreator == null)
                 _getRequest = GetRequestDefault;
@@ -49,14 +54,14 @@ namespace DataSift
 
         #region Mocking / Faking
 
-        private IRestAPIRequest GetRequestDefault(string username, string apikey)
+        private IRestAPIRequest GetRequestDefault(string username, string apikey, string baseUrl)
         {
-            return new RestAPIRequest(username, apikey);
+            return new RestAPIRequest(username, apikey, baseUrl);
         }
 
         internal IRestAPIRequest GetRequest()
         {
-            return _getRequest(_username, _apikey);
+            return _getRequest(_username, _apikey, _baseUrl);
         }
 
         #endregion
@@ -71,6 +76,16 @@ namespace DataSift
                 return _source;
             }
         }
+
+        public Pylon Pylon
+        {
+            get
+            {
+                if (_pylon == null) _pylon = new Pylon(this);
+                return _pylon;
+            }
+        }
+
         public List List
         {
             get

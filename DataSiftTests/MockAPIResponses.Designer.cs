@@ -1629,5 +1629,26 @@ namespace DataSiftTests {
                 return ((string)(this["SourceAuthRemove"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AnalysisGet {
+            get {
+                return ((string)(this["AnalysisGet"]));
+            }
+        }
+
+
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string AnalysisValidate
+        {
+            get
+            {
+                return ((string)(this["AnalysisValidate"]));
+            }
+        }
     }
 }

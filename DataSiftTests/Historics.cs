@@ -207,13 +207,6 @@ namespace DataSiftTests
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Status_Null_Sources_Fails()
-        {
-            Client.Historics.Status(VALID_START, VALID_END, null);
-        }
-
-        [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Status_Empty_Sources_Fails()
         {

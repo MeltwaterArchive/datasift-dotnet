@@ -72,6 +72,15 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'NoTests|AnyCPU'">
+    <OutputPath>bin\NoTests\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
@@ -101,7 +110,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="PylonAPIResponses.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>PylonAPIResponses.settings</DependentUpon>
+    </Compile>
     <Compile Include="List.cs" />
+    <Compile Include="MockAPIResponses.cs" />
     <Compile Include="MockAPIResponses.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -122,12 +137,17 @@
     <Compile Include="HistoricsPreview.cs" />
     <Compile Include="Source.cs" />
     <Compile Include="Streaming.cs" />
+    <Compile Include="Pylon.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="PylonAPIResponses.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>PylonAPIResponses.Designer.cs</LastGenOutput>
+    </None>
     <None Include="app.config" />
     <None Include="MockAPIResponses.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>MockAPIResponses.Designer.cs</LastGenOutput>
+      <LastGenOutput>MockAPIResponses1.Designer.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Run.settings">

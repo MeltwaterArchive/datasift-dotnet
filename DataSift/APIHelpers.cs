@@ -51,10 +51,16 @@ namespace DataSift
             else
             {
                 // Standard API responses
-
                 if (data.StartsWith("["))
                 {
-                    return JsonConvert.DeserializeObject<List<ExpandoObject>>(data, converter);
+                    // Data is an array of items
+                    if (data.StartsWith("[\""))
+                    {
+                        // Is an array of strings
+                        return JsonConvert.DeserializeObject<List<string>>(data, converter);
+                    }
+                    else
+                        return JsonConvert.DeserializeObject<List<ExpandoObject>>(data, converter);
                 }
                 else
                 {
@@ -117,9 +123,9 @@ namespace DataSift
             return result;
         }
 
-        public static List<Parameter> ParseParameters(string endpoint, dynamic parameters)
+        public static dynamic ParseParameters(string endpoint, dynamic parameters)
         {
-            List<Parameter> result = new List<Parameter>();
+            var result = new ExpandoObject();
 
             foreach (var prop in parameters.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public))
             {
@@ -140,15 +146,13 @@ namespace DataSift
                         val = ToUnixTime(val);
                     else if (val.GetType() == typeof(List<HistoricsPreviewParameter>))
                         val = String.Join<HistoricsPreviewParameter>(";", val);
-                    else if (val.GetType().IsGenericType || val.GetType() == typeof(ExpandoObject))
+                    else if ( 
+                                !(endpoint.StartsWith("pylon/analyze"))
+                                && (val.GetType().IsGenericType || val.GetType() == typeof(ExpandoObject))
+                            )
                         val = JsonConvert.SerializeObject(val);
 
-                    result.Add(new Parameter()
-                    {
-                        Name = prop.Name,
-                        Value = val,
-                        Type = ParameterType.GetOrPost
-                    });
+                    ((IDictionary<string, object>)result)[prop.Name] = val;
                 }
             }
 
