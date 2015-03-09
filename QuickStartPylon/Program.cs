@@ -17,7 +17,7 @@ namespace QuickStartPylon
         static void Main(string[] args)
         {
             // Create a new DataSift client
-            _client = new DataSiftClient("choult", "eed85f6b316fb18930ee28e8754f4963", baseUrl: "http://api.fido.dpr-229.devms.net");
+            _client = new DataSiftClient("DATASIFT_USERNAME", "DATASIFT_APIKEY");
 
             var hash = StartRecording();
             Analyze(hash);
@@ -30,7 +30,10 @@ namespace QuickStartPylon
         static string StartRecording()
         {
             // Compile a filter to receive a hash
-            var csdl = "(fb.content any \"coffee\" OR fb.hashtags in \"coffee\") AND fb.language in \"en\"";
+            var csdl = @"( fb.content contains_any ""wedding,engaged,engagement,marriage"" 
+		                or fb.topics.name in ""Wedding,Marriage"" ) 
+		                OR ( fb.parent.content contains_any ""wedding,engaged,engagement,marriage"" 
+		                or fb.parent.topics.name in ""Wedding,Marriage"" )";
 
             var compiled = _client.Pylon.Compile(csdl);
             var hash = compiled.Data.hash;
@@ -70,7 +73,7 @@ namespace QuickStartPylon
             var analysis = _client.Pylon.Analyze(hash, analysisParams);
             Console.WriteLine("\nAnalysis result: " + JsonConvert.SerializeObject(analysis.Data));
 
-            var analysisWithFilter = _client.Pylon.Analyze(hash, analysisParams, filter: "fb.content contains \"starbucks\"");
+            var analysisWithFilter = _client.Pylon.Analyze(hash, analysisParams, filter: "fb.author.gender == \"female\" OR fb.parent.author.gender == \"female\"");
             Console.WriteLine("\nAnalysis (with filter) result: " + JsonConvert.SerializeObject(analysisWithFilter.Data));
         }
 
