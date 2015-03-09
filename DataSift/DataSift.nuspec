@@ -17,15 +17,9 @@
             <dependency id="RestSharp" version="104.4.0" />
             <dependency id="WebSocket4Net" version="0.10" />
         </dependencies>
-<<<<<<< HEAD
         <references>
             <reference file="DataSift.dll" />
         </references>
-=======
-      <references>
-        <reference file="DataSift.dll" />
-      </references>
->>>>>>> kirkland
     </metadata>
   <files>
     <file src="bin\Release\DataSift.dll.config" target="lib\net45" />
