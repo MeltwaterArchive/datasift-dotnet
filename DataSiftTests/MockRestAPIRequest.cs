@@ -10,6 +10,7 @@ using Newtonsoft.Json.Converters;
 using RestSharp;
 using System.Net;
 using DataSift;
+using DataSiftTests.Account;
 
 
 namespace DataSiftTests
@@ -332,6 +333,44 @@ namespace DataSiftTests
                 case "pylon/tags":
                     response = PylonAPIResponses.Default.Tags;
                     result.StatusCode = HttpStatusCode.OK;
+                    break;
+
+                case "account/identity":
+                    switch (method) {
+                        case Method.POST:
+                            response = AccountAPIResponses.Default.Identity_Create;
+                            break;
+                        case Method.GET:
+                            if (prms.ContainsKey("label"))
+                                response = AccountAPIResponses.Default.Identity_Get_Label;
+                            else if (prms.ContainsKey("page") || prms.ContainsKey("per_page"))
+                                response = AccountAPIResponses.Default.Identity_Get_Page;
+                            else
+                                response = AccountAPIResponses.Default.Identity_Get;
+                            break;
+                    }
+                    
+                    result.StatusCode = HttpStatusCode.OK;
+                    break;
+
+
+                case "account/identity/" + Account.Identity.VALID_ID:
+                    switch (method)
+                    {
+                        case Method.GET:
+                            response = AccountAPIResponses.Default.Identity_Get_Id;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                        case Method.PUT:
+                            response = AccountAPIResponses.Default.Identity_Update;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                        case Method.DELETE:
+                            response = AccountAPIResponses.Default.Identity_Update;
+                            result.StatusCode = HttpStatusCode.NoContent;
+                            break;
+                    }
+
                     break;
             }
 

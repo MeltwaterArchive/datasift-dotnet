@@ -11,6 +11,7 @@ using System.Text.RegularExpressions;
 using DataSift.Streaming;
 using WebSocket4Net;
 using System.Diagnostics;
+using DataSift.Rest.Account;
 
 namespace DataSift
 {
@@ -27,6 +28,7 @@ namespace DataSift
         private Push _push;
         private List _list;
         private Pylon _pylon;
+        private Account _account;
         public delegate IRestAPIRequest GetAPIRequestDelegate(string username, string apikey, string baseUrl);
         public delegate IStreamConnection GetStreamConnectionDelegate(string url);
 
@@ -119,6 +121,15 @@ namespace DataSift
             {
                 if (_historicsPreview == null) _historicsPreview = new HistoricsPreview(this);
                 return _historicsPreview;
+            }
+        }
+
+        public Account Account
+        {
+            get
+            {
+                if (_account == null) _account = new Account(this);
+                return _account;
             }
         }
 

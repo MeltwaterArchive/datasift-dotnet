@@ -39,7 +39,7 @@ namespace DataSift.Rest
             {
                 var parsedParams = APIHelpers.ParseParameters(endpoint, parameters);
 
-                if (method == Method.POST)
+                if (method == Method.POST || method == Method.PUT)
                 {
                     request.RequestFormat = DataFormat.Json;
                     request.AddBody(parsedParams);
