@@ -153,6 +153,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rest\Account\Account.cs" />
     <Compile Include="Rest\Account\Identity.cs" />
+    <Compile Include="Rest\Account\Limit.cs" />
+    <Compile Include="Rest\Account\Token.cs" />
     <Compile Include="Rest\Pylon.cs" />
     <Compile Include="Rest\Historics.cs" />
     <Compile Include="Rest\HistoricsPreview.cs" />

@@ -13,9 +13,30 @@ namespace DataSift.Rest.Account
     {
         DataSiftClient _client = null;
 
+        private Token _token;
+        private Limit _limit;
+
         internal Identity(DataSiftClient client)
         {
             _client = client;
+        }
+
+        public Token Token
+        {
+            get
+            {
+                if (_token == null) _token = new Token(_client);
+                return _token;
+            }
+        }
+
+        public Limit Limit
+        {
+            get
+            {
+                if (_limit == null) _limit = new Limit(_client);
+                return _limit;
+            }
         }
 
         public RestAPIResponse Create(string label,  IdentityStatus? status = null, bool? master = null)

@@ -339,6 +339,7 @@ namespace DataSiftTests
                     switch (method) {
                         case Method.POST:
                             response = AccountAPIResponses.Default.Identity_Create;
+                            result.StatusCode = HttpStatusCode.Created;
                             break;
                         case Method.GET:
                             if (prms.ContainsKey("label"))
@@ -347,10 +348,11 @@ namespace DataSiftTests
                                 response = AccountAPIResponses.Default.Identity_Get_Page;
                             else
                                 response = AccountAPIResponses.Default.Identity_Get;
+
+                            result.StatusCode = HttpStatusCode.OK;
                             break;
                     }
                     
-                    result.StatusCode = HttpStatusCode.OK;
                     break;
 
 
@@ -366,7 +368,45 @@ namespace DataSiftTests
                             result.StatusCode = HttpStatusCode.OK;
                             break;
                         case Method.DELETE:
-                            response = AccountAPIResponses.Default.Identity_Update;
+                            result.StatusCode = HttpStatusCode.NoContent;
+                            break;
+                    }
+
+                    break;
+
+                case "account/identity/" + Account.Token.VALID_IDENTITY + "/token":
+                    switch (method)
+                    {
+                        case Method.POST:
+                            response = AccountAPIResponses.Default.Token_Create;
+                            result.StatusCode = HttpStatusCode.Created;
+                            break;
+                        case Method.GET:
+                            if (prms.ContainsKey("service"))
+                                response = AccountAPIResponses.Default.Token_GetAll;
+                            else if (prms.ContainsKey("page") || prms.ContainsKey("per_page"))
+                                response = AccountAPIResponses.Default.Token_GetAll;
+                            else
+                                response = AccountAPIResponses.Default.Token_GetAll;
+
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                    }
+
+                    break;
+
+                case "account/identity/" + Account.Token.VALID_IDENTITY + "/token/" + Account.Token.VALID_SERVICE:
+                    switch (method)
+                    {
+                        case Method.GET:
+                            response = AccountAPIResponses.Default.Token_GetAll;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                        case Method.PUT:
+                            response = AccountAPIResponses.Default.Token_Update;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                        case Method.DELETE:
                             result.StatusCode = HttpStatusCode.NoContent;
                             break;
                     }

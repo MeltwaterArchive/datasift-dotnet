@@ -32,7 +32,7 @@ namespace DataSiftTests.Account
         {
             var response = Client.Account.Identity.Create(VALID_LABEL);
             Assert.AreEqual(VALID_LABEL, response.Data.label);
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
         }
 
         #endregion

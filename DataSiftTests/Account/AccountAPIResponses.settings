@@ -200,5 +200,20 @@
     <Setting Name="Identity_Update" Type="System.String" Scope="Application">
       <Value Profile="(Default)">{"id":"f3865ceea4bac3f7eec0ea12d7e83508","label":"Customer 1","api_key":"628aefcada278cb8288f47aa69e176f5","status":"active","master":false,"created_at":1429695763,"updated_at":1429695763,"expires_at":null}</Value>
     </Setting>
+    <Setting Name="Token_Create" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{"service":"facebook","token":"fed85f6b316fb18930ee28e8754f4963","created_at":1429781734,"updated_at":1429781734,"expires_at":null}</Value>
+    </Setting>
+    <Setting Name="Token_GetAll" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{"count":1,"page":1,"pages":1,"per_page":25,"tokens":[{"service":"facebook","token":"fed85f6b316fb18930ee28e8754f4963","created_at":1429781734,"updated_at":1429781734,"expires_at":null}]}</Value>
+    </Setting>
+    <Setting Name="Token_Update" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{
+   "service":"facebook",
+   "token":"ddd85f6b316fb18930ee28e8754f4963",
+   "created_at":1429781734,
+   "updated_at":1429781734,
+   "expires_at":null
+}</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

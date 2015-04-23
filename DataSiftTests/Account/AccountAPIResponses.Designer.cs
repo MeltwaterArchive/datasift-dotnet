@@ -175,5 +175,36 @@ namespace DataSiftTests.Account {
                 return ((string)(this["Identity_Update"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\"service\":\"facebook\",\"token\":\"fed85f6b316fb18930ee28e8754f4963\",\"created_at\":142" +
+            "9781734,\"updated_at\":1429781734,\"expires_at\":null}")]
+        public string Token_Create {
+            get {
+                return ((string)(this["Token_Create"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\"count\":1,\"page\":1,\"pages\":1,\"per_page\":25,\"tokens\":[{\"service\":\"facebook\",\"toke" +
+            "n\":\"fed85f6b316fb18930ee28e8754f4963\",\"created_at\":1429781734,\"updated_at\":14297" +
+            "81734,\"expires_at\":null}]}")]
+        public string Token_GetAll {
+            get {
+                return ((string)(this["Token_GetAll"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n   \"service\":\"facebook\",\r\n   \"token\":\"ddd85f6b316fb18930ee28e8754f4963\",\r\n   \"" +
+            "created_at\":1429781734,\r\n   \"updated_at\":1429781734,\r\n   \"expires_at\":null\r\n}")]
+        public string Token_Update {
+            get {
+                return ((string)(this["Token_Update"]));
+            }
+        }
     }
 }

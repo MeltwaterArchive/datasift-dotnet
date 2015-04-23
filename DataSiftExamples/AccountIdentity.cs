@@ -28,6 +28,21 @@ namespace DataSiftExamples
             var getById = client.Account.Identity.Get(id: identity.Data.id);
             Console.WriteLine("\nGot updated identity: " + JsonConvert.SerializeObject(getById.Data));
 
+            var token = client.Account.Identity.Token.Create(identity.Data.id, "facebook", "ddd85f6b316fb18930ee28e8754f4963");
+            Console.WriteLine("\nCreated token: " + JsonConvert.SerializeObject(token.Data));
+
+            var getAllIdentityTokens = client.Account.Identity.Token.Get(identity.Data.id);
+            Console.WriteLine("\nAll tokens for identity: " + JsonConvert.SerializeObject(getAllIdentityTokens.Data));
+
+            var getTokenByService = client.Account.Identity.Token.Get(identity.Data.id, "facebook");
+            Console.WriteLine("\nGot token by service: " + JsonConvert.SerializeObject(getTokenByService.Data));
+
+            var updatedToken = client.Account.Identity.Token.Update(identity.Data.id, "facebook", "eed85f6b316fb18930ee28e8754f4963");
+            Console.WriteLine("\nUpdated token: " + JsonConvert.SerializeObject(updatedToken.Data));
+
+            client.Account.Identity.Token.Delete(identity.Data.id, "facebook");
+            Console.WriteLine("\nDeleted token.");
+
             client.Account.Identity.Delete(id: identity.Data.id);
             Console.WriteLine("\nDeleted identity.");
 
