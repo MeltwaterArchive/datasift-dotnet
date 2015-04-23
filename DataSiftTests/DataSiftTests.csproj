@@ -116,6 +116,7 @@
       <DependentUpon>AccountAPIResponses.settings</DependentUpon>
     </Compile>
     <Compile Include="Account\Token.cs" />
+    <Compile Include="Account\Limit.cs" />
     <Compile Include="PylonAPIResponses.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>

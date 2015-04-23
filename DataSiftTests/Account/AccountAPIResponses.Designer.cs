@@ -206,5 +206,61 @@ namespace DataSiftTests.Account {
                 return ((string)(this["Token_Update"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\"id\":\"e1e0a598176cf0bcb159f26dc9a8744d\",\"service\":\"facebook\",\"total_allowance\":1" +
+            "00000}")]
+        public string Limit_Create {
+            get {
+                return ((string)(this["Limit_Create"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\"id\":\"e1e0a598176cf0bcb159f26dc9a8744d\",\"service\":\"facebook\",\"total_allowance\":1" +
+            "00000}")]
+        public string Limit_GetByIdentityAndService {
+            get {
+                return ((string)(this["Limit_GetByIdentityAndService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"{
+  ""count"": 2,
+  ""page"": 1,
+  ""pages"": 1,
+  ""per_page"": 25,
+  ""limits"": [
+    {
+      ""id"": ""a7e06ebce923e84c7817e91e07082113"",
+      ""service"": ""facebook"",
+      ""total_allowance"": 20000
+    },
+    {
+      ""id"": ""e1e0a598176cf0bcb159f26dc9a8744d"",
+      ""service"": ""facebook"",
+      ""total_allowance"": 100000
+    }
+  ]
+}")]
+        public string Limit_AllByService {
+            get {
+                return ((string)(this["Limit_AllByService"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\"id\":\"e1e0a598176cf0bcb159f26dc9a8744d\",\"service\":\"facebook\",\"total_allowance\":2" +
+            "00000}")]
+        public string Limit_Update {
+            get {
+                return ((string)(this["Limit_Update"]));
+            }
+        }
     }
 }

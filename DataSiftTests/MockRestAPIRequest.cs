@@ -412,6 +412,47 @@ namespace DataSiftTests
                     }
 
                     break;
+
+
+                case "account/identity/" + Account.Limit.VALID_IDENTITY + "/limit":
+                    switch (method)
+                    {
+                        case Method.POST:
+                            response = AccountAPIResponses.Default.Limit_Create;
+                            result.StatusCode = HttpStatusCode.Created;
+                            break;
+                    }
+
+                    break;
+
+                case "account/identity/" + Account.Limit.VALID_IDENTITY + "/limit/" + Account.Token.VALID_SERVICE:
+                    switch (method)
+                    {
+                        case Method.GET:
+                            response = AccountAPIResponses.Default.Limit_GetByIdentityAndService;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                        case Method.PUT:
+                            response = AccountAPIResponses.Default.Limit_Update;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                        case Method.DELETE:
+                            result.StatusCode = HttpStatusCode.NoContent;
+                            break;
+                    }
+
+                    break;
+
+                case "account/identity/limit/" + Account.Token.VALID_SERVICE:
+                    switch (method)
+                    {
+                        case Method.GET:
+                            response = AccountAPIResponses.Default.Limit_AllByService;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                    }
+
+                    break;
             }
 
             if(response != null)

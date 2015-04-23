@@ -40,6 +40,21 @@ namespace DataSiftExamples
             var updatedToken = client.Account.Identity.Token.Update(identity.Data.id, "facebook", "eed85f6b316fb18930ee28e8754f4963");
             Console.WriteLine("\nUpdated token: " + JsonConvert.SerializeObject(updatedToken.Data));
 
+            var limit = client.Account.Identity.Limit.Create(identity.Data.id, "facebook", 100000);
+            Console.WriteLine("\nCreated limit: " + JsonConvert.SerializeObject(limit.Data));
+
+            var allLimitsForService = client.Account.Identity.Limit.Get("facebook");
+            Console.WriteLine("\nAll limits for service: " + JsonConvert.SerializeObject(allLimitsForService.Data));
+
+            var limitForService = client.Account.Identity.Limit.Get("facebook", identity.Data.id);
+            Console.WriteLine("\nLimit for service: " + JsonConvert.SerializeObject(limitForService.Data));
+
+            var updatedLimit = client.Account.Identity.Limit.Update(identity.Data.id, "facebook", 200000);
+            Console.WriteLine("\nUpdated limit: " + JsonConvert.SerializeObject(updatedLimit.Data));
+
+            client.Account.Identity.Limit.Delete(identity.Data.id, "facebook");
+            Console.WriteLine("\nDeleted limit.");
+
             client.Account.Identity.Token.Delete(identity.Data.id, "facebook");
             Console.WriteLine("\nDeleted token.");
 

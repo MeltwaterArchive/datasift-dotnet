@@ -11,6 +11,7 @@ namespace DataSiftExamples
 {
     static class Pylon
     {
+        // Note that to run the PYLON example you must use an API key which corresponds to a valid identity with Facebook access
         internal static void Run(string username, string apikey)
         {
             var client = new DataSiftClient(username, apikey);
