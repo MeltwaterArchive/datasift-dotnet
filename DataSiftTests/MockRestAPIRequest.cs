@@ -10,6 +10,7 @@ using Newtonsoft.Json.Converters;
 using RestSharp;
 using System.Net;
 using DataSift;
+using DataSiftTests.Account;
 
 
 namespace DataSiftTests
@@ -332,6 +333,125 @@ namespace DataSiftTests
                 case "pylon/tags":
                     response = PylonAPIResponses.Default.Tags;
                     result.StatusCode = HttpStatusCode.OK;
+                    break;
+
+                case "account/identity":
+                    switch (method) {
+                        case Method.POST:
+                            response = AccountAPIResponses.Default.Identity_Create;
+                            result.StatusCode = HttpStatusCode.Created;
+                            break;
+                        case Method.GET:
+                            if (prms.ContainsKey("label"))
+                                response = AccountAPIResponses.Default.Identity_Get_Label;
+                            else if (prms.ContainsKey("page") || prms.ContainsKey("per_page"))
+                                response = AccountAPIResponses.Default.Identity_Get_Page;
+                            else
+                                response = AccountAPIResponses.Default.Identity_Get;
+
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                    }
+                    
+                    break;
+
+
+                case "account/identity/" + Account.Identity.VALID_ID:
+                    switch (method)
+                    {
+                        case Method.GET:
+                            response = AccountAPIResponses.Default.Identity_Get_Id;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                        case Method.PUT:
+                            response = AccountAPIResponses.Default.Identity_Update;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                        case Method.DELETE:
+                            result.StatusCode = HttpStatusCode.NoContent;
+                            break;
+                    }
+
+                    break;
+
+                case "account/identity/" + Account.Token.VALID_IDENTITY + "/token":
+                    switch (method)
+                    {
+                        case Method.POST:
+                            response = AccountAPIResponses.Default.Token_Create;
+                            result.StatusCode = HttpStatusCode.Created;
+                            break;
+                        case Method.GET:
+                            if (prms.ContainsKey("service"))
+                                response = AccountAPIResponses.Default.Token_GetAll;
+                            else if (prms.ContainsKey("page") || prms.ContainsKey("per_page"))
+                                response = AccountAPIResponses.Default.Token_GetAll;
+                            else
+                                response = AccountAPIResponses.Default.Token_GetAll;
+
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                    }
+
+                    break;
+
+                case "account/identity/" + Account.Token.VALID_IDENTITY + "/token/" + Account.Token.VALID_SERVICE:
+                    switch (method)
+                    {
+                        case Method.GET:
+                            response = AccountAPIResponses.Default.Token_GetAll;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                        case Method.PUT:
+                            response = AccountAPIResponses.Default.Token_Update;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                        case Method.DELETE:
+                            result.StatusCode = HttpStatusCode.NoContent;
+                            break;
+                    }
+
+                    break;
+
+
+                case "account/identity/" + Account.Limit.VALID_IDENTITY + "/limit":
+                    switch (method)
+                    {
+                        case Method.POST:
+                            response = AccountAPIResponses.Default.Limit_Create;
+                            result.StatusCode = HttpStatusCode.Created;
+                            break;
+                    }
+
+                    break;
+
+                case "account/identity/" + Account.Limit.VALID_IDENTITY + "/limit/" + Account.Token.VALID_SERVICE:
+                    switch (method)
+                    {
+                        case Method.GET:
+                            response = AccountAPIResponses.Default.Limit_GetByIdentityAndService;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                        case Method.PUT:
+                            response = AccountAPIResponses.Default.Limit_Update;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                        case Method.DELETE:
+                            result.StatusCode = HttpStatusCode.NoContent;
+                            break;
+                    }
+
+                    break;
+
+                case "account/identity/limit/" + Account.Token.VALID_SERVICE:
+                    switch (method)
+                    {
+                        case Method.GET:
+                            response = AccountAPIResponses.Default.Limit_AllByService;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                    }
+
                     break;
             }
 

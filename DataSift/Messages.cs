@@ -10,6 +10,7 @@ namespace DataSift
     {
         internal const string INVALID_APIKEY = "API key should be a 32 character string of lower-case letters and numbers";
         internal const string INVALID_STREAM_HASH = "Hash should be a 32 character string of lower-case letters and numbers";
+        internal const string INVALID_IDENTITY_ID = "ID should be a 32 character string of lower-case letters and numbers";
         internal const string INVALID_SUBSCRIPTION_ID = "Subscription ID should be a 32 character string of lower-case letters and numbers";
         internal const string INVALID_CURSOR = "Cursor should be a 32 character string of lower-case letters and numbers";
         internal const string INVALID_HISTORICS_ID = "Historics ID should be a 20 character string of lower-case letters and numbers";

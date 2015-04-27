@@ -10,6 +10,7 @@ namespace DataSift
     public class Constants
     {
         public static Regex APIKEY_FORMAT = new Regex(@"[a-z0-9]{32}");
+        public static Regex IDENTITY_ID_FORMAT = new Regex(@"[a-z0-9]{32}");
         public static Regex STREAM_HASH_FORMAT = new Regex(@"[a-z0-9]{32}");
         public static Regex SUBSCRIPTION_ID_FORMAT = new Regex(@"[a-z0-9]{32}");
         public static Regex CURSOR_FORMAT = new Regex(@"[a-z0-9]{32}");

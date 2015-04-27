@@ -110,6 +110,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Account\AccountAPIResponses.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>AccountAPIResponses.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Account\Token.cs" />
+    <Compile Include="Account\Limit.cs" />
     <Compile Include="PylonAPIResponses.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -138,8 +145,13 @@
     <Compile Include="Source.cs" />
     <Compile Include="Streaming.cs" />
     <Compile Include="Pylon.cs" />
+    <Compile Include="Account\Identity.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Account\AccountAPIResponses.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>AccountAPIResponses.Designer.cs</LastGenOutput>
+    </None>
     <None Include="PylonAPIResponses.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>PylonAPIResponses.Designer.cs</LastGenOutput>
@@ -147,7 +159,7 @@
     <None Include="app.config" />
     <None Include="MockAPIResponses.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>MockAPIResponses1.Designer.cs</LastGenOutput>
+      <LastGenOutput>MockAPIResponses.Designer.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Run.settings">
