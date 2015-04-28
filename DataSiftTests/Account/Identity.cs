@@ -10,6 +10,8 @@ namespace DataSiftTests.Account
 
         private const string VALID_LABEL = "Customer 1";
         public const string VALID_ID = "f3865ceea4bac3f7eec0ea12d7e83508";
+        private const DataSift.Enum.IdentityStatus VALID_STATUS = DataSift.Enum.IdentityStatus.Active;
+        private const bool VALID_MASTER = false;
 
         #region Create
 
@@ -25,6 +27,15 @@ namespace DataSiftTests.Account
         public void Create_Empty_Label_Fails()
         {
             Client.Account.Identity.Create("");
+        }
+
+        [TestMethod]
+        public void Create_Valid_Status_Succeeds()
+        {
+            var response = Client.Account.Identity.Create(VALID_LABEL, VALID_STATUS, VALID_MASTER);
+            Assert.AreEqual(VALID_LABEL, response.Data.label);
+            Assert.AreEqual(VALID_MASTER, response.Data.master);
+            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
         }
 
         [TestMethod]
@@ -66,6 +77,13 @@ namespace DataSiftTests.Account
         public void Get_Empty_Label_Fails()
         {
             Client.Account.Identity.Get(label: "");
+        }
+
+        [TestMethod]
+        public void Get_Null_Label_Succeeds()
+        {
+            var response = Client.Account.Identity.Get(label: null);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
         [TestMethod]
@@ -140,10 +158,10 @@ namespace DataSiftTests.Account
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void Update_Null_Label_Fails()
+        public void Update_Null_Label_Succeeds()
         {
-            Client.Account.Identity.Update(VALID_ID, null);
+            var response = Client.Account.Identity.Update(VALID_ID, null);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
         [TestMethod]
@@ -156,9 +174,10 @@ namespace DataSiftTests.Account
         [TestMethod]
         public void Update_Succeeds()
         {
-            var response = Client.Account.Identity.Update(VALID_ID, VALID_LABEL);
+            var response = Client.Account.Identity.Update(VALID_ID, VALID_LABEL, VALID_STATUS, VALID_MASTER);
             Assert.AreEqual(VALID_ID, response.Data.id);
             Assert.AreEqual(VALID_LABEL, response.Data.label);
+            Assert.AreEqual(VALID_STATUS, response.Data.status);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
