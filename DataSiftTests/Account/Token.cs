@@ -12,8 +12,6 @@ namespace DataSiftTests.Account
         public const string VALID_TOKEN = "fed85f6b316fb18930ee28e8754f4963";
         public const int VALID_PAGE = 1;
         public const int VALID_PER_PAGE = 5;
-        public DateTimeOffset VALID_EXPIRES_AT = DateTimeOffset.Now.AddDays(100);
-
 
         #region Get
 
@@ -153,17 +151,9 @@ namespace DataSiftTests.Account
         }
 
         [TestMethod]
-        public void Create_Null_Expires_At_Succeeds()
-        {
-            var response = Client.Account.Identity.Token.Create(VALID_IDENTITY, VALID_SERVICE, VALID_TOKEN, null);
-            Assert.AreEqual(VALID_TOKEN, response.Data.token);
-            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
-        }
-
-        [TestMethod]
         public void Create_Succeeds()
         {
-            var response = Client.Account.Identity.Token.Create(VALID_IDENTITY, VALID_SERVICE, VALID_TOKEN, VALID_EXPIRES_AT);
+            var response = Client.Account.Identity.Token.Create(VALID_IDENTITY, VALID_SERVICE, VALID_TOKEN);
             Assert.AreEqual(VALID_TOKEN, response.Data.token);
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
         }
@@ -222,17 +212,9 @@ namespace DataSiftTests.Account
         }
 
         [TestMethod]
-        public void Update_Null_Expires_At_Succeeds()
-        {
-            var response = Client.Account.Identity.Token.Update(VALID_IDENTITY, VALID_SERVICE, VALID_TOKEN, VALID_EXPIRES_AT);
-            Assert.AreEqual("ddd85f6b316fb18930ee28e8754f4963", response.Data.token);
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-        }
-
-        [TestMethod]
         public void Update_Succeeds()
         {
-            var response = Client.Account.Identity.Token.Update(VALID_IDENTITY, VALID_SERVICE, "ddd85f6b316fb18930ee28e8754f4963", VALID_EXPIRES_AT);
+            var response = Client.Account.Identity.Token.Update(VALID_IDENTITY, VALID_SERVICE, "ddd85f6b316fb18930ee28e8754f4963");
             Assert.AreEqual("ddd85f6b316fb18930ee28e8754f4963", response.Data.token);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
