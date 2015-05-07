@@ -82,7 +82,6 @@ namespace DataSiftTests
         public void Validate_Complete_CSDL_Succeeds()
         {
             var response = Client.Pylon.Validate(VALID_CSDL);
-            Assert.AreEqual("0.1", response.Data.dpu);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
@@ -108,7 +107,6 @@ namespace DataSiftTests
         public void Compile_Complete_CSDL_Succeeds()
         {
             var response = Client.Pylon.Compile(VALID_CSDL);
-            Assert.AreEqual("0.1", response.Data.dpu);
             Assert.AreEqual("58eb8c4b74257406547ab1ed3be346a8", response.Data.hash);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
