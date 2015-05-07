@@ -177,7 +177,7 @@ namespace DataSiftTests.Account
             var response = Client.Account.Identity.Update(VALID_ID, VALID_LABEL, VALID_STATUS, VALID_MASTER);
             Assert.AreEqual(VALID_ID, response.Data.id);
             Assert.AreEqual(VALID_LABEL, response.Data.label);
-            Assert.AreEqual(VALID_STATUS, response.Data.status);
+            Assert.AreEqual("active", response.Data.status);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 

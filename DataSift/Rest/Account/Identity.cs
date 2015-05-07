@@ -61,15 +61,15 @@ namespace DataSift.Rest.Account
                 return _client.GetRequest().Request("account/identity", new { id = id, label = label, page = page, per_page = perPage }, Method.GET);
         }
 
-        public RestAPIResponse Update(string id, string label)
+        public RestAPIResponse Update(string id, string label, IdentityStatus? status = null, bool? master = null)
         {
             Contract.Requires<ArgumentNullException>(id != null);
             Contract.Requires<ArgumentException>((id != null) ? id.Trim().Length > 0 : true);
             Contract.Requires<ArgumentException>((id != null) ? Constants.IDENTITY_ID_FORMAT.IsMatch(id) : true, Messages.INVALID_IDENTITY_ID);
-            Contract.Requires<ArgumentNullException>(label != null);
+            Contract.Requires<ArgumentException>((label != null) ? label.Trim().Length > 0 : true); 
             Contract.Requires<ArgumentException>((label != null) ? label.Trim().Length > 0 : true);
 
-            return _client.GetRequest().Request("account/identity/" + id, new { label = label }, Method.PUT);
+            return _client.GetRequest().Request("account/identity/" + id, new { label = label, status= status, master = master }, Method.PUT);
         }
 
         public RestAPIResponse Delete(string id)

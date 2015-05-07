@@ -18,7 +18,7 @@ namespace DataSift.Rest.Account
             _client = client;
         }
 
-        public RestAPIResponse Create(string identityId, string service, string token)
+        public RestAPIResponse Create(string identityId, string service, string token, DateTimeOffset? expiresAt = null)
         {
             Contract.Requires<ArgumentNullException>(identityId != null);
             Contract.Requires<ArgumentException>((identityId != null) ? identityId.Trim().Length > 0 : true);
@@ -28,7 +28,7 @@ namespace DataSift.Rest.Account
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<ArgumentException>((token != null) ? token.Trim().Length > 0 : true);
 
-            return _client.GetRequest().Request("account/identity/" + identityId + "/token", new { service = service, token = token }, Method.POST);
+            return _client.GetRequest().Request("account/identity/" + identityId + "/token", new { service = service, token = token, expires_at = expiresAt }, Method.POST);
         }
 
         public RestAPIResponse Get(string identityId, string service = null, int? page = null, int? perPage = null)
@@ -46,7 +46,7 @@ namespace DataSift.Rest.Account
                 return _client.GetRequest().Request("account/identity/" + identityId + "/token", new { page = page, per_page = perPage }, Method.GET);
         }
 
-        public RestAPIResponse Update(string identityId, string service, string token)
+        public RestAPIResponse Update(string identityId, string service, string token, DateTimeOffset? expiresAt = null)
         {
             Contract.Requires<ArgumentNullException>(identityId != null);
             Contract.Requires<ArgumentException>((identityId != null) ? identityId.Trim().Length > 0 : true);
@@ -56,7 +56,7 @@ namespace DataSift.Rest.Account
             Contract.Requires<ArgumentNullException>(token != null);
             Contract.Requires<ArgumentException>((token != null) ? token.Trim().Length > 0 : true);
 
-            return _client.GetRequest().Request("account/identity/" + identityId + "/token/" + HttpUtility.UrlEncode(service), new { token = token }, Method.PUT);
+            return _client.GetRequest().Request("account/identity/" + identityId + "/token/" + HttpUtility.UrlEncode(service), new { token = token, expires_at = expiresAt }, Method.PUT);
         }
 
         public RestAPIResponse Delete(string identityId, string service)

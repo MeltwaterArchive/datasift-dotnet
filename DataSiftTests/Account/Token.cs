@@ -12,7 +12,7 @@ namespace DataSiftTests.Account
         public const string VALID_TOKEN = "fed85f6b316fb18930ee28e8754f4963";
         public const int VALID_PAGE = 1;
         public const int VALID_PER_PAGE = 5;
-        public const int VALID_EXPIRES_AT = 14555555;
+        public DateTimeOffset VALID_EXPIRES_AT = DateTimeOffset.Now.AddDays(100);
 
 
         #region Get
@@ -107,56 +107,57 @@ namespace DataSiftTests.Account
         [ExpectedException(typeof(ArgumentNullException))]
         public void Create_Null_IdentityId_Fails()
         {
-            Client.Account.Identity.Token.Create(null, VALID_SERVICE, VALID_TOKEN, VALID_EXPIRES_AT);
+            Client.Account.Identity.Token.Create(null, VALID_SERVICE, VALID_TOKEN);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Create_Empty_IdentityId_Fails()
         {
-            Client.Account.Identity.Token.Create("", VALID_SERVICE, VALID_TOKEN, VALID_EXPIRES_AT);
+            Client.Account.Identity.Token.Create("", VALID_SERVICE, VALID_TOKEN);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Create_Invalid_IdentityId_Fails()
-        {
-            Client.Account.Identity.Token.Create("invalid ID", VALID_SERVICE, VALID_TOKEN, VALID_EXPIRES_AT);
+        { 
+            Client.Account.Identity.Token.Create("invalid ID", VALID_SERVICE, VALID_TOKEN);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Create_Null_Service_Fails()
         {
-            Client.Account.Identity.Token.Create(VALID_IDENTITY, null, VALID_TOKEN, VALID_EXPIRES_AT);
+            Client.Account.Identity.Token.Create(VALID_IDENTITY, null, VALID_TOKEN);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Create_Empty_Service_Fails()
         {
-            Client.Account.Identity.Token.Create(VALID_IDENTITY, "", VALID_TOKEN, VALID_EXPIRES_AT);
+            Client.Account.Identity.Token.Create(VALID_IDENTITY, "", VALID_TOKEN);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Create_Null_Token_Fails()
         {
-            Client.Account.Identity.Token.Create(VALID_IDENTITY, VALID_SERVICE, null, VALID_EXPIRES_AT);
+            Client.Account.Identity.Token.Create(VALID_IDENTITY, VALID_SERVICE, null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Create_Empty_Token_Fails()
         {
-            Client.Account.Identity.Token.Create(VALID_IDENTITY, VALID_SERVICE, "", VALID_EXPIRES_AT);
+            Client.Account.Identity.Token.Create(VALID_IDENTITY, VALID_SERVICE, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void Create_Zero_Expires_At_Fails()
+        public void Create_Null_Expires_At_Succeeds()
         {
-            Client.Account.Identity.Token.Create(VALID_IDENTITY, VALID_SERVICE, VALID_TOKEN, 0);
+            var response = Client.Account.Identity.Token.Create(VALID_IDENTITY, VALID_SERVICE, VALID_TOKEN, null);
+            Assert.AreEqual(VALID_TOKEN, response.Data.token);
+            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
         }
 
         [TestMethod]
@@ -175,56 +176,57 @@ namespace DataSiftTests.Account
         [ExpectedException(typeof(ArgumentNullException))]
         public void Update_Null_IdentityId_Fails()
         {
-            Client.Account.Identity.Token.Update(null, VALID_SERVICE, VALID_TOKEN, VALID_EXPIRES_AT);
+            Client.Account.Identity.Token.Update(null, VALID_SERVICE, VALID_TOKEN);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Update_Empty_IdentityId_Fails()
         {
-            Client.Account.Identity.Token.Update("", VALID_SERVICE, VALID_TOKEN, VALID_EXPIRES_AT);
+            Client.Account.Identity.Token.Update("", VALID_SERVICE, VALID_TOKEN);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Update_Invalid_IdentityId_Fails()
         {
-            Client.Account.Identity.Token.Update("invalid ID", VALID_SERVICE, VALID_TOKEN, VALID_EXPIRES_AT);
+            Client.Account.Identity.Token.Update("invalid ID", VALID_SERVICE, VALID_TOKEN);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Update_Null_Service_Fails()
         {
-            Client.Account.Identity.Token.Update(VALID_IDENTITY, null, VALID_TOKEN, VALID_EXPIRES_AT);
+            Client.Account.Identity.Token.Update(VALID_IDENTITY, null, VALID_TOKEN);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Update_Empty_Service_Fails()
         {
-            Client.Account.Identity.Token.Update(VALID_IDENTITY, "", VALID_TOKEN, VALID_EXPIRES_AT);
+            Client.Account.Identity.Token.Update(VALID_IDENTITY, "", VALID_TOKEN);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Update_Null_Token_Fails()
         {
-            Client.Account.Identity.Token.Update(VALID_IDENTITY, VALID_SERVICE, null, VALID_EXPIRES_AT);
+            Client.Account.Identity.Token.Update(VALID_IDENTITY, VALID_SERVICE, null);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Update_Empty_Token_Fails()
         {
-            Client.Account.Identity.Token.Update(VALID_IDENTITY, VALID_SERVICE, "", VALID_EXPIRES_AT);
+            Client.Account.Identity.Token.Update(VALID_IDENTITY, VALID_SERVICE, "");
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentException))]
-        public void Update_Zero_Expires_At_Fails()
+        public void Update_Null_Expires_At_Succeeds()
         {
-            Client.Account.Identity.Token.Update(VALID_IDENTITY, VALID_SERVICE, VALID_TOKEN, 0);
+            var response = Client.Account.Identity.Token.Update(VALID_IDENTITY, VALID_SERVICE, VALID_TOKEN, VALID_EXPIRES_AT);
+            Assert.AreEqual("ddd85f6b316fb18930ee28e8754f4963", response.Data.token);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
         [TestMethod]
