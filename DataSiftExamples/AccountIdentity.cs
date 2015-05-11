@@ -58,8 +58,9 @@ namespace DataSiftExamples
             client.Account.Identity.Token.Delete(identity.Data.id, "facebook");
             Console.WriteLine("\nDeleted token.");
 
-            client.Account.Identity.Delete(id: identity.Data.id);
-            Console.WriteLine("\nDeleted identity.");
+            // DELETE not currently supported by the API
+            //client.Account.Identity.Delete(id: identity.Data.id);
+            //Console.WriteLine("\nDeleted identity.");
 
         }
 

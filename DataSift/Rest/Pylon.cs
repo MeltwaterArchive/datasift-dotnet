@@ -18,10 +18,12 @@ namespace DataSift.Rest
             _client = client;
         }
 
-        public RestAPIResponse Get(string hash = null)
+        public RestAPIResponse Get(string hash = null, int? page = null, int? perPage = null)
         {
             Contract.Requires<ArgumentException>((hash != null) ? hash.Trim().Length > 0 : true);
             Contract.Requires<ArgumentException>((hash != null) ? Constants.STREAM_HASH_FORMAT.IsMatch(hash) : true, Messages.INVALID_STREAM_HASH);
+            Contract.Requires<ArgumentException>((page.HasValue) ? page.Value > 0 : true);
+            Contract.Requires<ArgumentException>((perPage.HasValue) ? perPage.Value > 0 : true);
 
             return _client.GetRequest().Request("pylon/get", new { hash = hash });
         }

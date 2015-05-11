@@ -60,6 +60,37 @@ namespace DataSiftTests
             Assert.AreEqual(VALID_HASH, response.Data.hash);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Get_Page_Is_Less_Than_One_Fails()
+        {
+            Client.Pylon.Get(page: 0);
+        }
+
+        [TestMethod]
+        public void Get_Page_Succeeds()
+        {
+            var response = Client.Pylon.Get(page: 1);
+            Assert.AreEqual(1, response.Data.Count);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Get_Per_Page_Is_Less_Than_One_Fails()
+        {
+            Client.Pylon.Get(perPage: 0);
+        }
+
+        [TestMethod]
+        public void Get_PerPage_Succeeds()
+        {
+            var response = Client.Pylon.Get(page: 1, perPage: 1);
+            Assert.AreEqual(1, response.Data.Count);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
         #endregion
 
         #region Validate
