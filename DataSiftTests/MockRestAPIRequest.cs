@@ -254,50 +254,6 @@ namespace DataSiftTests
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
-                case "list/get":
-                    response = MockAPIResponses.Default.ListGet;
-                    result.StatusCode = HttpStatusCode.OK;
-                    break;
-
-                case "list/create":
-                    response = MockAPIResponses.Default.ListCreate;
-                    result.StatusCode = HttpStatusCode.Created;
-                    break;
-
-                case "list/delete":
-                    result.StatusCode = HttpStatusCode.NoContent;
-                    break;
-
-                case "list/add":
-                    result.StatusCode = HttpStatusCode.NoContent;
-                    break;
-
-                case "list/remove":
-                    result.StatusCode = HttpStatusCode.NoContent;
-                    break;
-
-                case "list/exists":
-                    response = MockAPIResponses.Default.ListExists;
-                    result.StatusCode = HttpStatusCode.OK;
-                    break;
-
-                case "list/replace/start":
-                    response = MockAPIResponses.Default.ListReplaceStart;
-                    result.StatusCode = HttpStatusCode.OK;
-                    break;
-
-                case "list/replace/abort":
-                    result.StatusCode = HttpStatusCode.NoContent;
-                    break;
-
-                case "list/replace/commit":
-                    result.StatusCode = HttpStatusCode.NoContent;
-                    break;
-
-                case "list/replace/add":
-                    result.StatusCode = HttpStatusCode.NoContent;
-                    break;
-
                 case "pylon/get":
                     if (prms.ContainsKey("hash"))
                         response = PylonAPIResponses.Default.GetOne;

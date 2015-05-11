@@ -104,7 +104,6 @@
     <Compile Include="Core.cs" />
     <Compile Include="Historics.cs" />
     <Compile Include="HistoricsPreview.cs" />
-    <Compile Include="List.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Push.cs" />

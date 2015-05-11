@@ -160,7 +160,6 @@
     <Compile Include="Rest\HistoricsPreview.cs" />
     <Compile Include="Rest\HistoricsPreviewParameter.cs" />
     <Compile Include="Rest\IRestAPIRequest.cs" />
-    <Compile Include="Rest\List.cs" />
     <Compile Include="Rest\PullAPIResponse.cs" />
     <Compile Include="Rest\Push.cs" />
     <Compile Include="Rest\RestAPIException.cs" />

@@ -26,7 +26,6 @@ namespace DataSift
         private HistoricsPreview _historicsPreview;
         private Source _source;
         private Push _push;
-        private List _list;
         private Pylon _pylon;
         private Account _account;
         public delegate IRestAPIRequest GetAPIRequestDelegate(string username, string apikey, string baseUrl);
@@ -85,15 +84,6 @@ namespace DataSift
             {
                 if (_pylon == null) _pylon = new Pylon(this);
                 return _pylon;
-            }
-        }
-
-        public List List
-        {
-            get
-            {
-                if (_list == null) _list = new List(this);
-                return _list;
             }
         }
 
@@ -169,13 +159,16 @@ namespace DataSift
             return GetRequest().Request("usage", new { period = period.ToString().ToLower() });
         }
 
-        public RestAPIResponse DPU(string hash)
+        public RestAPIResponse DPU(string hash = null, string historicsId = null)
         {
-            Contract.Requires<ArgumentNullException>(hash != null);
-            Contract.Requires<ArgumentException>(hash.Trim().Length > 0);
-            Contract.Requires<ArgumentException>(Constants.STREAM_HASH_FORMAT.IsMatch(hash), Messages.INVALID_STREAM_HASH);
+            Contract.Requires<ArgumentException>(hash != null || historicsId != null, Messages.PUSH_MUST_PROVIDE_HASH_OR_HISTORIC);
+            Contract.Requires<ArgumentException>(hash == null || historicsId == null, Messages.PUSH_ONLY_HASH_OR_HISTORIC);
+            Contract.Requires<ArgumentException>((hash != null) ? hash.Trim().Length > 0 : true);
+            Contract.Requires<ArgumentException>((hash != null) ? Constants.STREAM_HASH_FORMAT.IsMatch(hash) : true, Messages.INVALID_STREAM_HASH);
+            Contract.Requires<ArgumentException>((historicsId != null) ? historicsId.Trim().Length > 0 : true);
+            Contract.Requires<ArgumentException>((historicsId != null) ? Constants.HISTORICS_ID_FORMAT.IsMatch(historicsId) : true, Messages.INVALID_HISTORICS_ID);
 
-            return GetRequest().Request("dpu", new { hash = hash });
+            return GetRequest().Request("dpu", new { hash = hash, historics_id = historicsId });
         }
 
         public RestAPIResponse Balance()

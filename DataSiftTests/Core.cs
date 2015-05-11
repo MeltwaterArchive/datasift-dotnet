@@ -10,6 +10,7 @@ namespace DataSiftTests
     public class Core : TestBase
     {
         private const string VALID_APIKEY = "b09z345fe2f1fed748c12268fd473662";
+        private const string VALID_HISTORICS_ID = "9e97d9ac115e58fcb7ab";
         private const string VALID_USERNAME = "username";
         private const string VALID_CSDL = "interaction.content contains \"music\"";
         private const string VALID_STREAM_HASH = "08b923395b6ce8bfa4d96f57f863a1c3";
@@ -130,30 +131,60 @@ namespace DataSiftTests
         #region DPU
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentNullException))]
-        public void DPU_Null_Hash_Fails()
+        [ExpectedException(typeof(ArgumentException))]
+        public void DPU_Null_Hash_And_HistoricsId_Fails()
         {
-            Client.DPU(null);
+            Client.DPU(null, null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void DPU_Both_Hash_And_HistoricsId_Fails()
+        {
+            Client.DPU(VALID_STREAM_HASH, VALID_HISTORICS_ID);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void DPU_Empty_Hash_Fails()
         {
-            Client.DPU("");
+            Client.DPU(hash: "");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void DPU_Bad_Format_Hash_Fails()
         {
-            Client.DPU("hash");
+            Client.DPU(hash: "hash");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void DPU_Empty_HistoricsId_Fails()
+        {
+            Client.DPU(historicsId: "");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void DPU_Bad_Format_HistoricsId_Fails()
+        {
+            Client.DPU("historicsId");
         }
 
         [TestMethod]
         public void DPU_Complete_Hash_Succeeds()
         {
-            var response = Client.DPU(VALID_STREAM_HASH);
+            var response = Client.DPU(hash: VALID_STREAM_HASH);
+            Assert.AreEqual(2, response.Data.detail.contains.count);
+            Assert.AreEqual(0.2, response.Data.detail.contains.dpu);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
+        public void DPU_Complete_HistoricsId_Succeeds()
+        {
+            var response = Client.DPU(historicsId: VALID_HISTORICS_ID);
             Assert.AreEqual(2, response.Data.detail.contains.count);
             Assert.AreEqual(0.2, response.Data.detail.contains.dpu);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);

@@ -1517,29 +1517,6 @@
     ]
 }</Value>
     </Setting>
-    <Setting Name="ListGet" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">{
-  "id1": "List 1",
-  "id2": "List 2"
-}</Value>
-    </Setting>
-    <Setting Name="ListCreate" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">{
-    "id": "0x08fa577f_7528_44ce_9671_692f2e3fd25e"
-}</Value>
-    </Setting>
-    <Setting Name="ListExists" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">{
-  "keyword1": true,
-  "keyword2": false,
-  "keyword3": false
-}</Value>
-    </Setting>
-    <Setting Name="ListReplaceStart" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">{
-  "id": "123456"
-}</Value>
-    </Setting>
     <Setting Name="SourceResourceAdd" Type="System.String" Scope="Application">
       <Value Profile="(Default)">{
   "id": "da4f8df71a0f43698acf9240b5ad668f",

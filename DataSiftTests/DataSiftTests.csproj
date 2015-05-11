@@ -122,7 +122,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>PylonAPIResponses.settings</DependentUpon>
     </Compile>
-    <Compile Include="List.cs" />
     <Compile Include="MockAPIResponses.cs" />
     <Compile Include="MockAPIResponses.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -159,7 +158,6 @@
     <None Include="app.config" />
     <None Include="MockAPIResponses.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>MockAPIResponses.Designer.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <None Include="Run.settings">

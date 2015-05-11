@@ -1425,42 +1425,6 @@ namespace DataSiftTests {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n  \"id1\": \"List 1\",\r\n  \"id2\": \"List 2\"\r\n}")]
-        public string ListGet {
-            get {
-                return ((string)(this["ListGet"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n    \"id\": \"0x08fa577f_7528_44ce_9671_692f2e3fd25e\"\r\n}")]
-        public string ListCreate {
-            get {
-                return ((string)(this["ListCreate"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n  \"keyword1\": true,\r\n  \"keyword2\": false,\r\n  \"keyword3\": false\r\n}")]
-        public string ListExists {
-            get {
-                return ((string)(this["ListExists"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n  \"id\": \"123456\"\r\n}")]
-        public string ListReplaceStart {
-            get {
-                return ((string)(this["ListReplaceStart"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"{
   ""id"": ""da4f8df71a0f43698acf9240b5ad668f"",
   ""name"": ""news_source"",
@@ -1627,27 +1591,6 @@ namespace DataSiftTests {
         public string SourceAuthRemove {
             get {
                 return ((string)(this["SourceAuthRemove"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string AnalysisGet {
-            get {
-                return ((string)(this["AnalysisGet"]));
-            }
-        }
-
-
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string AnalysisValidate
-        {
-            get
-            {
-                return ((string)(this["AnalysisValidate"]));
             }
         }
     }
