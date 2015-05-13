@@ -33,7 +33,7 @@ namespace DataSiftExamples
             Console.WriteLine("Recording started");
 
             var getRecording = client.Pylon.Get(hash: compile.Data.hash);
-            Console.WriteLine("\nThis recording: " + JsonConvert.SerializeObject(get.Data));
+            Console.WriteLine("\nThis recording: " + JsonConvert.SerializeObject(getRecording.Data));
 
             var analysisParams = new  {
                     analysis_type = "freqDist",
