@@ -9,8 +9,8 @@ namespace DataSiftExamples
     class Program
     {
         // TODO: Insert your API credentials here, you can find them on your dashboard - https://datasift.com/dashboard
-        const string username = "rcaudle";
-        const string apikey = "b09a645fe2f1fed748c12268fd473662";
+        const string username = "";
+        const string apikey = "";
 
         static void Main(string[] args)
         {
@@ -56,10 +56,14 @@ namespace DataSiftExamples
                     break;
 
                 case ConsoleKey.D6:
-                    Pylon.Run(username, apikey);
+                    List.Run(username, apikey);
                     break;
 
                 case ConsoleKey.D7:
+                    Pylon.Run(username, apikey);
+                    break;
+
+                case ConsoleKey.D8:
                     AccountIdentity.Run(username, apikey);
                     break;
 
@@ -79,8 +83,9 @@ namespace DataSiftExamples
             Console.WriteLine("    3. Historics preview API endpoints");
             Console.WriteLine("    4. Historics API endpoints");
             Console.WriteLine("    5. Source API endpoints");
-            Console.WriteLine("    6. Pylon API endpoints");
-            Console.WriteLine("    7. Account Identity API endpoints"); 
+            Console.WriteLine("    6. List API endpoints");
+            Console.WriteLine("    7. Pylon API endpoints");
+            Console.WriteLine("    8. Account Identity API endpoints"); 
             Console.WriteLine("\nPress a key to continue...\n");
         }
     }
