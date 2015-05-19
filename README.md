@@ -107,6 +107,7 @@ This code is released under the BSD license. Please see the LICENSE file for mor
 
 ## Change Log
 
+* 1.1.1 - PYLON GA Release
 * 1.1.0 - Added Pylon endpoints
 * 1.0.4 - Fixed Code Contract packaging issue (another!)
 * 1.0.3 - Fixed Code Contract packaging issue
