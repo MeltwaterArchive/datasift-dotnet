@@ -44,5 +44,86 @@
     <Setting Name="Tags" Type="System.String" Scope="Application">
       <Value Profile="(Default)">["tag.one","tag.two","tag.three"]</Value>
     </Setting>
+    <Setting Name="AnalyzeNested" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{
+  "interactions": 23400,
+  "unique_authors": 20000,
+  "analysis": {
+    "analysis_type": "freqDist",
+    "parameters": {
+      "target": "fb.author.gender",
+      "threshold": 3
+    },
+    "results": [
+      {
+        "key": "male",
+        "interactions": 13400,
+        "unique_authors": 10000,
+        "child": {
+          "analysis_type": "freqDist",
+          "parameters": {
+            "target": "fb.author.age",
+            "threshold": 3
+          },
+          "results": [
+            {
+              "key": "25-34",
+              "interactions": 13000,
+              "unique_authors": 9800
+            }
+          ],
+          "redacted": false
+        }
+      },
+      {
+        "key": "female",
+        "interactions": 5500,
+        "unique_authors": 5500,
+        "child": {
+          "analysis_type": "freqDist",
+          "parameters": {
+            "target": "fb.author.age",
+            "threshold": 3
+          },
+          "results": [
+            {
+              "key": "18-24",
+              "interactions": 5100,
+              "unique_authors": 4900
+            },
+            {
+              "key": "25-34",
+              "interactions": 300,
+              "unique_authors": 300
+            }
+          ],
+          "redacted": false
+        }
+      },
+      {
+        "key": "unknown",
+        "interactions": 4500,
+        "unique_authors": 4500,
+        "child": {
+          "analysis_type": "freqDist",
+          "parameters": {
+            "target": "fb.author.age",
+            "threshold": 3
+          },
+          "results": [
+            {
+              "key": "18-24",
+              "interactions": 4100,
+              "unique_authors": 3900
+            }
+          ],
+          "redacted": false
+        }
+      }
+    ],
+    "redacted": false
+  }
+}</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -102,5 +102,36 @@ namespace DataSiftTests {
                 return ((string)(this["Tags"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\n  \"interactions\": 23400,\n  \"unique_authors\": 20000,\n  \"analysis\": {\n    \"analys" +
+            "is_type\": \"freqDist\",\n    \"parameters\": {\n      \"target\": \"fb.author.gender\",\n  " +
+            "    \"threshold\": 3\n    },\n    \"results\": [\n      {\n        \"key\": \"male\",\n      " +
+            "  \"interactions\": 13400,\n        \"unique_authors\": 10000,\n        \"child\": {\n   " +
+            "       \"analysis_type\": \"freqDist\",\n          \"parameters\": {\n            \"targe" +
+            "t\": \"fb.author.age\",\n            \"threshold\": 3\n          },\n          \"results\"" +
+            ": [\n            {\n              \"key\": \"25-34\",\n              \"interactions\": 13" +
+            "000,\n              \"unique_authors\": 9800\n            }\n          ],\n          \"" +
+            "redacted\": false\n        }\n      },\n      {\n        \"key\": \"female\",\n        \"in" +
+            "teractions\": 5500,\n        \"unique_authors\": 5500,\n        \"child\": {\n          " +
+            "\"analysis_type\": \"freqDist\",\n          \"parameters\": {\n            \"target\": \"fb" +
+            ".author.age\",\n            \"threshold\": 3\n          },\n          \"results\": [\n   " +
+            "         {\n              \"key\": \"18-24\",\n              \"interactions\": 5100,\n   " +
+            "           \"unique_authors\": 4900\n            },\n            {\n              \"ke" +
+            "y\": \"25-34\",\n              \"interactions\": 300,\n              \"unique_authors\": " +
+            "300\n            }\n          ],\n          \"redacted\": false\n        }\n      },\n  " +
+            "    {\n        \"key\": \"unknown\",\n        \"interactions\": 4500,\n        \"unique_au" +
+            "thors\": 4500,\n        \"child\": {\n          \"analysis_type\": \"freqDist\",\n        " +
+            "  \"parameters\": {\n            \"target\": \"fb.author.age\",\n            \"threshold\"" +
+            ": 3\n          },\n          \"results\": [\n            {\n              \"key\": \"18-2" +
+            "4\",\n              \"interactions\": 4100,\n              \"unique_authors\": 3900\n   " +
+            "         }\n          ],\n          \"redacted\": false\n        }\n      }\n    ],\n   " +
+            " \"redacted\": false\n  }\n}")]
+        public string AnalyzeNested {
+            get {
+                return ((string)(this["AnalyzeNested"]));
+            }
+        }
     }
 }

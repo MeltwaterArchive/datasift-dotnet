@@ -304,6 +304,31 @@ namespace DataSiftTests
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
+        [TestMethod]
+        public void Analyze_Nested()
+        {
+            dynamic nested = new {
+                    analysis_type = "freqDist",
+                    parameters = new
+                    {
+                        threshold = 3,
+                        target = "fb.author.gender"
+                    },
+                    child = new {
+                        parameters = new
+                        {
+                            threshold = 3,
+                            target = "fb.author.age"
+                        }
+                    }
+                };
+
+            var response = Client.Pylon.Analyze("58eb8c4b74257406547ab1ed3bnested", nested);
+            Assert.AreEqual(false, response.Data.analysis.redacted);
+            Assert.AreEqual("freqDist", response.Data.analysis.results[0].child.analysis_type);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
         #endregion
 
         #region Tags
