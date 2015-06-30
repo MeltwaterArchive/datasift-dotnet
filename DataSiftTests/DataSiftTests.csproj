@@ -158,6 +158,8 @@
     <None Include="app.config" />
     <None Include="MockAPIResponses.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>MockAPIResponses.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
     <None Include="Run.settings">

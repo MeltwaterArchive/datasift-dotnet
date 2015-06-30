@@ -547,7 +547,7 @@ namespace DataSiftTests {
     ""remaining_bytes"": null,
     ""lost_data"": false,
     ""start"": 0,
-    ""end"": 0
+    ""end"": 1435671577
 }")]
         public string PushCreate {
             get {
