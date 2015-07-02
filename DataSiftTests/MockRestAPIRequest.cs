@@ -282,8 +282,18 @@ namespace DataSiftTests
                     break;
 
                 case "pylon/analyze":
-                    response = PylonAPIResponses.Default.Analyze;
-                    result.StatusCode = HttpStatusCode.OK;
+                    var hash = (string)prms.First(p => p.Key == "hash").Value;
+
+                    if (hash.IndexOf("nested") != -1)
+                    {
+                        response = PylonAPIResponses.Default.AnalyzeNested;
+                        result.StatusCode = HttpStatusCode.OK;
+                    }
+                    else
+                    {
+                        response = PylonAPIResponses.Default.Analyze;
+                        result.StatusCode = HttpStatusCode.OK;
+                    }
                     break;
 
                 case "pylon/tags":

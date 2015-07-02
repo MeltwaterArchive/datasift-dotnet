@@ -50,11 +50,33 @@ namespace DataSiftExamples
             var analysisWithFilter = client.Pylon.Analyze(compile.Data.hash, analysisParams, filter: "fb.author.gender == \"male\"");
             Console.WriteLine("\nAnalysis (with filter) result: " + JsonConvert.SerializeObject(analysisWithFilter.Data));
 
+            dynamic nested = new
+            {
+                analysis_type = "freqDist",
+                parameters = new
+                {
+                    threshold = 3,
+                    target = "fb.author.gender"
+                },
+                child = new
+                {
+                    analysis_type = "freqDist",
+                    parameters = new
+                    {
+                        threshold = 3,
+                        target = "fb.author.age"
+                    }
+                }
+            };
+
+            var analysisNested = client.Pylon.Analyze(compile.Data.hash, nested);
+            Console.WriteLine("\nNested analysis result: " + JsonConvert.SerializeObject(analysisNested.Data));
+
             var tags = client.Pylon.Tags(compile.Data.hash);
             Console.WriteLine("\nTags: " + JsonConvert.SerializeObject(tags.Data));
 
             client.Pylon.Stop(compile.Data.hash);
-            Console.WriteLine("Recording stopped");
+            Console.WriteLine("\nRecording stopped");
 
         }
     }

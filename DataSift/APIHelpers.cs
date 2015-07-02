@@ -184,7 +184,8 @@ namespace DataSift
 
         public static int ToUnixTime(DateTimeOffset time)
         {
-            return (int)(time - new DateTime(1970, 1, 1, 0, 0, 0)).TotalSeconds;
+            var posixTime = DateTime.SpecifyKind(new DateTime(1970, 1, 1), DateTimeKind.Utc);
+            return (int)(time.ToUniversalTime() - posixTime).TotalSeconds;
         }
     }
 }
