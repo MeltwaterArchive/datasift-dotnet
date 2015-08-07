@@ -18,7 +18,7 @@ namespace DataSiftTests
 
         protected DataSift.DataSiftClient Client { get { return _client; } }
 
-        public IRestAPIRequest GetRequestMock(string username, string apikey, string baseUrl)
+        public IRestAPIRequest GetRequestMock(string username, string apikey, string baseUrl, string apiVersion)
         {
             return new MockRestAPIRequest();
         }

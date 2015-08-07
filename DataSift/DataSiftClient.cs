@@ -19,7 +19,8 @@ namespace DataSift
     {
         private string _username;
         private string _apikey;
-        private string _baseUrl = "https://api.datasift.com/v1";
+        private string _baseUrl = "https://api.datasift.com/";
+        private string _apiVersion = "1.2";
         private GetAPIRequestDelegate _getRequest;
         private GetStreamConnectionDelegate _getConnection;
         private Historics _historics;
@@ -28,10 +29,10 @@ namespace DataSift
         private Push _push;
         private Pylon _pylon;
         private Account _account;
-        public delegate IRestAPIRequest GetAPIRequestDelegate(string username, string apikey, string baseUrl);
+        public delegate IRestAPIRequest GetAPIRequestDelegate(string username, string apikey, string baseUrl, string apiVersion);
         public delegate IStreamConnection GetStreamConnectionDelegate(string url);
 
-        public DataSiftClient(string username, string apikey, GetAPIRequestDelegate requestCreator = null, GetStreamConnectionDelegate connectionCreator = null, string baseUrl = null)
+        public DataSiftClient(string username, string apikey, GetAPIRequestDelegate requestCreator = null, GetStreamConnectionDelegate connectionCreator = null, string baseUrl = null, string apiVersion = null)
         {
             Contract.Requires<ArgumentNullException>(username != null);
             Contract.Requires<ArgumentException>(username.Trim().Length > 0);
@@ -45,6 +46,9 @@ namespace DataSift
             if(!String.IsNullOrEmpty(baseUrl))
                 _baseUrl = baseUrl;
 
+            if (!String.IsNullOrEmpty(apiVersion))
+                _apiVersion = apiVersion;
+
             if (requestCreator == null)
                 _getRequest = GetRequestDefault;
             else
@@ -55,14 +59,14 @@ namespace DataSift
 
         #region Mocking / Faking
 
-        private IRestAPIRequest GetRequestDefault(string username, string apikey, string baseUrl)
+        private IRestAPIRequest GetRequestDefault(string username, string apikey, string baseUrl, string apiVersion)
         {
-            return new RestAPIRequest(username, apikey, baseUrl);
+            return new RestAPIRequest(username, apikey, baseUrl, apiVersion);
         }
 
         internal IRestAPIRequest GetRequest()
         {
-            return _getRequest(_username, _apikey, _baseUrl);
+            return _getRequest(_username, _apikey, _baseUrl,_apiVersion);
         }
 
         #endregion

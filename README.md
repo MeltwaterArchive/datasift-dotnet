@@ -107,6 +107,7 @@ This code is released under the BSD license. Please see the LICENSE file for mor
 
 ## Change Log
 
+* 1.2.0 - Moved library to use v1.2 of the DataSift API
 * 1.1.2 - Fixed Nuget issue
 * 1.1.1 - PYLON GA Release
 * 1.1.0 - Added Pylon endpoints
