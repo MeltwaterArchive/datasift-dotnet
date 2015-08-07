@@ -37,7 +37,7 @@ namespace DataSiftExamples
             Console.WriteLine("\nLog for new subscription: " + JsonConvert.SerializeObject(log.Data.log_entries));
 
             Console.WriteLine("\nPausing for data.");
-            Thread.Sleep(5000);
+            Thread.Sleep(20000);
 
             var pull = client.Pull(create.Data.id, size: 500000);
             Console.WriteLine("\nGot data, first interaction: " + JsonConvert.SerializeObject(pull.Data[0]));

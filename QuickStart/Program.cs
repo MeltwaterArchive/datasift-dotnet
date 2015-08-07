@@ -22,14 +22,14 @@ namespace QuickStart
             var client = new DataSiftClient("DATASIFT_USERNAME", "DATASIFT_APIKEY");
 
             // Compile filter
-            var csdl = @"tag.source ""Pandora"" { links.domain == ""pandora.com"" }
-                        tag.source ""SoundCloud"" { links.domain == ""soundcloud.com"" }
-                        tag.source ""Spotify"" { links.domain == ""spotify.com"" }
-
-                        return {
-	                        links.domain in ""pandora.com,soundcloud.com,spotify.com""
-                            AND interaction.type == ""twitter""
-                        }";
+            var csdl = @"tag.brand ""Calvin Klein"" { interaction.content contains ""Calvin Klein"" }
+                tag.brand ""GQ"" { interaction.content contains ""GQ"" }
+                tag.brand ""Adidas"" { interaction.content contains ""Adidas"" }
+            
+                return
+                {
+            	    interaction.content contains_any ""Calvin Klein, GQ, Adidas""
+                }";
 
             var compiled = client.Compile(csdl);
             _hash = compiled.Data.hash;
@@ -57,7 +57,7 @@ namespace QuickStart
 
         static void stream_OnMessage(string hash, dynamic message)
         {
-            Console.WriteLine("{0}: {1}", message.interaction.tag_tree.source[0], message.interaction.content);
+            Console.WriteLine("{0}: {1}", message.interaction.tag_tree.brand[0], message.interaction.content);
         }
 
         static void stream_OnDelete(string hash, dynamic message)

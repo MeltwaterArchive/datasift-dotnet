@@ -19,10 +19,10 @@ namespace DataSiftExamples
             var get = client.Account.Identity.Get();
             Console.WriteLine("\nGot current identities: " + JsonConvert.SerializeObject(get.Data));
 
-            var identity = client.Account.Identity.Create("Test Identity");
+            var identity = client.Account.Identity.Create("Test Identity " + DateTime.Now.Ticks.ToString());
             Console.WriteLine("\nCreated new identity: " + identity.Data.id);
 
-            var identityRenamed = client.Account.Identity.Update(identity.Data.id, "Test Identity Renamed");
+            var identityRenamed = client.Account.Identity.Update(identity.Data.id, "Test Identity Renamed " + DateTime.Now.Ticks.ToString());
             Console.WriteLine("\nUpdated identity: " + identityRenamed.Data.label);
 
             var getById = client.Account.Identity.Get(id: identity.Data.id);

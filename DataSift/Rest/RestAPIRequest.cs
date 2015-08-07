@@ -18,15 +18,15 @@ namespace DataSift.Rest
     {
         private RestClient _client;
 
-        internal RestAPIRequest(string username, string apikey, string baseUrl)
+        internal RestAPIRequest(string username, string apikey, string baseUrl, string apiVersion)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
 
-            _client = new RestClient(baseUrl);
+            _client = new RestClient(baseUrl + "v" + apiVersion);
             _client.Authenticator = new HttpBasicAuthenticator(username, apikey);
 
             var version = Assembly.GetExecutingAssembly().GetName().Version;
-            _client.UserAgent = "DataSift/v1 Dotnet/v" + version.ToString();
+            _client.UserAgent = "DataSift/v" + apiVersion + " Dotnet/v" + version.ToString();
         }
 
         public RestAPIResponse Request(string endpoint, dynamic parameters = null, RestSharp.Method method = Method.GET)
