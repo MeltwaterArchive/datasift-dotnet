@@ -87,7 +87,10 @@ namespace DataSift.Rest
                 case 416:
                 case 500:
                 case 503:
-                      throw new RestAPIException(result, (APIHelpers.HasAttr(result.Data, "error")) ? result.Data.error : "The request failed, please see the Data & StatusCode properties for more details.");
+                    throw new RestAPIException(result, (APIHelpers.HasAttr(result.Data, "error")) ? result.Data.error : "The request failed, please see the Data & StatusCode properties for more details.");
+
+                case 429:
+                    throw new TooManyRequestsException(result, (APIHelpers.HasAttr(result.Data, "error")) ? result.Data.error : "The request failed because you've exceeded your API request limit.");
             }
             
             return result;
