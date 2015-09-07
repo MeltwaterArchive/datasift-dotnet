@@ -23,7 +23,7 @@ namespace DataSift.Rest
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
 
             _client = new RestClient(baseUrl + "v" + apiVersion);
-            _client.Authenticator = new RestAuthenticator(username, apikey);
+            _client.Authenticator = new HttpBasicAuthenticator(username, apikey);
 
             var version = Assembly.GetExecutingAssembly().GetName().Version;
             _client.UserAgent = "DataSift/v" + apiVersion + " Dotnet/v" + version.ToString();
