@@ -20,13 +20,14 @@ namespace DataSiftExamples
             Console.WriteLine("\nCompiled to {0}, DPU = {1}", compiled.Data.hash, compiled.Data.dpu);
 
             var usage = client.Usage();
-            Console.WriteLine("\nUsage report: " + JsonConvert.SerializeObject(usage.Data));
+            Console.WriteLine("\nUsage report: " + usage.ToJson());
 
             var dpu = client.DPU(hash: compiled.Data.hash);
-            Console.WriteLine("\nDPU report: " + JsonConvert.SerializeObject(dpu.Data));
+            Console.WriteLine("\nDPU report: " + dpu.ToJson());
 
             var balance = client.Balance();
-            Console.WriteLine("\nBalance report: " + JsonConvert.SerializeObject(balance.Data));
+            Console.WriteLine("\nBalance report: " + balance.ToJson());
+
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,14 @@ namespace DataSift.Rest
         public RateLimitInfo RateLimit { get; set; }
 
         public System.Net.HttpStatusCode StatusCode { get; set; }
+
+        public string ToJson()
+        {
+            if (Data != null)
+                return JsonConvert.SerializeObject(Data);
+            else
+                return null;
+        }
     }
 
     public class RateLimitInfo
