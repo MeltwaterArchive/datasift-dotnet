@@ -20,19 +20,25 @@ namespace DataSift
         private string _username;
         private string _apikey;
         private string _baseUrl = "https://api.datasift.com/";
+        private string _baseIngestUrl = "https://in.datasift.com/";
         private string _apiVersion = "1.2";
         private GetAPIRequestDelegate _getRequest;
+        private GetIngestRequestDelegate _getIngestRequest;
         private GetStreamConnectionDelegate _getConnection;
         private Historics _historics;
         private HistoricsPreview _historicsPreview;
         private Source _source;
         private Push _push;
         private Pylon _pylon;
+        private ODP _odp;
         private Account _account;
+        
         public delegate IRestAPIRequest GetAPIRequestDelegate(string username, string apikey, string baseUrl, string apiVersion);
+        public delegate IIngestAPIRequest GetIngestRequestDelegate(string username, string apikey, string baseUrl, string apiVersion);
         public delegate IStreamConnection GetStreamConnectionDelegate(string url);
 
-        public DataSiftClient(string username, string apikey, GetAPIRequestDelegate requestCreator = null, GetStreamConnectionDelegate connectionCreator = null, string baseUrl = null, string apiVersion = null)
+        public DataSiftClient(string username, string apikey, GetAPIRequestDelegate requestCreator = null, GetStreamConnectionDelegate connectionCreator = null, GetIngestRequestDelegate ingestRequestCreator = null,
+            string baseUrl = null, string apiVersion = null, string baseIngestUrl = null)
         {
             Contract.Requires<ArgumentNullException>(username != null);
             Contract.Requires<ArgumentException>(username.Trim().Length > 0);
@@ -46,6 +52,9 @@ namespace DataSift
             if(!String.IsNullOrEmpty(baseUrl))
                 _baseUrl = baseUrl;
 
+            if (!String.IsNullOrEmpty(baseIngestUrl))
+                _baseIngestUrl = baseIngestUrl;
+
             if (!String.IsNullOrEmpty(apiVersion))
                 _apiVersion = apiVersion;
 
@@ -53,6 +62,11 @@ namespace DataSift
                 _getRequest = GetRequestDefault;
             else
                 _getRequest = requestCreator;
+
+            if (ingestRequestCreator == null)
+                _getIngestRequest = GetIngestRequestDefault;
+            else
+                _getIngestRequest = ingestRequestCreator;
 
             _getConnection = connectionCreator;
         }
@@ -64,9 +78,19 @@ namespace DataSift
             return new RestAPIRequest(username, apikey, baseUrl, apiVersion);
         }
 
+        private IIngestAPIRequest GetIngestRequestDefault(string username, string apikey, string baseIngestUrl, string apiVersion)
+        {
+            return new RestAPIRequest(username, apikey, baseIngestUrl, apiVersion);
+        }
+
         internal IRestAPIRequest GetRequest()
         {
             return _getRequest(_username, _apikey, _baseUrl,_apiVersion);
+        }
+
+        internal IIngestAPIRequest GetIngestRequest()
+        {
+            return _getIngestRequest(_username, _apikey, _baseIngestUrl, _apiVersion);
         }
 
         #endregion
@@ -124,6 +148,15 @@ namespace DataSift
             {
                 if (_account == null) _account = new Account(this);
                 return _account;
+            }
+        }
+
+        public ODP ODP
+        {
+            get
+            {
+                if (_odp == null) _odp = new ODP(this);
+                return _odp;
             }
         }
 

@@ -159,6 +159,24 @@ namespace DataSift
             return result;
         }
 
+        public static string SerializeToJsonLD(dynamic data)
+        {
+            if (data == null)
+                throw new ArgumentNullException("data", "data parameter cannot be null");
+
+            if (!(data.GetType().IsArray))
+                throw new ArgumentException("data", "data parameter must be an array of objects");
+
+            string result = "";
+
+            foreach(var d in data)
+            {
+                result += JsonConvert.SerializeObject(d);
+            }
+
+            return result;
+        }
+
         public static string GetEnumDescription(dynamic enumerationValue)
         {
             Type type = enumerationValue.GetType();

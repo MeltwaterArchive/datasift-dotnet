@@ -13,12 +13,17 @@ namespace DataSiftTests
         [TestInitialize]
         public void TestInitialize()
         {
-            _client = new DataSift.DataSiftClient(Run.Default.username, Run.Default.apikey, requestCreator: GetRequestMock, connectionCreator: GetStreamConnectionMock);
+            _client = new DataSift.DataSiftClient(Run.Default.username, Run.Default.apikey, requestCreator: GetRequestMock, connectionCreator: GetStreamConnectionMock, ingestRequestCreator: GetIngestRequestMock);
         }
 
         protected DataSift.DataSiftClient Client { get { return _client; } }
 
         public IRestAPIRequest GetRequestMock(string username, string apikey, string baseUrl, string apiVersion)
+        {
+            return new MockRestAPIRequest();
+        }
+
+        public IIngestAPIRequest GetIngestRequestMock(string username, string apikey, string baseUrl, string apiVersion)
         {
             return new MockRestAPIRequest();
         }

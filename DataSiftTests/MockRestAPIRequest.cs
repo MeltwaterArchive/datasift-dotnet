@@ -15,7 +15,7 @@ using DataSiftTests.Account;
 
 namespace DataSiftTests
 {
-    public class MockRestAPIRequest : IRestAPIRequest
+    public class MockRestAPIRequest : IRestAPIRequest, IIngestAPIRequest
     {
         public RestAPIResponse Request(string endpoint, dynamic parameters = null, Method method = Method.GET)
         {
@@ -459,6 +459,21 @@ namespace DataSiftTests
             {
                 result.Data = APIHelpers.DeserializeResponse(response, result.PullDetails.Format);
             }
+
+            return result;
+        }
+
+        public RestAPIResponse Ingest(string endpoint, dynamic data, Method method = Method.POST)
+        {
+            string response = null;
+            RestAPIResponse result = new RestAPIResponse();
+
+            string body = APIHelpers.SerializeToJsonLD(data);
+
+            response = "{\"accepted\":1, \"total_message_bytes\": 1691 }";
+            
+            result.StatusCode = HttpStatusCode.OK;
+            result.Data = APIHelpers.DeserializeResponse(response);
 
             return result;
         }

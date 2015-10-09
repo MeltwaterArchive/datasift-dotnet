@@ -145,6 +145,7 @@
     <Compile Include="Streaming.cs" />
     <Compile Include="Pylon.cs" />
     <Compile Include="Account\Identity.cs" />
+    <Compile Include="ODP.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Account\AccountAPIResponses.settings">

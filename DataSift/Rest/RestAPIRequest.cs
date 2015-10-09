@@ -14,23 +14,34 @@ using System.ComponentModel;
 
 namespace DataSift.Rest
 {
-    internal class RestAPIRequest : IRestAPIRequest
+    internal class RestAPIRequest : IRestAPIRequest, IIngestAPIRequest
     {
-        private RestClient _client;
+        private string _userAgent;
+        private string _baseUrl;
+        private string _apiVersion;
+        private HttpBasicAuthenticator _auth;
 
         internal RestAPIRequest(string username, string apikey, string baseUrl, string apiVersion)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
 
-            _client = new RestClient(baseUrl + "v" + apiVersion);
-            _client.Authenticator = new HttpBasicAuthenticator(username, apikey);
+            _auth = new HttpBasicAuthenticator(username, apikey);
 
             var version = Assembly.GetExecutingAssembly().GetName().Version;
-            _client.UserAgent = "DataSift/v" + apiVersion + " Dotnet/v" + version.ToString();
+            _userAgent = "DataSift/v" + apiVersion + " Dotnet/v" + version.ToString();
+
+            _baseUrl = baseUrl;
+            _apiVersion = apiVersion;
+
         }
 
         public RestAPIResponse Request(string endpoint, dynamic parameters = null, RestSharp.Method method = Method.GET)
         {
+            RestClient client;
+            client = new RestClient(_baseUrl + "v" + _apiVersion);
+            client.Authenticator = _auth;
+            client.UserAgent = _userAgent;
+
             var request = new RestRequest(endpoint, method);
 
             RestAPIResponse result = null;
@@ -54,7 +65,7 @@ namespace DataSift.Rest
             }
 
 
-            IRestResponse response = _client.Execute(request);
+            IRestResponse response = client.Execute(request);
 
             if(endpoint == "pull")
             {
@@ -95,6 +106,56 @@ namespace DataSift.Rest
             
             return result;
 
+        }
+
+        public RestAPIResponse Ingest(string endpoint, dynamic data, Method method = Method.POST)
+        {
+            RestClient client;
+            client = new RestClient(_baseUrl);
+            client.Authenticator = _auth;
+            client.UserAgent = _userAgent;
+
+            var request = new RestRequest(endpoint, method);
+
+            RestAPIResponse result = null;
+
+            if (data != null)
+            {
+                request.AddParameter("application/json", APIHelpers.SerializeToJsonLD(data), ParameterType.RequestBody);
+            }
+        
+            IRestResponse response = client.Execute(request);
+
+            result = new RestAPIResponse() { RateLimit = APIHelpers.ParseRateLimitHeaders(response.Headers), StatusCode = response.StatusCode };
+            result.Data = APIHelpers.DeserializeResponse(response.Content);
+            
+            switch ((int)response.StatusCode)
+            {
+                // Ok status codes
+                case 200:
+                case 201:
+                case 202:
+                case 204:
+                    break;
+
+                //Error status codes
+                case 400:
+                case 401:
+                case 403:
+                case 404:
+                case 405:
+                case 409:
+                case 413:
+                case 416:
+                case 500:
+                case 503:
+                    throw new RestAPIException(result, (APIHelpers.HasAttr(result.Data, "error")) ? result.Data.error : "The request failed, please see the Data & StatusCode properties for more details.");
+
+                case 429:
+                    throw new TooManyRequestsException(result, (APIHelpers.HasAttr(result.Data, "error")) ? result.Data.error : "The request failed because you've exceeded your API request limit.");
+            }
+
+            return result;
         }
     }
 

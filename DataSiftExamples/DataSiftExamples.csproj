@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountIdentity.cs" />
+    <Compile Include="Ingestion.cs" />
     <Compile Include="Pylon.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Historics.cs" />
