@@ -155,6 +155,8 @@
     <Compile Include="Rest\Account\Identity.cs" />
     <Compile Include="Rest\Account\Limit.cs" />
     <Compile Include="Rest\Account\Token.cs" />
+    <Compile Include="Rest\IIngestAPIRequest.cs" />
+    <Compile Include="Rest\ODP.cs" />
     <Compile Include="Rest\Pylon.cs" />
     <Compile Include="Rest\Historics.cs" />
     <Compile Include="Rest\HistoricsPreview.cs" />
@@ -167,6 +169,7 @@
     <Compile Include="Rest\RestAPIRequest.cs" />
     <Compile Include="Rest\RestAPIResponse.cs" />
     <Compile Include="Rest\Source.cs" />
+    <Compile Include="Rest\TooManyRequestsException.cs" />
     <Compile Include="Streaming\DataSiftStream.cs" />
     <Compile Include="Streaming\IStreamConnection.cs" />
     <Compile Include="Streaming\StreamAPIException.cs" />
