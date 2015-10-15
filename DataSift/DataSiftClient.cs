@@ -83,12 +83,12 @@ namespace DataSift
             return new RestAPIRequest(username, apikey, baseIngestUrl, apiVersion);
         }
 
-        internal IRestAPIRequest GetRequest()
+        public IRestAPIRequest GetRequest()
         {
             return _getRequest(_username, _apikey, _baseUrl,_apiVersion);
         }
 
-        internal IIngestAPIRequest GetIngestRequest()
+        public IIngestAPIRequest GetIngestRequest()
         {
             return _getIngestRequest(_username, _apikey, _baseIngestUrl, _apiVersion);
         }
