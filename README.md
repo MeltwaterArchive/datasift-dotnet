@@ -22,7 +22,15 @@ Once you've registered you can find your username and API key on your [Dashboard
 
 ### 2) Reference DataSift library
 
-Soon the library will be on NuGet. In the meantime you will need to reference the 'DataSift' library within this solution in your project.
+The easiest way to use this library is via [Nuget](https://www.nuget.org/packages/Datasift.net).
+
+You can install the package using the Package Manager Console in Visual Studio.
+
+```
+    Install-Package Datasift.net 
+```
+
+Of course you could also download this source code and reference the DataSift project in your solution.
 
 ## Usage: REST API Calls
 
