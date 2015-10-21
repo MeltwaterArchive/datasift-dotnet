@@ -141,6 +141,7 @@
   <ItemGroup>
     <Compile Include="Constants.cs" />
     <Compile Include="DataSiftClient.cs" />
+    <Compile Include="Enum\AccountUsagePeriod.cs" />
     <Compile Include="Enum\DataSiftMessageStatus.cs" />
     <Compile Include="Enum\IdentityStatus.cs" />
     <Compile Include="Enum\ListType.cs" />

@@ -244,5 +244,27 @@
     <Setting Name="Limit_Update" Type="System.String" Scope="Application">
       <Value Profile="(Default)">{"id":"e1e0a598176cf0bcb159f26dc9a8744d","service":"facebook","total_allowance":200000}</Value>
     </Setting>
+    <Setting Name="Account_Usage" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{
+  "usage": [
+    {
+      "quantity": 0.02312,
+      "cost": 0,
+      "category": "managed_sources",
+      "unit": "dpu",
+      "source": "facebook_pages",
+      "timestamp": 1445346000
+    },
+    {
+      "quantity": 0.03332,
+      "cost": 0,
+      "category": "realtime",
+      "unit": "dpu",
+      "source": "",
+      "timestamp": 1445346000
+    }
+  ]
+}</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

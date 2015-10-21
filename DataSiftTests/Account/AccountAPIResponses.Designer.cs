@@ -262,5 +262,33 @@ namespace DataSiftTests.Account {
                 return ((string)(this["Limit_Update"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(@"{
+  ""usage"": [
+    {
+      ""quantity"": 0.02312,
+      ""cost"": 0,
+      ""category"": ""managed_sources"",
+      ""unit"": ""dpu"",
+      ""source"": ""facebook_pages"",
+      ""timestamp"": 1445346000
+    },
+    {
+      ""quantity"": 0.03332,
+      ""cost"": 0,
+      ""category"": ""realtime"",
+      ""unit"": ""dpu"",
+      ""source"": """",
+      ""timestamp"": 1445346000
+    }
+  ]
+}")]
+        public string Account_Usage {
+            get {
+                return ((string)(this["Account_Usage"]));
+            }
+        }
     }
 }
