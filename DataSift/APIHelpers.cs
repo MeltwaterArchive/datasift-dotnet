@@ -83,7 +83,7 @@ namespace DataSift
 
             foreach (var header in headers)
             {
-                switch (header.Name)
+                switch (header.Name.ToLower())
                 {
                     case Constants.HEADER_RATELIMIT_LIMIT:
                         result.Limit = int.Parse((string)header.Value);

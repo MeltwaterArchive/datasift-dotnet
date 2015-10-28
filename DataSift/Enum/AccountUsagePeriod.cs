@@ -12,8 +12,8 @@ namespace DataSift.Enum
         [Description("daily")]
         Daily,
 
-        [Description("weekly")]
-        Weekly,
+        [Description("hourly")]
+        Hourly,
 
         [Description("monthly")]
         Monthly

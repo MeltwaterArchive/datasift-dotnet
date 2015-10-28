@@ -23,11 +23,11 @@ namespace DataSift
         public const string DATA_FORMAT_ARRAY_INTERACTIONS = "json_array";
         public const string DATA_FORMAT_NEWLINE_INTERACTIONS = "json_new_line";
 
-        public const string HEADER_RATELIMIT_LIMIT = "X-RateLimit-Limit";
-        public const string HEADER_RATELIMIT_REMAINING = "X-RateLimit-Remaining";
-        public const string HEADER_RATELIMIT_COST = "X-RateLimit-Cost";
-        public const string HEADER_DATA_FORMAT = "X-DataSift-Format";
-        public const string HEADER_CURSOR_CURRENT = "X-DataSift-Cursor-Current";
-        public const string HEADER_CURSOR_NEXT = "X-DataSift-Cursor-Next";
+        public const string HEADER_RATELIMIT_LIMIT = "x-ratelimit-limit";
+        public const string HEADER_RATELIMIT_REMAINING = "x-ratelimit-remaining";
+        public const string HEADER_RATELIMIT_COST = "x-ratelimit-cost";
+        public const string HEADER_DATA_FORMAT = "x-datasift-format";
+        public const string HEADER_CURSOR_CURRENT = "x-datasift-cursor-current";
+        public const string HEADER_CURSOR_NEXT = "x-datasift-cursor-next";
     }
 }
