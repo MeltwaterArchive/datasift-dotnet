@@ -301,6 +301,11 @@ namespace DataSiftTests
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
+                case "pylon/sample":
+                    response = PylonAPIResponses.Default.Sample;
+                    result.StatusCode = HttpStatusCode.OK;
+                    break;
+
                 case "account/usage":
                     response = AccountAPIResponses.Default.Account_Usage;
                     result.StatusCode = HttpStatusCode.OK;

@@ -356,5 +356,82 @@ namespace DataSiftTests
         }
 
         #endregion
+
+        #region Sample
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Sample_Null_Hash_Fails()
+        {
+            Client.Pylon.Sample(null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Sample_Empty_Hash_Fails()
+        {
+            Client.Pylon.Sample("");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Sample_Hash_Bad_Format_Fails()
+        {
+            Client.Pylon.Sample("invalid");
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Sample_Too_Low_Count_Fails()
+        {
+            Client.Pylon.Sample(VALID_HASH, 9);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Sample_Too_High_Count_Fails()
+        {
+            Client.Pylon.Sample(VALID_HASH, 101);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Sample_Too_Late_Start_Fails()
+        {
+            Client.Pylon.Sample(VALID_HASH, start: DateTimeOffset.Now.AddDays(1));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Sample_Too_Late_End_Fails()
+        {
+            Client.Pylon.Sample(VALID_HASH, end: DateTimeOffset.Now.AddDays(1));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Sample_End_Before_Start_Fails()
+        {
+            Client.Pylon.Sample(VALID_HASH, start: VALID_START, end: DateTimeOffset.Now.AddDays(-31));
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Sample_Empty_Filter_Fails()
+        {
+            Client.Pylon.Sample(VALID_HASH, filter: "");
+        }
+
+        [TestMethod]
+        public void Sample_Succeeds()
+        {
+            var response = Client.Pylon.Sample(VALID_HASH);
+            Assert.AreEqual(80, response.Data.remaining);
+            Assert.AreEqual("en", response.Data.interactions[0].fb.language);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        #endregion
+
     }
 }

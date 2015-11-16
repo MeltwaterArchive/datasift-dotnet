@@ -88,5 +88,22 @@ namespace DataSift.Rest
             return _client.GetRequest().Request("pylon/tags", new { hash = hash });
         }
 
+        public RestAPIResponse Sample(string hash, int? count = null, DateTimeOffset? start = null, DateTimeOffset? end = null, string filter = null)
+        {
+            Contract.Requires<ArgumentNullException>(hash != null);
+            Contract.Requires<ArgumentException>(hash.Trim().Length > 0);
+            Contract.Requires<ArgumentException>(Constants.STREAM_HASH_FORMAT.IsMatch(hash), Messages.INVALID_STREAM_HASH);
+            Contract.Requires<ArgumentException>((count != null) ? count >= 10 : true, Messages.INVALID_COUNT);
+            Contract.Requires<ArgumentException>((count != null) ? count <= 100 : true, Messages.INVALID_COUNT);
+
+            Contract.Requires<ArgumentException>((start != null) ? start <= DateTimeOffset.Now : true, Messages.ANALYSIS_START_TOO_LATE);
+            Contract.Requires<ArgumentException>((end != null) ? end <= DateTimeOffset.Now : true, Messages.ANALYSIS_END_TOO_LATE);
+            Contract.Requires<ArgumentException>((end != null && start != null) ? end > start : true, Messages.ANALYSIS_START_MUST_BE_BEFORE_END);
+
+            Contract.Requires<ArgumentException>((filter != null) ? filter.Trim().Length > 0 : true);
+
+            return _client.GetRequest().Request("pylon/sample", new { hash = hash, count = count, start = start, end = end, filter = filter });
+        }
+
     }
 }
