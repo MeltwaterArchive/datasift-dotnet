@@ -17,6 +17,7 @@ namespace DataSift
         internal const string INVALID_HISTORICS_PREVIEW_ID = "Preview ID should be a 32 character string of lower-case letters and numbers";
         internal const string INVALID_SOURCE_ID = "Source ID should be a 32 character string of lower-case letters and numbers";
         internal const string INVALID_LIST_ID = "List ID is not in the correct format";
+        internal const string INVALID_COUNT = "Count value must be between 10 and 100";
 
         internal const string HISTORICS_END_TOO_LATE = "End must be at least one hour ago";
         internal const string HISTORICS_START_TOO_LATE = "Start must be at least two hours ago";

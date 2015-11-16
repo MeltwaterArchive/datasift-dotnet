@@ -105,32 +105,67 @@ namespace DataSiftTests {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("{\n  \"interactions\": 23400,\n  \"unique_authors\": 20000,\n  \"analysis\": {\n    \"analys" +
-            "is_type\": \"freqDist\",\n    \"parameters\": {\n      \"target\": \"fb.author.gender\",\n  " +
-            "    \"threshold\": 3\n    },\n    \"results\": [\n      {\n        \"key\": \"male\",\n      " +
-            "  \"interactions\": 13400,\n        \"unique_authors\": 10000,\n        \"child\": {\n   " +
-            "       \"analysis_type\": \"freqDist\",\n          \"parameters\": {\n            \"targe" +
-            "t\": \"fb.author.age\",\n            \"threshold\": 3\n          },\n          \"results\"" +
-            ": [\n            {\n              \"key\": \"25-34\",\n              \"interactions\": 13" +
-            "000,\n              \"unique_authors\": 9800\n            }\n          ],\n          \"" +
-            "redacted\": false\n        }\n      },\n      {\n        \"key\": \"female\",\n        \"in" +
-            "teractions\": 5500,\n        \"unique_authors\": 5500,\n        \"child\": {\n          " +
-            "\"analysis_type\": \"freqDist\",\n          \"parameters\": {\n            \"target\": \"fb" +
-            ".author.age\",\n            \"threshold\": 3\n          },\n          \"results\": [\n   " +
-            "         {\n              \"key\": \"18-24\",\n              \"interactions\": 5100,\n   " +
-            "           \"unique_authors\": 4900\n            },\n            {\n              \"ke" +
-            "y\": \"25-34\",\n              \"interactions\": 300,\n              \"unique_authors\": " +
-            "300\n            }\n          ],\n          \"redacted\": false\n        }\n      },\n  " +
-            "    {\n        \"key\": \"unknown\",\n        \"interactions\": 4500,\n        \"unique_au" +
-            "thors\": 4500,\n        \"child\": {\n          \"analysis_type\": \"freqDist\",\n        " +
-            "  \"parameters\": {\n            \"target\": \"fb.author.age\",\n            \"threshold\"" +
-            ": 3\n          },\n          \"results\": [\n            {\n              \"key\": \"18-2" +
-            "4\",\n              \"interactions\": 4100,\n              \"unique_authors\": 3900\n   " +
-            "         }\n          ],\n          \"redacted\": false\n        }\n      }\n    ],\n   " +
-            " \"redacted\": false\n  }\n}")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n  \"interactions\": 23400,\r\n  \"unique_authors\": 20000,\r\n  \"analysis\": {\r\n    \"an" +
+            "alysis_type\": \"freqDist\",\r\n    \"parameters\": {\r\n      \"target\": \"fb.author.gende" +
+            "r\",\r\n      \"threshold\": 3\r\n    },\r\n    \"results\": [\r\n      {\r\n        \"key\": \"ma" +
+            "le\",\r\n        \"interactions\": 13400,\r\n        \"unique_authors\": 10000,\r\n        " +
+            "\"child\": {\r\n          \"analysis_type\": \"freqDist\",\r\n          \"parameters\": {\r\n " +
+            "           \"target\": \"fb.author.age\",\r\n            \"threshold\": 3\r\n          },\r" +
+            "\n          \"results\": [\r\n            {\r\n              \"key\": \"25-34\",\r\n         " +
+            "     \"interactions\": 13000,\r\n              \"unique_authors\": 9800\r\n            }" +
+            "\r\n          ],\r\n          \"redacted\": false\r\n        }\r\n      },\r\n      {\r\n     " +
+            "   \"key\": \"female\",\r\n        \"interactions\": 5500,\r\n        \"unique_authors\": 55" +
+            "00,\r\n        \"child\": {\r\n          \"analysis_type\": \"freqDist\",\r\n          \"para" +
+            "meters\": {\r\n            \"target\": \"fb.author.age\",\r\n            \"threshold\": 3\r\n" +
+            "          },\r\n          \"results\": [\r\n            {\r\n              \"key\": \"18-24" +
+            "\",\r\n              \"interactions\": 5100,\r\n              \"unique_authors\": 4900\r\n " +
+            "           },\r\n            {\r\n              \"key\": \"25-34\",\r\n              \"inte" +
+            "ractions\": 300,\r\n              \"unique_authors\": 300\r\n            }\r\n          ]" +
+            ",\r\n          \"redacted\": false\r\n        }\r\n      },\r\n      {\r\n        \"key\": \"un" +
+            "known\",\r\n        \"interactions\": 4500,\r\n        \"unique_authors\": 4500,\r\n       " +
+            " \"child\": {\r\n          \"analysis_type\": \"freqDist\",\r\n          \"parameters\": {\r\n" +
+            "            \"target\": \"fb.author.age\",\r\n            \"threshold\": 3\r\n          }," +
+            "\r\n          \"results\": [\r\n            {\r\n              \"key\": \"18-24\",\r\n        " +
+            "      \"interactions\": 4100,\r\n              \"unique_authors\": 3900\r\n            }" +
+            "\r\n          ],\r\n          \"redacted\": false\r\n        }\r\n      }\r\n    ],\r\n    \"re" +
+            "dacted\": false\r\n  }\r\n}")]
         public string AnalyzeNested {
             get {
                 return ((string)(this["AnalyzeNested"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n   \"interactions\":[\r\n      {\r\n         \"fb\":{\r\n            \"all\":{\r\n          " +
+            "     \"content\":\"Ford transit jumbo 125T[REDACTED] very good condition engine and" +
+            " gearbox in perfect condition after changing oil and filters very good tires new" +
+            " brake pads 171,000 miles mot due 09/03/2016 3 sets of keys engine capacity of 2" +
+            ".4 \\n2000Â£ Contact [REDACTED]2\"\r\n            },\r\n            \"language\":\"en\",\r\n" +
+            "            \"public\":true,\r\n            \"topic_ids\":[\r\n               2015162332" +
+            "90643,\r\n               113122812035593,\r\n               786001198133570\r\n       " +
+            "     ],\r\n            \"topics\":[\r\n               {\r\n                  \"category\":" +
+            "\"Cars\",\r\n                  \"category_name\":\"Cars|Ford Transit\",\r\n               " +
+            "   \"name\":\"Ford Transit\"\r\n               },\r\n               {\r\n                 " +
+            " \"category\":\"Interest\",\r\n                  \"category_name\":\"Interest|Transmissio" +
+            "n (mechanics)\",\r\n                  \"name\":\"Transmission (mechanics)\"\r\n          " +
+            "     }\r\n            ]\r\n         },\r\n         \"interaction\":{\r\n            \"conte" +
+            "nt\":\"Ford transit jumbo 125T[REDACTED] very good condition engine and gearbox in" +
+            " perfect condition after changing oil and filters very good tires new brake pads" +
+            " 171,000 miles mot due 09/03/2016 3 sets of keys engine capacity of 2.4 \\n2000Â£" +
+            " Contact [REDACTED]2\",\r\n            \"created_at\":\"Thu, 12 Nov 2015 10:25:49 +000" +
+            "0\",\r\n            \"id\":\"0796249ef838d20b92759a2062b2f321\",\r\n            \"subtype\"" +
+            ":\"story\",\r\n            \"tag_tree\":{\r\n               \"automotive\":{\r\n            " +
+            "      \"brand\":[\r\n                     \"Ford\"\r\n                  ],\r\n            " +
+            "      \"feature\":[\r\n                     \"Practicality\",\r\n                     \"S" +
+            "afety\",\r\n                     \"Mechanical Specification\"\r\n                  ]\r\n " +
+            "              },\r\n               \"non_spam_sale\":0.65654024215803,\r\n            " +
+            "   \"other\":-0.077210687626018,\r\n               \"spam\":-0.15882095602098\r\n       " +
+            "     }\r\n         }\r\n      }\r\n   ],\r\n   \"remaining\":80,\r\n   \"reset_at\":1447327564" +
+            "\r\n}")]
+        public string Sample {
+            get {
+                return ((string)(this["Sample"]));
             }
         }
     }

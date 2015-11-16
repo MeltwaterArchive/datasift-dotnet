@@ -75,6 +75,9 @@ namespace DataSiftExamples
             var tags = client.Pylon.Tags(compile.Data.hash);
             Console.WriteLine("\nTags: " + JsonConvert.SerializeObject(tags.Data));
 
+            var sample = client.Pylon.Sample(compile.Data.hash, count: 10);
+            Console.WriteLine("\nSuper public samples: " + sample.ToJson());
+
             client.Pylon.Stop(compile.Data.hash);
             Console.WriteLine("\nRecording stopped");
 
