@@ -32,7 +32,7 @@ namespace DataSiftExamples
             client.Pylon.Start(compile.Data.hash, "Example recording");
             Console.WriteLine("Recording started");
 
-            var getRecording = client.Pylon.Get(hash: compile.Data.hash);
+            var getRecording = client.Pylon.Get(id: compile.Data.hash);
             Console.WriteLine("\nThis recording: " + JsonConvert.SerializeObject(getRecording.Data));
 
             var analysisParams = new  {
