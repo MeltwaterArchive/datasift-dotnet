@@ -21,7 +21,7 @@ namespace DataSift.Rest
         public RestAPIResponse Get(string id = null, int? page = null, int? perPage = null)
         {
             Contract.Requires<ArgumentException>((id != null) ? id.Trim().Length > 0 : true);
-            Contract.Requires<ArgumentException>((id != null) ? Constants.STREAM_HASH_FORMAT.IsMatch(id) : true, Messages.INVALID_STREAM_HASH);
+            Contract.Requires<ArgumentException>((id != null) ? Constants.RECORDING_ID_FORMAT.IsMatch(id) : true, Messages.INVALID_RECORDING_ID);
             Contract.Requires<ArgumentException>((page.HasValue) ? page.Value > 0 : true);
             Contract.Requires<ArgumentException>((perPage.HasValue) ? perPage.Value > 0 : true);
 
@@ -44,27 +44,46 @@ namespace DataSift.Rest
             return _client.GetRequest().Request("pylon/compile", new { csdl = csdl }, Method.POST);
         }
 
-        public RestAPIResponse Start(string hash, string name)
+        public RestAPIResponse Start(string hash = null, string name = null, string id = null)
         {
-            Contract.Requires<ArgumentNullException>(hash != null);
-            Contract.Requires<ArgumentException>(hash.Trim().Length > 0);
+            Contract.Requires<ArgumentException>((hash != null) ? hash.Trim().Length > 0: true);
+            Contract.Requires<ArgumentException>((hash != null) ? Constants.STREAM_HASH_FORMAT.IsMatch(hash) : true, Messages.INVALID_STREAM_HASH);
 
             Contract.Requires<ArgumentException>((name != null) ? name.Trim().Length > 0 : true);
 
-            return _client.GetRequest().Request("pylon/start", new { hash = hash, name = name }, Method.POST);
+            Contract.Requires<ArgumentException>((id != null) ? id.Trim().Length > 0 : true);
+            Contract.Requires<ArgumentException>((id != null) ? Constants.RECORDING_ID_FORMAT.IsMatch(id) : true, Messages.INVALID_RECORDING_ID);
+
+            return _client.GetRequest().Request("pylon/start", new { hash = hash, name = name, id = id }, Method.PUT);
         }
 
         public RestAPIResponse Stop(string id)
         {
             Contract.Requires<ArgumentNullException>(id != null);
+            Contract.Requires<ArgumentException>((id != null) ? Constants.RECORDING_ID_FORMAT.IsMatch(id) : true, Messages.INVALID_RECORDING_ID);
             Contract.Requires<ArgumentException>(id.Trim().Length > 0);
 
-            return _client.GetRequest().Request("pylon/stop", new { id = id }, Method.POST);
+            return _client.GetRequest().Request("pylon/stop", new { id = id }, Method.PUT);
+        }
+
+        public RestAPIResponse Update(string id, string hash = null, string name = null)
+        {
+            Contract.Requires<ArgumentNullException>(id != null);
+            Contract.Requires<ArgumentException>((id != null) ? Constants.RECORDING_ID_FORMAT.IsMatch(id) : true, Messages.INVALID_RECORDING_ID);
+            Contract.Requires<ArgumentException>(id.Trim().Length > 0);
+
+            Contract.Requires<ArgumentException>((hash != null) ? hash.Trim().Length > 0 : true);
+            Contract.Requires<ArgumentException>((hash != null) ? Constants.STREAM_HASH_FORMAT.IsMatch(hash) : true, Messages.INVALID_STREAM_HASH);
+
+            Contract.Requires<ArgumentException>((name != null) ? name.Trim().Length > 0 : true);
+
+            return _client.GetRequest().Request("pylon/start", new { hash = hash, name = name, id = id }, Method.PUT);
         }
 
         public RestAPIResponse Analyze(string id, dynamic parameters, string filter = null, DateTimeOffset? start = null, DateTimeOffset? end = null)
         {
             Contract.Requires<ArgumentNullException>(id != null);
+            Contract.Requires<ArgumentException>((id != null) ? Constants.RECORDING_ID_FORMAT.IsMatch(id) : true, Messages.INVALID_RECORDING_ID);
             Contract.Requires<ArgumentException>(id.Trim().Length > 0);
             Contract.Requires<ArgumentException>((filter != null) ? filter.Trim().Length > 0 : true);
 
@@ -83,6 +102,7 @@ namespace DataSift.Rest
         public RestAPIResponse Tags(string id)
         {
             Contract.Requires<ArgumentNullException>(id != null);
+            Contract.Requires<ArgumentException>((id != null) ? Constants.RECORDING_ID_FORMAT.IsMatch(id) : true, Messages.INVALID_RECORDING_ID);
             Contract.Requires<ArgumentException>(id.Trim().Length > 0);
 
             return _client.GetRequest().Request("pylon/tags", new { id = id });
@@ -92,7 +112,7 @@ namespace DataSift.Rest
         {
             Contract.Requires<ArgumentNullException>(id != null);
             Contract.Requires<ArgumentException>(id.Trim().Length > 0);
-            Contract.Requires<ArgumentException>(Constants.STREAM_HASH_FORMAT.IsMatch(id), Messages.INVALID_STREAM_HASH);
+            Contract.Requires<ArgumentException>(Constants.RECORDING_ID_FORMAT.IsMatch(id), Messages.INVALID_RECORDING_ID);
             Contract.Requires<ArgumentException>((count != null) ? count >= 10 : true, Messages.INVALID_COUNT);
             Contract.Requires<ArgumentException>((count != null) ? count <= 100 : true, Messages.INVALID_COUNT);
 
@@ -102,7 +122,7 @@ namespace DataSift.Rest
 
             Contract.Requires<ArgumentException>((filter != null) ? filter.Trim().Length > 0 : true);
 
-            return _client.GetRequest().Request("pylon/sample", new { hash = id, count = count, start = start, end = end, filter = filter });
+            return _client.GetRequest().Request("pylon/sample", new { id = id, count = count, start = start, end = end, filter = filter });
         }
 
     }

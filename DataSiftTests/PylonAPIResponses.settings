@@ -3,21 +3,53 @@
   <Profiles />
   <Settings>
     <Setting Name="Get" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">[
-   {
-      "id":"bb72ad2c2c9d27c14ab023303e58ec93",
-      "user_id":28745,
-      "volume":0,
-      "start":1417189947,
-      "end":1417189990,
-      "status":"stopped",
-      "origin":"api",
-      "name":"newyork",
-      "reached_capacity":true,
-      "remaining_capacity":1000000,
-      "remaining_total_capacity":0
-   }
-]</Value>
+      <Value Profile="(Default)">{
+    "count": 15,
+    "page": 1,
+    "pages": 1,
+    "per_page": 25,
+    "subscriptions": [
+        {
+            "id": "12231f2f3825fe4c79e4f5def24c41fa8914f198",
+            "volume": 0,
+            "start": 1453482165,
+            "end": 1453482171,
+            "status": "stopped",
+            "name": "Example recording",
+            "reached_capacity": false,
+            "identity_id": "eb3fd831cb9f1441beeae6c09b5af15f",
+            "hash": "226dd0ad87e911bb72c3f6ee4750247b",
+            "remaining_index_capacity": 1000000,
+            "remaining_account_capacity": 1000000
+        },
+        {
+            "id": "de78f132b8b5821f3b7c5cc3beb2a82d2856e3cb",
+            "volume": 0,
+            "start": 1453482205,
+            "end": 1453482821,
+            "status": "stopped",
+            "name": "Example recording",
+            "reached_capacity": false,
+            "identity_id": "eb3fd831cb9f1441beeae6c09b5af15f",
+            "hash": "226dd0ad87e911bb72c3f6ee4750247b",
+            "remaining_index_capacity": 1000000,
+            "remaining_account_capacity": 1000000
+        },
+        {
+            "id": "5a43a2a8e8d281267535e64ca957826cfaabd821",
+            "volume": 0,
+            "start": 1453481852,
+            "end": 1453482122,
+            "status": "stopped",
+            "name": "Example recording",
+            "reached_capacity": false,
+            "identity_id": "eb3fd831cb9f1441beeae6c09b5af15f",
+            "hash": "226dd0ad87e911bb72c3f6ee4750247b",
+            "remaining_index_capacity": 1000000,
+            "remaining_account_capacity": 1000000
+        }
+    ]
+}</Value>
     </Setting>
     <Setting Name="Validate" Type="System.String" Scope="Application">
       <Value Profile="(Default)">{"created_at":"1417191702"}</Value>
@@ -27,15 +59,17 @@
     </Setting>
     <Setting Name="GetOne" Type="System.String" Scope="Application">
       <Value Profile="(Default)">{
-   "volume":0,
-   "start":1417435530,
-   "end":1417435716,
-   "status":"stopped",
-   "name":"Example recording",
-   "reached_capacity":false,
-   "remaining_capacity":1000000,
-   "remaining_total_capacity":100000,
-   "hash":"58eb8c4b74257406547ab1ed3be346a8"
+    "id": "12231f2f3825fe4c79e4f5def24c41fa8914f198",
+    "volume": 0,
+    "start": 1453482165,
+    "end": 1453482171,
+    "status": "stopped",
+    "name": "Example recording",
+    "reached_capacity": false,
+    "identity_id": "eb3fd831cb9f1441beeae6c09b5af15f",
+    "hash": "226dd0ad87e911bb72c3f6ee4750247b",
+    "remaining_index_capacity": 1000000,
+    "remaining_account_capacity": 1000000
 }</Value>
     </Setting>
     <Setting Name="Analyze" Type="System.String" Scope="Application">
@@ -178,6 +212,11 @@
    ],
    "remaining":80,
    "reset_at":1447327564
+}</Value>
+    </Setting>
+    <Setting Name="Start" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{
+    "id": "f78491987d92bef86e8b0cee5a64b3ab360f059d"
 }</Value>
     </Setting>
   </Settings>
