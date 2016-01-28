@@ -21,7 +21,7 @@ namespace DataSift
         private string _apikey;
         private string _baseUrl = "https://api.datasift.com/";
         private string _baseIngestUrl = "https://in.datasift.com/";
-        private string _apiVersion = "1.2";
+        private string _apiVersion = "1.3";
         private GetAPIRequestDelegate _getRequest;
         private GetIngestRequestDelegate _getIngestRequest;
         private GetStreamConnectionDelegate _getConnection;

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace DataSiftExamples
@@ -16,23 +17,27 @@ namespace DataSiftExamples
         {
             var client = new DataSiftClient(username, apikey);
 
-            var csdl = "fb.content contains_any \"BMW, Mercedes, Cadillac\"";
-
             Console.WriteLine("Running 'Pylon' example...");
+
+            var csdlV1 = "fb.content contains_any \"Ford, BMW, Honda\"";
+            var csdlV2 = "fb.content contains_any \"Ford, BMW, Honda, Mercedes\"";
 
             var get = client.Pylon.Get();
             Console.WriteLine("\nCurrent of recordings / tasks: " + JsonConvert.SerializeObject(get.Data));
 
-            client.Pylon.Validate(csdl);
+            client.Pylon.Validate(csdlV1);
             Console.WriteLine("CSDL for recording validated");
 
-            var compile = client.Pylon.Compile(csdl);
-            Console.WriteLine("Hash for stream: " + compile.Data.hash);
+            var compile = client.Pylon.Compile(csdlV1);
+            Console.WriteLine("Hash for filter: " + compile.Data.hash);
 
-            client.Pylon.Start(compile.Data.hash, "Example recording");
+            var start = client.Pylon.Start(compile.Data.hash, "Example recording");
             Console.WriteLine("Recording started");
 
-            var getRecording = client.Pylon.Get(id: compile.Data.hash);
+            Console.WriteLine("\nSleeping for a few seconds...");
+            Thread.Sleep(5000);
+
+            var getRecording = client.Pylon.Get(id: start.Data.id);
             Console.WriteLine("\nThis recording: " + JsonConvert.SerializeObject(getRecording.Data));
 
             var analysisParams = new  {
@@ -44,10 +49,10 @@ namespace DataSiftExamples
                     }
                 };
 
-            var analysis = client.Pylon.Analyze(compile.Data.hash, analysisParams);
+            var analysis = client.Pylon.Analyze(start.Data.id, analysisParams);
             Console.WriteLine("\nAnalysis result: " + JsonConvert.SerializeObject(analysis.Data));
 
-            var analysisWithFilter = client.Pylon.Analyze(compile.Data.hash, analysisParams, filter: "fb.author.gender == \"male\"");
+            var analysisWithFilter = client.Pylon.Analyze(start.Data.id, analysisParams, filter: "fb.author.gender == \"male\"");
             Console.WriteLine("\nAnalysis (with filter) result: " + JsonConvert.SerializeObject(analysisWithFilter.Data));
 
             dynamic nested = new
@@ -69,16 +74,28 @@ namespace DataSiftExamples
                 }
             };
 
-            var analysisNested = client.Pylon.Analyze(compile.Data.hash, nested);
+            var analysisNested = client.Pylon.Analyze(start.Data.id, nested);
             Console.WriteLine("\nNested analysis result: " + JsonConvert.SerializeObject(analysisNested.Data));
 
-            var tags = client.Pylon.Tags(compile.Data.hash);
+            var compile2 = client.Pylon.Compile(csdlV2);
+            Console.WriteLine("\nHash for updated filter: " + compile2.Data.hash);
+
+            var update = client.Pylon.Update(start.Data.id, hash: compile2.Data.hash, name: "Example recording - updated");
+            Console.WriteLine("\nRecording updated");
+
+            Console.WriteLine("\nSleeping for a few seconds...");
+            Thread.Sleep(5000);
+
+            getRecording = client.Pylon.Get(id: start.Data.id);
+            Console.WriteLine("\nThis recording: " + JsonConvert.SerializeObject(getRecording.Data));
+
+            var tags = client.Pylon.Tags(start.Data.id);
             Console.WriteLine("\nTags: " + JsonConvert.SerializeObject(tags.Data));
 
-            var sample = client.Pylon.Sample(compile.Data.hash, count: 10);
+            var sample = client.Pylon.Sample(start.Data.id, count: 10);
             Console.WriteLine("\nSuper public samples: " + sample.ToJson());
 
-            client.Pylon.Stop(compile.Data.hash);
+            client.Pylon.Stop(start.Data.id);
             Console.WriteLine("\nRecording stopped");
 
         }

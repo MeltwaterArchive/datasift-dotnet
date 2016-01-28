@@ -77,7 +77,7 @@ namespace DataSift.Rest
 
             Contract.Requires<ArgumentException>((name != null) ? name.Trim().Length > 0 : true);
 
-            return _client.GetRequest().Request("pylon/start", new { hash = hash, name = name, id = id }, Method.PUT);
+            return _client.GetRequest().Request("pylon/update", new { id =id, hash = hash, name = name }, Method.PUT);
         }
 
         public RestAPIResponse Analyze(string id, dynamic parameters, string filter = null, DateTimeOffset? start = null, DateTimeOffset? end = null)
