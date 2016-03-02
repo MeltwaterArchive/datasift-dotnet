@@ -255,7 +255,7 @@ namespace DataSiftTests
                     break;
 
                 case "pylon/get":
-                    if (prms.ContainsKey("hash"))
+                    if (prms.ContainsKey("id"))
                         response = PylonAPIResponses.Default.GetOne;
                     else
                         response = PylonAPIResponses.Default.Get;
@@ -274,17 +274,22 @@ namespace DataSiftTests
                     break;
 
                 case "pylon/start":
-                    result.StatusCode = HttpStatusCode.NoContent;
+                    response = PylonAPIResponses.Default.Start;
+                    result.StatusCode = HttpStatusCode.OK;
                     break;
 
                 case "pylon/stop":
                     result.StatusCode = HttpStatusCode.NoContent;
                     break;
 
-                case "pylon/analyze":
-                    var hash = (string)prms.First(p => p.Key == "hash").Value;
+                case "pylon/update":
+                    result.StatusCode = HttpStatusCode.NoContent;
+                    break;
 
-                    if (hash.IndexOf("nested") != -1)
+                case "pylon/analyze":
+                    var analyze_id = (string)prms.First(p => p.Key == "id").Value;
+
+                    if (analyze_id.IndexOf("nested") != -1)
                     {
                         response = PylonAPIResponses.Default.AnalyzeNested;
                         result.StatusCode = HttpStatusCode.OK;

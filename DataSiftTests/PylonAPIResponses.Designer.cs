@@ -25,21 +25,27 @@ namespace DataSiftTests {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(@"[
-   {
-      ""id"":""bb72ad2c2c9d27c14ab023303e58ec93"",
-      ""user_id"":28745,
-      ""volume"":0,
-      ""start"":1417189947,
-      ""end"":1417189990,
-      ""status"":""stopped"",
-      ""origin"":""api"",
-      ""name"":""newyork"",
-      ""reached_capacity"":true,
-      ""remaining_capacity"":1000000,
-      ""remaining_total_capacity"":0
-   }
-]")]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n    \"count\": 15,\r\n    \"page\": 1,\r\n    \"pages\": 1,\r\n    \"per_page\": 25,\r\n    \"s" +
+            "ubscriptions\": [\r\n        {\r\n            \"id\": \"12231f2f3825fe4c79e4f5def24c41fa" +
+            "8914f198\",\r\n            \"volume\": 0,\r\n            \"start\": 1453482165,\r\n        " +
+            "    \"end\": 1453482171,\r\n            \"status\": \"stopped\",\r\n            \"name\": \"E" +
+            "xample recording\",\r\n            \"reached_capacity\": false,\r\n            \"identit" +
+            "y_id\": \"eb3fd831cb9f1441beeae6c09b5af15f\",\r\n            \"hash\": \"226dd0ad87e911b" +
+            "b72c3f6ee4750247b\",\r\n            \"remaining_index_capacity\": 1000000,\r\n         " +
+            "   \"remaining_account_capacity\": 1000000\r\n        },\r\n        {\r\n            \"id" +
+            "\": \"de78f132b8b5821f3b7c5cc3beb2a82d2856e3cb\",\r\n            \"volume\": 0,\r\n      " +
+            "      \"start\": 1453482205,\r\n            \"end\": 1453482821,\r\n            \"status\"" +
+            ": \"stopped\",\r\n            \"name\": \"Example recording\",\r\n            \"reached_cap" +
+            "acity\": false,\r\n            \"identity_id\": \"eb3fd831cb9f1441beeae6c09b5af15f\",\r\n" +
+            "            \"hash\": \"226dd0ad87e911bb72c3f6ee4750247b\",\r\n            \"remaining_" +
+            "index_capacity\": 1000000,\r\n            \"remaining_account_capacity\": 1000000\r\n  " +
+            "      },\r\n        {\r\n            \"id\": \"5a43a2a8e8d281267535e64ca957826cfaabd821" +
+            "\",\r\n            \"volume\": 0,\r\n            \"start\": 1453481852,\r\n            \"end" +
+            "\": 1453482122,\r\n            \"status\": \"stopped\",\r\n            \"name\": \"Example r" +
+            "ecording\",\r\n            \"reached_capacity\": false,\r\n            \"identity_id\": \"" +
+            "eb3fd831cb9f1441beeae6c09b5af15f\",\r\n            \"hash\": \"226dd0ad87e911bb72c3f6e" +
+            "e4750247b\",\r\n            \"remaining_index_capacity\": 1000000,\r\n            \"rema" +
+            "ining_account_capacity\": 1000000\r\n        }\r\n    ]\r\n}")]
         public string Get {
             get {
                 return ((string)(this["Get"]));
@@ -67,15 +73,17 @@ namespace DataSiftTests {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(@"{
-   ""volume"":0,
-   ""start"":1417435530,
-   ""end"":1417435716,
-   ""status"":""stopped"",
-   ""name"":""Example recording"",
-   ""reached_capacity"":false,
-   ""remaining_capacity"":1000000,
-   ""remaining_total_capacity"":100000,
-   ""hash"":""58eb8c4b74257406547ab1ed3be346a8""
+    ""id"": ""12231f2f3825fe4c79e4f5def24c41fa8914f198"",
+    ""volume"": 0,
+    ""start"": 1453482165,
+    ""end"": 1453482171,
+    ""status"": ""stopped"",
+    ""name"": ""Example recording"",
+    ""reached_capacity"": false,
+    ""identity_id"": ""eb3fd831cb9f1441beeae6c09b5af15f"",
+    ""hash"": ""226dd0ad87e911bb72c3f6ee4750247b"",
+    ""remaining_index_capacity"": 1000000,
+    ""remaining_account_capacity"": 1000000
 }")]
         public string GetOne {
             get {
@@ -166,6 +174,18 @@ namespace DataSiftTests {
         public string Sample {
             get {
                 return ((string)(this["Sample"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("{\r\n    \"id\": \"f78491987d92bef86e8b0cee5a64b3ab360f059d\"\r\n}")]
+        public string Start {
+            get {
+                return ((string)(this["Start"]));
+            }
+            set {
+                this["Start"] = value;
             }
         }
     }
