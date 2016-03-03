@@ -37,11 +37,11 @@ namespace QuickStartPylon
 
             var compiled = _client.Pylon.Compile(csdl);
             var hash = compiled.Data.hash;
-            string recordingId = null;
-
+            
             Console.WriteLine("Hash: " + hash);
 
             // Start the recording, 
+            string recordingId = null;
             var start = _client.Pylon.Start(hash, "Pylon Test Filter");
             recordingId = start.Data.id;
             
