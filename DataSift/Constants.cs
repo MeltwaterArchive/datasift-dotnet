@@ -12,7 +12,7 @@ namespace DataSift
         public static Regex APIKEY_FORMAT = new Regex(@"[a-z0-9]{32}");
         public static Regex IDENTITY_ID_FORMAT = new Regex(@"[a-z0-9]{32}");
         public static Regex STREAM_HASH_FORMAT = new Regex(@"[a-z0-9]{32}");
-        public static Regex RECORDING_ID_FORMAT = new Regex(@"[a-z0-9]{40}");
+        public static Regex RECORDING_ID_FORMAT = new Regex(@"^[a-z0-9]{32}$|^[a-z0-9]{40}$");
         public static Regex SUBSCRIPTION_ID_FORMAT = new Regex(@"[a-z0-9]{32}");
         public static Regex CURSOR_FORMAT = new Regex(@"[a-z0-9]{32}");
         public static Regex HISTORICS_ID_FORMAT = new Regex(@"[a-z0-9]{20}");
