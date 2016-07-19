@@ -216,10 +216,10 @@
 }</Value>
     </Setting>
     <Setting Name="Limit_Create" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">{"id":"e1e0a598176cf0bcb159f26dc9a8744d","service":"facebook","total_allowance":100000}</Value>
+      <Value Profile="(Default)">{"id":"e1e0a598176cf0bcb159f26dc9a8744d","service":"facebook","total_allowance":100000, "analyze_queries": 500}</Value>
     </Setting>
     <Setting Name="Limit_GetByIdentityAndService" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">{"id":"e1e0a598176cf0bcb159f26dc9a8744d","service":"facebook","total_allowance":100000}</Value>
+      <Value Profile="(Default)">{"id":"e1e0a598176cf0bcb159f26dc9a8744d","service":"facebook","total_allowance":100000, "analyze_queries": 500}</Value>
     </Setting>
     <Setting Name="Limit_AllByService" Type="System.String" Scope="Application">
       <Value Profile="(Default)">{
@@ -242,7 +242,7 @@
 }</Value>
     </Setting>
     <Setting Name="Limit_Update" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">{"id":"e1e0a598176cf0bcb159f26dc9a8744d","service":"facebook","total_allowance":200000}</Value>
+      <Value Profile="(Default)">{"id":"e1e0a598176cf0bcb159f26dc9a8744d","service":"facebook","total_allowance":200000, "analyze_queries": 600}</Value>
     </Setting>
     <Setting Name="Account_Usage" Type="System.String" Scope="Application">
       <Value Profile="(Default)">{
