@@ -10,6 +10,7 @@ namespace DataSiftTests.Account
         public const string VALID_IDENTITY = "f3865ceea4bac3f7eec0ea12d7e83508";
         public const string VALID_SERVICE = "facebook";
         public const int VALID_TOTAL_ALLOWANCE = 100000;
+        public const int VALID_ANALYZE_QUERIES = 500;
 
         #region Get
 
@@ -91,63 +92,93 @@ namespace DataSiftTests.Account
 
         #endregion
 
-
         #region Create
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Create_Null_IdentityId_Fails()
         {
-            Client.Account.Identity.Limit.Create(null, VALID_SERVICE, VALID_TOTAL_ALLOWANCE);
+            Client.Account.Identity.Limit.Create(null, VALID_SERVICE, totalAllowance: VALID_TOTAL_ALLOWANCE, analyzeQueries: VALID_ANALYZE_QUERIES);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Create_Empty_IdentityId_Fails()
         {
-            Client.Account.Identity.Limit.Create("", VALID_SERVICE, VALID_TOTAL_ALLOWANCE);
+            Client.Account.Identity.Limit.Create("", VALID_SERVICE, totalAllowance: VALID_TOTAL_ALLOWANCE, analyzeQueries: VALID_ANALYZE_QUERIES);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Create_Invalid_IdentityId_Fails()
         {
-            Client.Account.Identity.Limit.Create("invalid ID", VALID_SERVICE, VALID_TOTAL_ALLOWANCE);
+            Client.Account.Identity.Limit.Create("invalid ID", VALID_SERVICE, totalAllowance: VALID_TOTAL_ALLOWANCE, analyzeQueries: VALID_ANALYZE_QUERIES);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Create_Null_Service_Fails()
         {
-            Client.Account.Identity.Limit.Create(VALID_IDENTITY, null, VALID_TOTAL_ALLOWANCE);
+            Client.Account.Identity.Limit.Create(VALID_IDENTITY, null, totalAllowance: VALID_TOTAL_ALLOWANCE, analyzeQueries: VALID_ANALYZE_QUERIES);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Create_Empty_Service_Fails()
         {
-            Client.Account.Identity.Limit.Create(VALID_IDENTITY, "", VALID_TOTAL_ALLOWANCE);
+            Client.Account.Identity.Limit.Create(VALID_IDENTITY, "", totalAllowance: VALID_TOTAL_ALLOWANCE, analyzeQueries: VALID_ANALYZE_QUERIES);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Create_Negative_Allowance_Fails()
         {
-            Client.Account.Identity.Limit.Create(VALID_IDENTITY, VALID_SERVICE, -1);
+            Client.Account.Identity.Limit.Create(VALID_IDENTITY, VALID_SERVICE, totalAllowance: -1, analyzeQueries: VALID_ANALYZE_QUERIES);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Create_Zero_Allowance_Fails()
         {
-            Client.Account.Identity.Limit.Create(VALID_IDENTITY, VALID_SERVICE, 0);
+            Client.Account.Identity.Limit.Create(VALID_IDENTITY, VALID_SERVICE, totalAllowance: 0, analyzeQueries: VALID_ANALYZE_QUERIES);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Create_Negative_Analyze_Queries_Fails()
+        {
+            Client.Account.Identity.Limit.Create(VALID_IDENTITY, VALID_SERVICE, totalAllowance: VALID_TOTAL_ALLOWANCE, analyzeQueries: -1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Create_Zero_Analyze_Queries_Fails()
+        {
+            Client.Account.Identity.Limit.Create(VALID_IDENTITY, VALID_SERVICE, totalAllowance: VALID_TOTAL_ALLOWANCE, analyzeQueries: 0);
+        }
+
+        [TestMethod]
+        public void Create_Null_Allowance_Succeeds()
+        {
+            var response = Client.Account.Identity.Limit.Create(VALID_IDENTITY, VALID_SERVICE, analyzeQueries: VALID_ANALYZE_QUERIES);
+            Assert.AreEqual(VALID_TOTAL_ALLOWANCE, response.Data.total_allowance);
+            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
+        }
+
+        [TestMethod]
+        public void Create_Null_Analyze_Queries_Succeeds()
+        {
+            var response = Client.Account.Identity.Limit.Create(VALID_IDENTITY, VALID_SERVICE, totalAllowance: VALID_TOTAL_ALLOWANCE);
+            Assert.AreEqual(VALID_ANALYZE_QUERIES, response.Data.analyze_queries);
+            Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
         }
 
         [TestMethod]
         public void Create_Succeeds()
         {
-            var response = Client.Account.Identity.Limit.Create(VALID_IDENTITY, VALID_SERVICE, VALID_TOTAL_ALLOWANCE);
+            var response = Client.Account.Identity.Limit.Create(VALID_IDENTITY, VALID_SERVICE, totalAllowance: VALID_TOTAL_ALLOWANCE, analyzeQueries: VALID_ANALYZE_QUERIES);
             Assert.AreEqual(VALID_TOTAL_ALLOWANCE, response.Data.total_allowance);
+            Assert.AreEqual(VALID_ANALYZE_QUERIES, response.Data.analyze_queries);
             Assert.AreEqual(HttpStatusCode.Created, response.StatusCode);
         }
 
@@ -159,56 +190,87 @@ namespace DataSiftTests.Account
         [ExpectedException(typeof(ArgumentNullException))]
         public void Update_Null_IdentityId_Fails()
         {
-            Client.Account.Identity.Limit.Update(null, VALID_SERVICE, VALID_TOTAL_ALLOWANCE);
+            Client.Account.Identity.Limit.Update(null, VALID_SERVICE, VALID_TOTAL_ALLOWANCE, VALID_ANALYZE_QUERIES);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Update_Empty_IdentityId_Fails()
         {
-            Client.Account.Identity.Limit.Update("", VALID_SERVICE, VALID_TOTAL_ALLOWANCE);
+            Client.Account.Identity.Limit.Update("", VALID_SERVICE, VALID_TOTAL_ALLOWANCE, VALID_ANALYZE_QUERIES);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Update_Invalid_IdentityId_Fails()
         {
-            Client.Account.Identity.Limit.Update("invalid ID", VALID_SERVICE, VALID_TOTAL_ALLOWANCE);
+            Client.Account.Identity.Limit.Update("invalid ID", VALID_SERVICE, VALID_TOTAL_ALLOWANCE, VALID_ANALYZE_QUERIES);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Update_Null_Service_Fails()
         {
-            Client.Account.Identity.Limit.Update(VALID_IDENTITY, null, VALID_TOTAL_ALLOWANCE);
+            Client.Account.Identity.Limit.Update(VALID_IDENTITY, null, VALID_TOTAL_ALLOWANCE, VALID_ANALYZE_QUERIES);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Update_Empty_Service_Fails()
         {
-            Client.Account.Identity.Limit.Update(VALID_IDENTITY, "", VALID_TOTAL_ALLOWANCE);
+            Client.Account.Identity.Limit.Update(VALID_IDENTITY, "", VALID_TOTAL_ALLOWANCE, VALID_ANALYZE_QUERIES);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Update_Negative_Allowance_Fails()
         {
-            Client.Account.Identity.Limit.Update(VALID_IDENTITY, VALID_SERVICE, -1);
+            Client.Account.Identity.Limit.Update(VALID_IDENTITY, VALID_SERVICE, -1, VALID_ANALYZE_QUERIES);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Update_Zero_Allowance_Fails()
         {
-            Client.Account.Identity.Limit.Update(VALID_IDENTITY, VALID_SERVICE, 0);
+            Client.Account.Identity.Limit.Update(VALID_IDENTITY, VALID_SERVICE, 0, VALID_ANALYZE_QUERIES);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Update_Negative_Analyze_Queries_Fails()
+        {
+            Client.Account.Identity.Limit.Update(VALID_IDENTITY, VALID_SERVICE, totalAllowance: VALID_TOTAL_ALLOWANCE, analyzeQueries: -1);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Update_Zero_Analyze_Queries_Fails()
+        {
+            Client.Account.Identity.Limit.Update(VALID_IDENTITY, VALID_SERVICE, totalAllowance: VALID_TOTAL_ALLOWANCE, analyzeQueries: 0);
+        }
+
+        [TestMethod]
+        public void Update_Null_Allowance_Succeeds()
+        {
+            var response = Client.Account.Identity.Limit.Update(VALID_IDENTITY, VALID_SERVICE, analyzeQueries: 600);
+            Assert.AreEqual(600, response.Data.analyze_queries);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
+        public void Update_Null_Analyze_Queries_Succeeds()
+        {
+            var response = Client.Account.Identity.Limit.Update(VALID_IDENTITY, VALID_SERVICE, totalAllowance: 200000);
+            Assert.AreEqual(200000, response.Data.total_allowance);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
         [TestMethod]
         public void Update_Succeeds()
         {
-            var response = Client.Account.Identity.Limit.Update(VALID_IDENTITY, VALID_SERVICE, 200000);
+            var response = Client.Account.Identity.Limit.Update(VALID_IDENTITY, VALID_SERVICE, 200000, 600);
             Assert.AreEqual(200000, response.Data.total_allowance);
+            Assert.AreEqual(600, response.Data.analyze_queries);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 

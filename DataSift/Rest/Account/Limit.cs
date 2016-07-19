@@ -18,16 +18,17 @@ namespace DataSift.Rest.Account
             _client = client;
         }
 
-        public RestAPIResponse Create(string identityId, string service, int totalAllowance)
+        public RestAPIResponse Create(string identityId, string service, int? totalAllowance = null, int? analyzeQueries = null)
         {
             Contract.Requires<ArgumentNullException>(identityId != null);
             Contract.Requires<ArgumentException>((identityId != null) ? identityId.Trim().Length > 0 : true);
             Contract.Requires<ArgumentException>((identityId != null) ? Constants.IDENTITY_ID_FORMAT.IsMatch(identityId) : true, Messages.INVALID_IDENTITY_ID);
             Contract.Requires<ArgumentNullException>(service != null);
             Contract.Requires<ArgumentException>((service != null) ? service.Trim().Length > 0 : true);
-            Contract.Requires<ArgumentException>(totalAllowance > 0);
+            Contract.Requires<ArgumentException>((totalAllowance != null) ? totalAllowance > 0 : true);
+            Contract.Requires<ArgumentException>((analyzeQueries != null) ? analyzeQueries > 0 : true);
 
-            return _client.GetRequest().Request("account/identity/" + identityId + "/limit", new { service = service, total_allowance = totalAllowance }, Method.POST);
+            return _client.GetRequest().Request("account/identity/" + identityId + "/limit", new { service = service, total_allowance = totalAllowance, analyze_queries = analyzeQueries }, Method.POST);
         }
 
         public RestAPIResponse Get(string service, string identityId = null, int? page = null, int? perPage = null)
@@ -45,16 +46,17 @@ namespace DataSift.Rest.Account
                 return _client.GetRequest().Request("account/identity/limit/" + HttpUtility.UrlEncode(service), new { page = page, per_page = perPage }, Method.GET);
         }
 
-        public RestAPIResponse Update(string identityId, string service, int totalAllowance)
+        public RestAPIResponse Update(string identityId, string service, int? totalAllowance = null, int? analyzeQueries = null)
         {
             Contract.Requires<ArgumentNullException>(identityId != null);
             Contract.Requires<ArgumentException>((identityId != null) ? identityId.Trim().Length > 0 : true);
             Contract.Requires<ArgumentException>((identityId != null) ? Constants.IDENTITY_ID_FORMAT.IsMatch(identityId) : true, Messages.INVALID_IDENTITY_ID);
             Contract.Requires<ArgumentNullException>(service != null);
             Contract.Requires<ArgumentException>((service != null) ? service.Trim().Length > 0 : true);
-            Contract.Requires<ArgumentException>(totalAllowance > 0);
+            Contract.Requires<ArgumentException>((totalAllowance != null) ? totalAllowance > 0 : true);
+            Contract.Requires<ArgumentException>((analyzeQueries != null) ? analyzeQueries > 0 : true);
 
-            return _client.GetRequest().Request("account/identity/" + identityId + "/limit/" + HttpUtility.UrlEncode(service), new { total_allowance = totalAllowance }, Method.PUT);
+            return _client.GetRequest().Request("account/identity/" + identityId + "/limit/" + HttpUtility.UrlEncode(service), new { total_allowance = totalAllowance, analyze_queries = analyzeQueries }, Method.PUT);
         }
 
         public RestAPIResponse Delete(string identityId, string service)
