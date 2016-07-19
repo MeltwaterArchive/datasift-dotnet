@@ -311,11 +311,40 @@ namespace DataSiftTests
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
+
+                case "pylon/" + Pylon.Task.VALID_SERVICE + "/task":
+                    switch (method)
+                    {
+                        case Method.GET:
+                            response = Pylon.TaskAPIResponses.Default.GetAll;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+
+                        case Method.POST:
+                            response = Pylon.TaskAPIResponses.Default.Create;
+                            result.StatusCode = HttpStatusCode.Created;
+                            break;
+                    }
+
+                    break;
+
+
+                case "pylon/" + Pylon.Task.VALID_SERVICE + "/task/" + Pylon.Task.VALID_TASK_ID:
+                    switch (method)
+                    {
+                        case Method.GET:
+                            response = Pylon.TaskAPIResponses.Default.GetOne;
+                            result.StatusCode = HttpStatusCode.OK;
+                            break;
+                    }
+
+                    break;
+
                 case "account/usage":
                     response = AccountAPIResponses.Default.Account_Usage;
                     result.StatusCode = HttpStatusCode.OK;
                     break;
-
+                    
                 case "account/identity":
                     switch (method) {
                         case Method.POST:

@@ -111,6 +111,7 @@
     <Compile Include="Push.cs" />
     <Compile Include="Source.cs" />
     <Compile Include="Streaming.cs" />
+    <Compile Include="Task.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

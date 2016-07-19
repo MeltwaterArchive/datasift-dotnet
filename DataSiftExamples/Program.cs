@@ -70,6 +70,10 @@ namespace DataSiftExamples
                 case ConsoleKey.D9:
                     Account.Run(username, apikey);
                     break;
+                    
+                case ConsoleKey.A:
+                    Task.Run(username, apikey);
+                    break;
 
                 default:
                     Console.WriteLine("Unknown example, please try again.\n");
@@ -90,7 +94,8 @@ namespace DataSiftExamples
             Console.WriteLine("    6. Pylon API endpoints");
             Console.WriteLine("    7. Account Identity API endpoints");
             Console.WriteLine("    8. Ingest data with ODP");
-            Console.WriteLine("    9. Account usage API endpoint"); 
+            Console.WriteLine("    9. Account usage API endpoint");
+            Console.WriteLine("    A. Task API endpoints");
             Console.WriteLine("\nPress a key to continue...\n");
         }
     }

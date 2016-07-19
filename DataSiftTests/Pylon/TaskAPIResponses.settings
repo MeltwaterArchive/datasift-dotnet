@@ -1,0 +1,90 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DataSiftTests.Pylon" GeneratedClassName="TaskAPIResponses">
+  <Profiles />
+  <Settings>
+    <Setting Name="GetAll" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{
+    "count": 18,
+    "page": 1,
+    "pages": 1,
+    "per_page": 25,
+    "tasks": [
+        {
+            "created_at": 1468879258,
+            "id": "6763dd472cf7e5af9cf1752627f11710a5335953",
+            "identity_id": "03a78e036afb076a6606c5195c1f9b42",
+            "name": "Bens Test",
+            "parameters": {
+                "end": 1468863265,
+                "start": 1468776865
+            },
+            "status": "Completed",
+            "subscription_id": "e9dde04774540ac119c2317a4d15a8b3a1350937",
+            "type": "analysis",
+            "updated_at": 1468879261
+        },
+        {
+            "created_at": 1468856049,
+            "id": "39ca0d5ad817a4a4b1a1ba5c878639459040f428",
+            "identity_id": "03a78e036afb076a6606c5195c1f9b42",
+            "name": "Time series analysis 1",
+            "parameters": {
+                "end": 1468856049,
+                "start": 1467646449
+            },
+            "status": "Completed",
+            "subscription_id": "e9dde04774540ac119c2317a4d15a8b3a1350937",
+            "type": "analysis",
+            "updated_at": 1468856059
+        },
+        {
+            "created_at": 1468856009,
+            "id": "867edb741cc045fa851068f96ca95a43936dd614",
+            "identity_id": "03a78e036afb076a6606c5195c1f9b42",
+            "name": "Time series analysis 2",
+            "parameters": {
+                "end": 1468856009,
+                "start": 1467646409
+            },
+            "status": "Completed",
+            "subscription_id": "e9dde04774540ac119c2317a4d15a8b3a1350937",
+            "type": "analysis",
+            "updated_at": 1468856019
+        }
+    ]
+}</Value>
+    </Setting>
+    <Setting Name="GetOne" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{
+            "created_at": 1468879258,
+            "id": "6763dd472cf7e5af9cf1752627f11710a5335953",
+            "identity_id": "03a78e036afb076a6606c5195c1f9b42",
+            "name": "Bens Test",
+            "parameters": {
+                "end": 1468863265,
+                "start": 1468776865
+            },
+            "status": "Completed",
+            "subscription_id": "e9dde04774540ac119c2317a4d15a8b3a1350937",
+            "type": "analysis",
+            "updated_at": 1468879261
+        }</Value>
+    </Setting>
+    <Setting Name="Create" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{
+            "created_at": 1468879258,
+            "id": "6763dd472cf7e5af9cf1752627f11710a5335953",
+            "identity_id": "03a78e036afb076a6606c5195c1f9b42",
+            "name": "Bens Test",
+            "parameters": {
+                "end": 1468863265,
+                "start": 1468776865
+            },
+            "status": "Completed",
+            "subscription_id": "e9dde04774540ac119c2317a4d15a8b3a1350937",
+            "type": "analysis",
+            "updated_at": 1468879261
+        }</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

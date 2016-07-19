@@ -12,6 +12,7 @@ using DataSift.Streaming;
 using WebSocket4Net;
 using System.Diagnostics;
 using DataSift.Rest.Account;
+using DataSift.Rest.Pylon;
 
 namespace DataSift
 {
@@ -21,7 +22,7 @@ namespace DataSift
         private string _apikey;
         private string _baseUrl = "https://api.datasift.com/";
         private string _baseIngestUrl = "https://in.datasift.com/";
-        private string _apiVersion = "1.3";
+        private string _apiVersion = "1.4";
         private GetAPIRequestDelegate _getRequest;
         private GetIngestRequestDelegate _getIngestRequest;
         private GetStreamConnectionDelegate _getConnection;

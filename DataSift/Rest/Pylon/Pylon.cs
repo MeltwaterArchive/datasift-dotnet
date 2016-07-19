@@ -7,15 +7,26 @@ using System.Diagnostics.Contracts;
 using RestSharp;
 using System.Dynamic;
 
-namespace DataSift.Rest
+namespace DataSift.Rest.Pylon
 {
     public class Pylon
     {
         DataSiftClient _client = null;
+        private Task _task;
 
         internal Pylon(DataSiftClient client)
         {
             _client = client;
+        }
+
+
+        public Task Task
+        {
+            get
+            {
+                if (_task == null) _task = new Task(_client);
+                return _task;
+            }
         }
 
         public RestAPIResponse Get(string id = null, int? page = null, int? perPage = null)
