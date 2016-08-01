@@ -158,13 +158,14 @@
     <Compile Include="Rest\Account\Token.cs" />
     <Compile Include="Rest\IIngestAPIRequest.cs" />
     <Compile Include="Rest\ODP.cs" />
-    <Compile Include="Rest\Pylon.cs" />
+    <Compile Include="Rest\Pylon\Pylon.cs" />
     <Compile Include="Rest\Historics.cs" />
     <Compile Include="Rest\HistoricsPreview.cs" />
     <Compile Include="Rest\HistoricsPreviewParameter.cs" />
     <Compile Include="Rest\IRestAPIRequest.cs" />
     <Compile Include="Rest\PullAPIResponse.cs" />
     <Compile Include="Rest\Push.cs" />
+    <Compile Include="Rest\Pylon\Task.cs" />
     <Compile Include="Rest\RestAPIException.cs" />
     <Compile Include="APIHelpers.cs" />
     <Compile Include="Rest\RestAPIRequest.cs" />

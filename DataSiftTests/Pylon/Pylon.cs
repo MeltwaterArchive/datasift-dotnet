@@ -2,7 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net;
 
-namespace DataSiftTests
+namespace DataSiftTests.Pylon
 {
     [TestClass]
     public class Pylon : TestBase

@@ -105,7 +105,9 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
@@ -133,6 +135,12 @@
     <Compile Include="MockStreamConnection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Core.cs" />
+    <Compile Include="Pylon\Task.cs" />
+    <Compile Include="Pylon\TaskAPIResponses.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>TaskAPIResponses.settings</DependentUpon>
+    </Compile>
     <Compile Include="Run.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
@@ -144,7 +152,7 @@
     <Compile Include="HistoricsPreview.cs" />
     <Compile Include="Source.cs" />
     <Compile Include="Streaming.cs" />
-    <Compile Include="Pylon.cs" />
+    <Compile Include="Pylon\Pylon.cs" />
     <Compile Include="Account\Identity.cs" />
     <Compile Include="ODP.cs" />
   </ItemGroup>
@@ -164,6 +172,10 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="Pylon\TaskAPIResponses.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>TaskAPIResponses.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Run.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Run.Designer.cs</LastGenOutput>

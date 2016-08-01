@@ -23,7 +23,7 @@ namespace DataSiftExamples
             var csdlV2 = "fb.content contains_any \"Ford, BMW, Honda, Mercedes\"";
 
             var get = client.Pylon.Get();
-            Console.WriteLine("\nCurrent of recordings / tasks: " + JsonConvert.SerializeObject(get.Data));
+            Console.WriteLine("\nCurrent recordings: " + JsonConvert.SerializeObject(get.Data));
 
             client.Pylon.Validate(csdlV1);
             Console.WriteLine("CSDL for recording validated");
