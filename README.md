@@ -115,7 +115,8 @@ This code is released under the BSD license. Please see the LICENSE file for mor
 
 ## Change Log
 
-* 1.3.1 - Added 'analyze_queries' limit for identities.
+* 1.3.2 - Added 'analyze_queries' limit for identities.
+* 1.3.1 - Fixed format validation for PYLON recording ids.
 * 1.3.0 - Moved library to use v1.3 of the DataSift API, including pylon/update endpoint.
 * 1.2.4 - Added support for /pylon/sample endpoint
 * 1.2.3 - Added support for /account/usage endpoint
