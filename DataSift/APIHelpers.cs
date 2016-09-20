@@ -147,7 +147,7 @@ namespace DataSift
                     else if (val.GetType() == typeof(List<HistoricsPreviewParameter>))
                         val = String.Join<HistoricsPreviewParameter>(";", val);
                     else if ( 
-                                !(endpoint.StartsWith("pylon/analyze")) && !(endpoint.Contains("/task"))
+                                !(endpoint.Contains("/analyze")) && !(endpoint.Contains("/task"))
                                 && (val.GetType().IsGenericType || val.GetType() == typeof(ExpandoObject))
                             )
                         val = JsonConvert.SerializeObject(val);

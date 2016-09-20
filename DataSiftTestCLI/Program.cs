@@ -287,25 +287,25 @@ namespace DataSiftTestCLI
             switch (command)
             {
                 case "validate":
-                    response = client.Pylon.Validate(_argsParser.GetParameter<string>("csdl"));
+                    response = client.Pylon.Validate(_argsParser.GetParameter<string>("service"), _argsParser.GetParameter<string>("csdl"));
                     break;
                 case "compile":
-                    response = client.Pylon.Compile(_argsParser.GetParameter<string>("csdl"));
+                    response = client.Pylon.Compile(_argsParser.GetParameter<string>("service"), _argsParser.GetParameter<string>("csdl"));
                     break;
                 case "start":
-                    response = client.Pylon.Start(_argsParser.GetParameter<string>("hash"), _argsParser.GetParameter<string>("name"));
+                    response = client.Pylon.Start(_argsParser.GetParameter<string>("service"), _argsParser.GetParameter<string>("hash"), _argsParser.GetParameter<string>("name"));
                     break;
                 case "stop":
-                    response = client.Pylon.Stop(_argsParser.GetParameter<string>("hash"));
+                    response = client.Pylon.Stop(_argsParser.GetParameter<string>("service"), _argsParser.GetParameter<string>("hash"));
                     break;
                 case "get":
-                    response = client.Pylon.Get(_argsParser.GetParameter<string>("hash"));
+                    response = client.Pylon.Get(_argsParser.GetParameter<string>("service"), _argsParser.GetParameter<string>("hash"));
                     break;
                 case "tags":
-                    response = client.Pylon.Get(_argsParser.GetParameter<string>("hash"));
+                    response = client.Pylon.Get(_argsParser.GetParameter<string>("service"), _argsParser.GetParameter<string>("hash"));
                     break;
                 case "analyze":
-                    response = client.Pylon.Analyze(_argsParser.GetParameter<string>("hash"),
+                    response = client.Pylon.Analyze(_argsParser.GetParameter<string>("service"), _argsParser.GetParameter<string>("hash"),
                         _argsParser.GetParameter<ExpandoObject>("parameters"), _argsParser.GetParameter<string>("filter"),
                         _argsParser.GetParameter<DateTimeOffset?>("start"), _argsParser.GetParameter<DateTimeOffset?>("end"));
                     break;

@@ -16,28 +16,29 @@ namespace DataSiftExamples
         internal static void Run(string username, string apikey)
         {
             var client = new DataSiftClient(username, apikey);
+            var service = "facebook";
 
             Console.WriteLine("Running 'Pylon' example...");
 
             var csdlV1 = "fb.content contains_any \"Ford, BMW, Honda\"";
             var csdlV2 = "fb.content contains_any \"Ford, BMW, Honda, Mercedes\"";
 
-            var get = client.Pylon.Get();
+            var get = client.Pylon.Get(service);
             Console.WriteLine("\nCurrent recordings: " + JsonConvert.SerializeObject(get.Data));
 
-            client.Pylon.Validate(csdlV1);
+            client.Pylon.Validate(service, csdlV1);
             Console.WriteLine("CSDL for recording validated");
 
-            var compile = client.Pylon.Compile(csdlV1);
+            var compile = client.Pylon.Compile(service, csdlV1);
             Console.WriteLine("Hash for filter: " + compile.Data.hash);
 
-            var start = client.Pylon.Start(compile.Data.hash, "Example recording");
+            var start = client.Pylon.Start(service, compile.Data.hash, "Example recording");
             Console.WriteLine("Recording started");
 
             Console.WriteLine("\nSleeping for a few seconds...");
             Thread.Sleep(5000);
 
-            var getRecording = client.Pylon.Get(id: start.Data.id);
+            var getRecording = client.Pylon.Get(service, id: start.Data.id);
             Console.WriteLine("\nThis recording: " + JsonConvert.SerializeObject(getRecording.Data));
 
             var analysisParams = new  {
@@ -49,10 +50,10 @@ namespace DataSiftExamples
                     }
                 };
 
-            var analysis = client.Pylon.Analyze(start.Data.id, analysisParams);
+            var analysis = client.Pylon.Analyze(service, start.Data.id, analysisParams);
             Console.WriteLine("\nAnalysis result: " + JsonConvert.SerializeObject(analysis.Data));
 
-            var analysisWithFilter = client.Pylon.Analyze(start.Data.id, analysisParams, filter: "fb.author.gender == \"male\"");
+            var analysisWithFilter = client.Pylon.Analyze(service, start.Data.id, analysisParams, filter: "fb.author.gender == \"male\"");
             Console.WriteLine("\nAnalysis (with filter) result: " + JsonConvert.SerializeObject(analysisWithFilter.Data));
 
             dynamic nested = new
@@ -74,28 +75,28 @@ namespace DataSiftExamples
                 }
             };
 
-            var analysisNested = client.Pylon.Analyze(start.Data.id, nested);
+            var analysisNested = client.Pylon.Analyze(service, start.Data.id, nested);
             Console.WriteLine("\nNested analysis result: " + JsonConvert.SerializeObject(analysisNested.Data));
 
-            var compile2 = client.Pylon.Compile(csdlV2);
+            var compile2 = client.Pylon.Compile(service, csdlV2);
             Console.WriteLine("\nHash for updated filter: " + compile2.Data.hash);
 
-            var update = client.Pylon.Update(start.Data.id, hash: compile2.Data.hash, name: "Example recording - updated");
+            var update = client.Pylon.Update(service, start.Data.id, hash: compile2.Data.hash, name: "Example recording - updated");
             Console.WriteLine("\nRecording updated");
 
             Console.WriteLine("\nSleeping for a few seconds...");
             Thread.Sleep(5000);
 
-            getRecording = client.Pylon.Get(id: start.Data.id);
+            getRecording = client.Pylon.Get(service, id: start.Data.id);
             Console.WriteLine("\nThis recording: " + JsonConvert.SerializeObject(getRecording.Data));
 
-            var tags = client.Pylon.Tags(start.Data.id);
+            var tags = client.Pylon.Tags(service, start.Data.id);
             Console.WriteLine("\nTags: " + JsonConvert.SerializeObject(tags.Data));
 
-            var sample = client.Pylon.Sample(start.Data.id, count: 10);
+            var sample = client.Pylon.Sample(service, start.Data.id, count: 10);
             Console.WriteLine("\nSuper public samples: " + sample.ToJson());
 
-            client.Pylon.Stop(start.Data.id);
+            client.Pylon.Stop(service, start.Data.id);
             Console.WriteLine("\nRecording stopped");
 
         }
