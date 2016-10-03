@@ -254,7 +254,7 @@ namespace DataSiftTests
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
-                case "pylon/get":
+                case "pylon/facebook/get":
                     if (prms.ContainsKey("id"))
                         response = PylonAPIResponses.Default.GetOne;
                     else
@@ -263,30 +263,30 @@ namespace DataSiftTests
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
-                case "pylon/validate":
+                case "pylon/facebook/validate":
                     response = PylonAPIResponses.Default.Validate;
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
-                case "pylon/compile":
+                case "pylon/facebook/compile":
                     response = PylonAPIResponses.Default.Compile;
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
-                case "pylon/start":
+                case "pylon/facebook/start":
                     response = PylonAPIResponses.Default.Start;
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
-                case "pylon/stop":
+                case "pylon/facebook/stop":
                     result.StatusCode = HttpStatusCode.NoContent;
                     break;
 
-                case "pylon/update":
+                case "pylon/facebook/update":
                     result.StatusCode = HttpStatusCode.NoContent;
                     break;
 
-                case "pylon/analyze":
+                case "pylon/facebook/analyze":
                     var analyze_id = (string)prms.First(p => p.Key == "id").Value;
 
                     if (analyze_id.IndexOf("nested") != -1)
@@ -301,18 +301,18 @@ namespace DataSiftTests
                     }
                     break;
 
-                case "pylon/tags":
+                case "pylon/facebook/tags":
                     response = PylonAPIResponses.Default.Tags;
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
-                case "pylon/sample":
+                case "pylon/facebook/sample":
                     response = PylonAPIResponses.Default.Sample;
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
 
-                case "pylon/" + Pylon.Task.VALID_SERVICE + "/task":
+                case "pylon/facebook/" + Pylon.Task.VALID_SERVICE + "/task":
                     switch (method)
                     {
                         case Method.GET:
@@ -329,7 +329,7 @@ namespace DataSiftTests
                     break;
 
 
-                case "pylon/" + Pylon.Task.VALID_SERVICE + "/task/" + Pylon.Task.VALID_TASK_ID:
+                case "pylon/facebook/" + Pylon.Task.VALID_SERVICE + "/task/" + Pylon.Task.VALID_TASK_ID:
                     switch (method)
                     {
                         case Method.GET:

@@ -44,7 +44,7 @@ namespace DataSiftExamples
             var getOne = client.Pylon.Task.Get(service, taskId: create.Data.id);
             Console.WriteLine("\nGot task: " + JsonConvert.SerializeObject(getOne.Data));
 
-            while(getOne.Data.status != "Completed")
+            while(getOne.Data.status != "completed")
             {
                 getOne = client.Pylon.Task.Get(service, taskId: create.Data.id);
                 Console.WriteLine("\nStatus: " + getOne.Data.status);

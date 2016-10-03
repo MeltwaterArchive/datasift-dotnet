@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Diagnostics.Contracts;
 using RestSharp;
 using System.Dynamic;
+using RestSharp.Contrib;
 
 namespace DataSift.Rest.Pylon
 {
@@ -29,34 +30,46 @@ namespace DataSift.Rest.Pylon
             }
         }
 
-        public RestAPIResponse Get(string id = null, int? page = null, int? perPage = null)
+        public RestAPIResponse Get(string service, string id = null, int? page = null, int? perPage = null)
         {
+            Contract.Requires<ArgumentNullException>(service != null);
+            Contract.Requires<ArgumentException>((service != null) ? service.Trim().Length > 0 : true);
+
             Contract.Requires<ArgumentException>((id != null) ? id.Trim().Length > 0 : true);
             Contract.Requires<ArgumentException>((id != null) ? Constants.RECORDING_ID_FORMAT.IsMatch(id) : true, Messages.INVALID_RECORDING_ID);
             Contract.Requires<ArgumentException>((page.HasValue) ? page.Value > 0 : true);
             Contract.Requires<ArgumentException>((perPage.HasValue) ? perPage.Value > 0 : true);
 
-            return _client.GetRequest().Request("pylon/get", new { id = id });
+            return _client.GetRequest().Request("pylon/" + HttpUtility.UrlEncode(service) + "/get", new { id = id });
         }
 
-        public RestAPIResponse Validate(string csdl)
+        public RestAPIResponse Validate(string service, string csdl)
         {
+            Contract.Requires<ArgumentNullException>(service != null);
+            Contract.Requires<ArgumentException>((service != null) ? service.Trim().Length > 0 : true);
+
             Contract.Requires<ArgumentNullException>(csdl != null);
             Contract.Requires<ArgumentException>(csdl.Trim().Length > 0);
 
-            return _client.GetRequest().Request("pylon/validate", new { csdl = csdl }, Method.POST);
+            return _client.GetRequest().Request("pylon/" + HttpUtility.UrlEncode(service) + "/validate", new { csdl = csdl }, Method.POST);
         }
 
-        public RestAPIResponse Compile(string csdl)
+        public RestAPIResponse Compile(string service, string csdl)
         {
+            Contract.Requires<ArgumentNullException>(service != null);
+            Contract.Requires<ArgumentException>((service != null) ? service.Trim().Length > 0 : true);
+
             Contract.Requires<ArgumentNullException>(csdl != null);
             Contract.Requires<ArgumentException>(csdl.Trim().Length > 0);
 
-            return _client.GetRequest().Request("pylon/compile", new { csdl = csdl }, Method.POST);
+            return _client.GetRequest().Request("pylon/" + HttpUtility.UrlEncode(service) + "/compile", new { csdl = csdl }, Method.POST);
         }
 
-        public RestAPIResponse Start(string hash = null, string name = null, string id = null)
+        public RestAPIResponse Start(string service, string hash = null, string name = null, string id = null)
         {
+            Contract.Requires<ArgumentNullException>(service != null);
+            Contract.Requires<ArgumentException>((service != null) ? service.Trim().Length > 0 : true);
+
             Contract.Requires<ArgumentException>((hash != null) ? hash.Trim().Length > 0: true);
             Contract.Requires<ArgumentException>((hash != null) ? Constants.STREAM_HASH_FORMAT.IsMatch(hash) : true, Messages.INVALID_STREAM_HASH);
 
@@ -65,20 +78,26 @@ namespace DataSift.Rest.Pylon
             Contract.Requires<ArgumentException>((id != null) ? id.Trim().Length > 0 : true);
             Contract.Requires<ArgumentException>((id != null) ? Constants.RECORDING_ID_FORMAT.IsMatch(id) : true, Messages.INVALID_RECORDING_ID);
 
-            return _client.GetRequest().Request("pylon/start", new { hash = hash, name = name, id = id }, Method.PUT);
+            return _client.GetRequest().Request("pylon/" + HttpUtility.UrlEncode(service) + "/start", new { hash = hash, name = name, id = id }, Method.PUT);
         }
 
-        public RestAPIResponse Stop(string id)
+        public RestAPIResponse Stop(string service, string id)
         {
+            Contract.Requires<ArgumentNullException>(service != null);
+            Contract.Requires<ArgumentException>((service != null) ? service.Trim().Length > 0 : true);
+
             Contract.Requires<ArgumentNullException>(id != null);
             Contract.Requires<ArgumentException>((id != null) ? Constants.RECORDING_ID_FORMAT.IsMatch(id) : true, Messages.INVALID_RECORDING_ID);
             Contract.Requires<ArgumentException>(id.Trim().Length > 0);
 
-            return _client.GetRequest().Request("pylon/stop", new { id = id }, Method.PUT);
+            return _client.GetRequest().Request("pylon/" + HttpUtility.UrlEncode(service) + "/stop", new { id = id }, Method.PUT);
         }
 
-        public RestAPIResponse Update(string id, string hash = null, string name = null)
+        public RestAPIResponse Update(string service, string id, string hash = null, string name = null)
         {
+            Contract.Requires<ArgumentNullException>(service != null);
+            Contract.Requires<ArgumentException>((service != null) ? service.Trim().Length > 0 : true);
+
             Contract.Requires<ArgumentNullException>(id != null);
             Contract.Requires<ArgumentException>((id != null) ? Constants.RECORDING_ID_FORMAT.IsMatch(id) : true, Messages.INVALID_RECORDING_ID);
             Contract.Requires<ArgumentException>(id.Trim().Length > 0);
@@ -88,11 +107,14 @@ namespace DataSift.Rest.Pylon
 
             Contract.Requires<ArgumentException>((name != null) ? name.Trim().Length > 0 : true);
 
-            return _client.GetRequest().Request("pylon/update", new { id =id, hash = hash, name = name }, Method.PUT);
+            return _client.GetRequest().Request("pylon/" + HttpUtility.UrlEncode(service) + "/update", new { id =id, hash = hash, name = name }, Method.PUT);
         }
 
-        public RestAPIResponse Analyze(string id, dynamic parameters, string filter = null, DateTimeOffset? start = null, DateTimeOffset? end = null)
+        public RestAPIResponse Analyze(string service, string id, dynamic parameters, string filter = null, DateTimeOffset? start = null, DateTimeOffset? end = null)
         {
+            Contract.Requires<ArgumentNullException>(service != null);
+            Contract.Requires<ArgumentException>((service != null) ? service.Trim().Length > 0 : true);
+
             Contract.Requires<ArgumentNullException>(id != null);
             Contract.Requires<ArgumentException>((id != null) ? Constants.RECORDING_ID_FORMAT.IsMatch(id) : true, Messages.INVALID_RECORDING_ID);
             Contract.Requires<ArgumentException>(id.Trim().Length > 0);
@@ -107,20 +129,26 @@ namespace DataSift.Rest.Pylon
                 throw new ArgumentNullException("parameters");
             }
 
-            return _client.GetRequest().Request("pylon/analyze", new { id = id, parameters = parameters, filter = filter, start = start, end = end }, Method.POST);
+            return _client.GetRequest().Request("pylon/" + HttpUtility.UrlEncode(service) + "/analyze", new { id = id, parameters = parameters, filter = filter, start = start, end = end }, Method.POST);
         }
 
-        public RestAPIResponse Tags(string id)
+        public RestAPIResponse Tags(string service, string id)
         {
+            Contract.Requires<ArgumentNullException>(service != null);
+            Contract.Requires<ArgumentException>((service != null) ? service.Trim().Length > 0 : true);
+
             Contract.Requires<ArgumentNullException>(id != null);
             Contract.Requires<ArgumentException>((id != null) ? Constants.RECORDING_ID_FORMAT.IsMatch(id) : true, Messages.INVALID_RECORDING_ID);
             Contract.Requires<ArgumentException>(id.Trim().Length > 0);
 
-            return _client.GetRequest().Request("pylon/tags", new { id = id });
+            return _client.GetRequest().Request("pylon/" + HttpUtility.UrlEncode(service) + "/tags", new { id = id });
         }
 
-        public RestAPIResponse Sample(string id, int? count = null, DateTimeOffset? start = null, DateTimeOffset? end = null, string filter = null)
+        public RestAPIResponse Sample(string service, string id, int? count = null, DateTimeOffset? start = null, DateTimeOffset? end = null, string filter = null)
         {
+            Contract.Requires<ArgumentNullException>(service != null);
+            Contract.Requires<ArgumentException>((service != null) ? service.Trim().Length > 0 : true);
+
             Contract.Requires<ArgumentNullException>(id != null);
             Contract.Requires<ArgumentException>(id.Trim().Length > 0);
             Contract.Requires<ArgumentException>(Constants.RECORDING_ID_FORMAT.IsMatch(id), Messages.INVALID_RECORDING_ID);
@@ -133,7 +161,7 @@ namespace DataSift.Rest.Pylon
 
             Contract.Requires<ArgumentException>((filter != null) ? filter.Trim().Length > 0 : true);
 
-            return _client.GetRequest().Request("pylon/sample", new { id = id, count = count, start = start, end = end, filter = filter });
+            return _client.GetRequest().Request("pylon/" + HttpUtility.UrlEncode(service) + "/sample", new { id = id, count = count, start = start, end = end, filter = filter });
         }
 
     }
