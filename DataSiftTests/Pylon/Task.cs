@@ -38,20 +38,42 @@ namespace DataSiftTests.Pylon
         [ExpectedException(typeof(ArgumentNullException))]
         public void Get_Null_Service_Fails()
         {
-            Client.Pylon.Task.Get(null);
+            Client.Pylon.Task.Get(null, VALID_TYPE);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void Get_Empty_Service_Fails()
         {
-            Client.Pylon.Task.Get("");
+            Client.Pylon.Task.Get("", VALID_TYPE);
         }
 
         [TestMethod]
         public void Get_Valid_Service_Succeeds()
         {
-            var response = Client.Pylon.Task.Get(VALID_SERVICE);
+            var response = Client.Pylon.Task.Get(VALID_SERVICE, VALID_TYPE);
+            Assert.AreEqual("analysis", response.Data.tasks[0].type);
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Get_Null_Type_Fails()
+        {
+            Client.Pylon.Task.Get(VALID_SERVICE, null);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void Get_Empty_Type_Fails()
+        {
+            Client.Pylon.Task.Get(VALID_SERVICE, "");
+        }
+
+        [TestMethod]
+        public void Get_Valid_Type_Succeeds()
+        {
+            var response = Client.Pylon.Task.Get(VALID_SERVICE, VALID_TYPE);
             Assert.AreEqual("analysis", response.Data.tasks[0].type);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
@@ -60,13 +82,13 @@ namespace DataSiftTests.Pylon
         [ExpectedException(typeof(ArgumentException))]
         public void Get_Page_Is_Less_Than_One_Fails()
         {
-            Client.Pylon.Task.Get(VALID_SERVICE, page: 0);
+            Client.Pylon.Task.Get(VALID_SERVICE, VALID_TYPE, page: 0);
         }
 
         [TestMethod]
         public void Get_Page_Succeeds()
         {
-            var response = Client.Pylon.Task.Get(VALID_SERVICE, page: 1);
+            var response = Client.Pylon.Task.Get(VALID_SERVICE, VALID_TYPE, page: 1);
             Assert.AreEqual(3, response.Data.tasks.Count);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
@@ -75,13 +97,13 @@ namespace DataSiftTests.Pylon
         [ExpectedException(typeof(ArgumentException))]
         public void Get_Per_Page_Is_Less_Than_One_Fails()
         {
-            Client.Pylon.Task.Get(VALID_SERVICE, perPage: 0);
+            Client.Pylon.Task.Get(VALID_SERVICE, VALID_TYPE, perPage: 0);
         }
 
         [TestMethod]
         public void Get_PerPage_Succeeds()
         {
-            var response = Client.Pylon.Task.Get(VALID_SERVICE, page: 1, perPage: 3);
+            var response = Client.Pylon.Task.Get(VALID_SERVICE, VALID_TYPE, page: 1, perPage: 3);
             Assert.AreEqual(3, response.Data.tasks.Count);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
@@ -94,34 +116,48 @@ namespace DataSiftTests.Pylon
         [ExpectedException(typeof(ArgumentNullException))]
         public void GetOne_Null_Service_Fails()
         {
-            Client.Pylon.Task.Get(null, taskId: VALID_TASK_ID);
+            Client.Pylon.Task.Get(null, VALID_TYPE, taskId: VALID_TASK_ID);
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void GetOne_Empty_Service_Fails()
         {
-            Client.Pylon.Task.Get("", taskId: VALID_TASK_ID);
+            Client.Pylon.Task.Get("", VALID_TYPE, taskId: VALID_TASK_ID);
         }
-        
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void GetOne_Null_Type_Fails()
+        {
+            Client.Pylon.Task.Get(VALID_SERVICE, null, taskId: VALID_TASK_ID);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void GetOne_Empty_Type_Fails()
+        {
+            Client.Pylon.Task.Get(VALID_SERVICE, "", taskId: VALID_TASK_ID);
+        }
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void GetOne_Empty_Id_Fails()
         {
-            Client.Pylon.Task.Get(VALID_SERVICE, taskId: "");
+            Client.Pylon.Task.Get(VALID_SERVICE, VALID_TYPE, taskId: "");
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException))]
         public void GetOne_Invalid_Id_Fails()
         {
-            Client.Pylon.Task.Get(VALID_SERVICE, taskId: "taskId");
+            Client.Pylon.Task.Get(VALID_SERVICE, VALID_TYPE, taskId: "taskId");
         }
 
         [TestMethod]
         public void GetOne_Succeeds()
         {
-            var response = Client.Pylon.Task.Get(VALID_SERVICE, taskId: VALID_TASK_ID);
+            var response = Client.Pylon.Task.Get(VALID_SERVICE, VALID_TYPE, taskId: VALID_TASK_ID);
             Assert.AreEqual(VALID_TASK_ID, response.Data.id);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }

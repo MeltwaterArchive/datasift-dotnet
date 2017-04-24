@@ -311,25 +311,25 @@ namespace DataSiftTests
                     result.StatusCode = HttpStatusCode.OK;
                     break;
 
-
-                case "pylon/facebook/" + Pylon.Task.VALID_SERVICE + "/task":
-                    switch (method)
+                case "pylon/" + Pylon.Task.VALID_SERVICE + "/task":
+                    if(method == Method.POST)
                     {
-                        case Method.GET:
-                            response = Pylon.TaskAPIResponses.Default.GetAll;
-                            result.StatusCode = HttpStatusCode.OK;
-                            break;
+                        response = Pylon.TaskAPIResponses.Default.Create;
+                        result.StatusCode = HttpStatusCode.Created;
+                    }
 
-                        case Method.POST:
-                            response = Pylon.TaskAPIResponses.Default.Create;
-                            result.StatusCode = HttpStatusCode.Created;
-                            break;
+                    break;
+                    
+                case "pylon/" + Pylon.Task.VALID_SERVICE + "/task/" + Pylon.Task.VALID_TYPE:
+                    if (method == Method.GET)
+                    {
+                        response = Pylon.TaskAPIResponses.Default.GetAll;
+                        result.StatusCode = HttpStatusCode.OK;
                     }
 
                     break;
 
-
-                case "pylon/facebook/" + Pylon.Task.VALID_SERVICE + "/task/" + Pylon.Task.VALID_TASK_ID:
+                case "pylon/" + Pylon.Task.VALID_SERVICE + "/task/" + Pylon.Task.VALID_TYPE + "/" + Pylon.Task.VALID_TASK_ID:
                     switch (method)
                     {
                         case Method.GET:

@@ -114,6 +114,7 @@ This code is released under the BSD license. Please see the LICENSE file for mor
 
 ## Change Log
 
+* 1.5.0 - Moved library to use v1.5 of the DataSift API, including support for Media Strategies API. 
 * 1.4.0 - Moved library to use v1.4 of the DataSift API, including task endpoints. 
 * 1.3.2 - Added 'analyze_queries' limit for identities.
 * 1.3.1 - Fixed format validation for PYLON recording ids.

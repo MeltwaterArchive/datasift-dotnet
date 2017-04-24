@@ -18,10 +18,13 @@ namespace DataSift.Rest.Pylon
             _client = client;
         }
 
-        public RestAPIResponse Get(string service, string taskId = null, int? page = null, int? perPage = null)
+        public RestAPIResponse Get(string service, string type, string taskId = null, int? page = null, int? perPage = null)
         {
             Contract.Requires<ArgumentNullException>(service != null);
             Contract.Requires<ArgumentException>((service != null) ? service.Trim().Length > 0 : true);
+
+            Contract.Requires<ArgumentNullException>(type != null);
+            Contract.Requires<ArgumentException>((type != null) ? type.Trim().Length > 0 : true);
 
             Contract.Requires<ArgumentException>((taskId != null) ? taskId.Trim().Length > 0 : true);
             Contract.Requires<ArgumentException>((taskId != null) ? Constants.TASK_ID_FORMAT.IsMatch(taskId) : true, Messages.INVALID_TASK_ID);
@@ -30,9 +33,9 @@ namespace DataSift.Rest.Pylon
             Contract.Requires<ArgumentException>((perPage.HasValue) ? perPage.Value > 0 : true);
             
             if (taskId != null)
-                return _client.GetRequest().Request("pylon/" + HttpUtility.UrlEncode(service) + "/task/" + taskId, null, Method.GET);
+                return _client.GetRequest().Request("pylon/" + HttpUtility.UrlEncode(service) + "/task/" + type + "/" + taskId, null, Method.GET);
             else
-                return _client.GetRequest().Request("pylon/" + HttpUtility.UrlEncode(service) + "/task", new { page = page, per_page = perPage }, Method.GET);
+                return _client.GetRequest().Request("pylon/" + HttpUtility.UrlEncode(service) + "/task/" + type, new { page = page, per_page = perPage }, Method.GET);
 
         }
 

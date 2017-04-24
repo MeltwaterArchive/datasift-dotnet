@@ -72,7 +72,11 @@ namespace DataSiftExamples
                     break;
                     
                 case ConsoleKey.A:
-                    Task.Run(username, apikey);
+                    AnalysisTask.Run(username, apikey);
+                    break;
+
+                case ConsoleKey.B:
+                    InsightTask.Run(username, apikey);
                     break;
 
                 default:
@@ -95,7 +99,8 @@ namespace DataSiftExamples
             Console.WriteLine("    7. Account Identity API endpoints");
             Console.WriteLine("    8. Ingest data with ODP");
             Console.WriteLine("    9. Account usage API endpoint");
-            Console.WriteLine("    A. Task API endpoints");
+            Console.WriteLine("    A. Analysis tasks example");
+            Console.WriteLine("    B. Insight tasks example (Media Strategies API)");
             Console.WriteLine("\nPress a key to continue...\n");
         }
     }
