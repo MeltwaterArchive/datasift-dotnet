@@ -76,7 +76,7 @@ namespace DataSiftExamples
                     break;
 
                 case ConsoleKey.B:
-                    InsightTask.Run(username, apikey);
+                    StrategyTask.Run(username, apikey);
                     break;
 
                 default:

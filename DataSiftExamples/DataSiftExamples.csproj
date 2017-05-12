@@ -102,7 +102,7 @@
     <Compile Include="Account.cs" />
     <Compile Include="AccountIdentity.cs" />
     <Compile Include="Ingestion.cs" />
-    <Compile Include="InsightTask.cs" />
+    <Compile Include="StrategyTask.cs" />
     <Compile Include="Pylon.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Historics.cs" />
