@@ -102,6 +102,7 @@
     <Compile Include="Account.cs" />
     <Compile Include="AccountIdentity.cs" />
     <Compile Include="Ingestion.cs" />
+    <Compile Include="InsightTask.cs" />
     <Compile Include="Pylon.cs" />
     <Compile Include="Core.cs" />
     <Compile Include="Historics.cs" />
@@ -111,7 +112,7 @@
     <Compile Include="Push.cs" />
     <Compile Include="Source.cs" />
     <Compile Include="Streaming.cs" />
-    <Compile Include="Task.cs" />
+    <Compile Include="AnalysisTask.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
