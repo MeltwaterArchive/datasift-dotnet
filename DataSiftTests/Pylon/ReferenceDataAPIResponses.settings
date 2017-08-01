@@ -1,0 +1,237 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DataSiftTests.Pylon" GeneratedClassName="ReferenceDataAPIResponses">
+  <Profiles />
+  <Settings>
+    <Setting Name="GetAll" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{
+    "count": 15,
+    "page": 1,
+    "pages": 1,
+    "per_page": 25,
+    "data": [
+        {
+            "name": "User member functions",
+            "slug": "/functions",
+            "description": ""
+        },
+        {
+            "name": "User member seniorities",
+            "slug": "/seniorities",
+            "description": ""
+        },
+        {
+            "name": "User member employer industry sectors",
+            "slug": "/sectors",
+            "description": ""
+        },
+        {
+            "name": "User member employer sizes",
+            "slug": "/company_sizes",
+            "description": ""
+        },
+        {
+            "name": "User member field groups names",
+            "slug": "/field_names",
+            "description": ""
+        },
+        {
+            "name": "User member degree groups",
+            "slug": "/degree_groups",
+            "description": ""
+        },
+        {
+            "name": "User member country",
+            "slug": "/countries",
+            "description": ""
+        },
+        {
+            "name": "User member gender",
+            "slug": "/genders",
+            "description": ""
+        },
+        {
+            "name": "User member age",
+            "slug": "/ages",
+            "description": ""
+        },
+        {
+            "name": "User member minor continent",
+            "slug": "/minor_continents",
+            "description": ""
+        },
+        {
+            "name": "User member field groups",
+            "slug": "/field_groups",
+            "description": ""
+        },
+        {
+            "name": "User member custom segments",
+            "slug": "/custom_segments",
+            "description": ""
+        },
+        {
+            "name": "User member education status",
+            "slug": "/education_statuses",
+            "description": ""
+        },
+        {
+            "name": "User member employer industry sectors",
+            "slug": "/industries",
+            "description": ""
+        },
+        {
+            "name": "List all reference data items",
+            "slug": "/demographic_values",
+            "description": ""
+        }
+    ]
+}</Value>
+    </Setting>
+    <Setting Name="GetAllSmallPage" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{
+    "count": 15,
+    "page": 2,
+    "pages": 3,
+    "per_page": 5,
+    "data": [
+        {
+            "name": "User member degree groups",
+            "slug": "/degree_groups",
+            "description": ""
+        },
+        {
+            "name": "User member country",
+            "slug": "/countries",
+            "description": ""
+        },
+        {
+            "name": "User member gender",
+            "slug": "/genders",
+            "description": ""
+        },
+        {
+            "name": "User member age",
+            "slug": "/ages",
+            "description": ""
+        },
+        {
+            "name": "User member minor continent",
+            "slug": "/minor_continents",
+            "description": ""
+        }
+    ]
+}</Value>
+    </Setting>
+    <Setting Name="Functions" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">{
+    "count": 26,
+    "values": [
+        {
+            "value": "accounting",
+            "title": "Accounting"
+        },
+        {
+            "value": "administrative",
+            "title": "Administrative"
+        },
+        {
+            "value": "arts and design",
+            "title": "Arts and Design"
+        },
+        {
+            "value": "business development",
+            "title": "Business Development"
+        },
+        {
+            "value": "community and social services",
+            "title": "Community and Social Services"
+        },
+        {
+            "value": "consulting",
+            "title": "Consulting"
+        },
+        {
+            "value": "education",
+            "title": "Education"
+        },
+        {
+            "value": "engineering",
+            "title": "Engineering"
+        },
+        {
+            "value": "entrepreneurship",
+            "title": "Entrepreneurship"
+        },
+        {
+            "value": "finance",
+            "title": "Finance"
+        },
+        {
+            "value": "healthcare services",
+            "title": "Healthcare Services"
+        },
+        {
+            "value": "human resources",
+            "title": "Human Resources"
+        },
+        {
+            "value": "information technology",
+            "title": "Information Technology"
+        },
+        {
+            "value": "legal",
+            "title": "Legal"
+        },
+        {
+            "value": "marketing",
+            "title": "Marketing"
+        },
+        {
+            "value": "media and communication",
+            "title": "Media and Communication"
+        },
+        {
+            "value": "military and protective services",
+            "title": "Military and Protective Services"
+        },
+        {
+            "value": "operations",
+            "title": "Operations"
+        },
+        {
+            "value": "product management",
+            "title": "Product Management"
+        },
+        {
+            "value": "program and project management",
+            "title": "Program and Project Management"
+        },
+        {
+            "value": "purchasing",
+            "title": "Purchasing"
+        },
+        {
+            "value": "quality assurance",
+            "title": "Quality Assurance"
+        },
+        {
+            "value": "real estate",
+            "title": "Real Estate"
+        },
+        {
+            "value": "research",
+            "title": "Research"
+        },
+        {
+            "value": "sales",
+            "title": "Sales"
+        },
+        {
+            "value": "support",
+            "title": "Support"
+        }
+    ]
+}</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

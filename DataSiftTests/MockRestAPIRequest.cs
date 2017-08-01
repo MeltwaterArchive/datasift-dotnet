@@ -340,6 +340,28 @@ namespace DataSiftTests
 
                     break;
 
+                case "pylon/" + Pylon.Reference.VALID_SERVICE + "/reference":
+                    if (method == Method.GET)
+                    {
+                        if (prms.ContainsKey("per_page") || prms.ContainsKey("page"))
+                            response = Pylon.ReferenceDataAPIResponses.Default.GetAllSmallPage;
+                        else
+                            response = Pylon.ReferenceDataAPIResponses.Default.GetAll;
+
+                        result.StatusCode = HttpStatusCode.OK;
+                    }
+
+                    break;
+
+                case "pylon/" + Pylon.Reference.VALID_SERVICE + "/reference/" + Pylon.Reference.VALID_SLUG:
+                    if (method == Method.GET)
+                    {
+                        response = Pylon.ReferenceDataAPIResponses.Default.Functions;
+                        result.StatusCode = HttpStatusCode.OK;
+                    }
+
+                    break;
+
                 case "account/usage":
                     response = AccountAPIResponses.Default.Account_Usage;
                     result.StatusCode = HttpStatusCode.OK;

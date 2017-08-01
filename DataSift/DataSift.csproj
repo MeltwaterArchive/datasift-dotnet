@@ -165,6 +165,7 @@
     <Compile Include="Rest\IRestAPIRequest.cs" />
     <Compile Include="Rest\PullAPIResponse.cs" />
     <Compile Include="Rest\Push.cs" />
+    <Compile Include="Rest\Pylon\Reference.cs" />
     <Compile Include="Rest\Pylon\Task.cs" />
     <Compile Include="Rest\RestAPIException.cs" />
     <Compile Include="APIHelpers.cs" />
