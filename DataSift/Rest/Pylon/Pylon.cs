@@ -14,12 +14,12 @@ namespace DataSift.Rest.Pylon
     {
         DataSiftClient _client = null;
         private Task _task;
+        private Reference _reference;
 
         internal Pylon(DataSiftClient client)
         {
             _client = client;
         }
-
 
         public Task Task
         {
@@ -27,6 +27,15 @@ namespace DataSift.Rest.Pylon
             {
                 if (_task == null) _task = new Task(_client);
                 return _task;
+            }
+        }
+
+        public Reference Reference
+        {
+            get
+            {
+                if (_reference == null) _reference = new Reference(_client);
+                return _reference;
             }
         }
 

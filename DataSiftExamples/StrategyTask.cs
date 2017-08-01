@@ -7,7 +7,7 @@ namespace DataSiftExamples
 {
     static class StrategyTask
     {
-        // Note that to run the PYLON example you must use an API key which corresponds to a valid identity with Facebook access
+        // Note that to run the example you must use an API key which corresponds to a valid identity with Media Strategies API access
         internal static void Run(string username, string apikey)
         {
             var client = new DataSiftClient(username, apikey);

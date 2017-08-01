@@ -79,6 +79,10 @@ namespace DataSiftExamples
                     StrategyTask.Run(username, apikey);
                     break;
 
+                case ConsoleKey.C:
+                    ReferenceData.Run(username, apikey);
+                    break;
+
                 default:
                     Console.WriteLine("Unknown example, please try again.\n");
                     WaitForExampleChoice();
@@ -101,6 +105,7 @@ namespace DataSiftExamples
             Console.WriteLine("    9. Account usage API endpoint");
             Console.WriteLine("    A. Analysis tasks example");
             Console.WriteLine("    B. Insight tasks example (Media Strategies API)");
+            Console.WriteLine("    C. Reference Data API example");
             Console.WriteLine("\nPress a key to continue...\n");
         }
     }
