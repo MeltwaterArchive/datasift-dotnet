@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Diagnostics.Contracts;
 using RestSharp;
 using System.Dynamic;
-using RestSharp.Contrib;
+using System.Web;
 
 namespace DataSift.Rest.Pylon
 {

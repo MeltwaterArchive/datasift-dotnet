@@ -2,7 +2,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Datasift.net</id>
-        <version>1.5.1</version>
+        <version>1.5.2</version>
         <authors>Datasift</authors>
         <licenseUrl>https://github.com/datasift/datasift-dotnet/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/datasift/datasift-dotnet/tree/master</projectUrl>
@@ -14,7 +14,7 @@
         <tags>Datasift</tags>
         <dependencies>
             <dependency id="Newtonsoft.Json" version="6.0.3" />
-            <dependency id="RestSharp" version="104.4.0" />
+            <dependency id="RestSharp" version="105.2.3" />
             <dependency id="WebSocket4Net" version="0.10" />
         </dependencies>
         <references>

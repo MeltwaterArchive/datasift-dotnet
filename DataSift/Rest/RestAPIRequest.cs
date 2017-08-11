@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using RestSharp;
 using System.ComponentModel;
-
+using RestSharp.Authenticators;
 
 namespace DataSift.Rest
 {
