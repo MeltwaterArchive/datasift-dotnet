@@ -114,6 +114,7 @@ This code is released under the BSD license. Please see the LICENSE file for mor
 
 ## Change Log
 
+* 1.6.0 - Moved library to use v1.6 of the DataSift API, updated to use TLS v1.2.
 * 1.5.2 - Updated to v105 of RestSharp dependency
 * 1.5.1 - Added support for the Reference Data API.
 * 1.5.0 - Moved library to use v1.5 of the DataSift API, including support for Media Strategies API. 

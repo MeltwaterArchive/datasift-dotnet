@@ -29,9 +29,9 @@ namespace DataSift.Rest.Account
             }
         }
 
-        public RestAPIResponse Usage(AccountUsagePeriod? period = null, DateTimeOffset? start = null, DateTimeOffset? end = null)
+        public RestAPIResponse Usage(DateTimeOffset start, DateTimeOffset end, AccountUsagePeriod? period = null)
         {
-            Contract.Requires<ArgumentException>((end != null && start != null) ? end > start : true, Messages.HISTORICS_START_MUST_BE_BEFORE_END);
+            Contract.Requires<ArgumentException>(end > start, Messages.HISTORICS_START_MUST_BE_BEFORE_END);
 
             return _client.GetRequest().Request("account/usage", new
             {

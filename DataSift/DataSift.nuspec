@@ -2,14 +2,14 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
     <metadata>
         <id>Datasift.net</id>
-        <version>1.5.2</version>
+        <version>1.6.0</version>
         <authors>Datasift</authors>
         <licenseUrl>https://github.com/datasift/datasift-dotnet/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/datasift/datasift-dotnet/tree/master</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
         <description>This is the official .NET library for accessing Datasift.</description>
         <summary>Please see the LICENSE file for more details.</summary>
-        <copyright>Copyright 2014 MediaSift Ltd.</copyright>
+        <copyright>Copyright 2014-2018 MediaSift Ltd.</copyright>
         <language>en-GB</language>
         <tags>Datasift</tags>
         <dependencies>

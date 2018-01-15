@@ -198,8 +198,8 @@ namespace DataSiftTests
         public void Balance()
         {
             var response = Client.Balance();
-            Assert.AreEqual("Platinum", response.Data.balance.plan);
-            Assert.AreEqual(249993.7, response.Data.balance.remaining_dpus);
+            Assert.AreEqual("subscription", response.Data.balance.plan);
+            Assert.AreEqual(20000, response.Data.balance.threshold);
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 

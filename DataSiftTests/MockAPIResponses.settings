@@ -60,11 +60,33 @@
     </Setting>
     <Setting Name="Balance" Type="System.String" Scope="Application">
       <Value Profile="(Default)">{
-   "balance": {
-     "plan": "Platinum",
-     "cost": 0,
-     "remaining_dpus": 249993.7
-   }
+  "balance": {
+    "plan": "subscription",
+    "threshold": 20000,
+    "allowances": [
+      {
+        "name": "DPU Usage Plan",
+        "categories": [
+          "realtime",
+          "managed_sources",
+          "historics",
+          "historicpreview"
+        ],
+        "cost": 0,
+        "allowance": 100000,
+        "remaining": 71030.16,
+        "usage": 28969.84
+      },
+      {
+        "name": "BoardReader allowance",
+        "categories": [],
+        "cost": 0,
+        "allowance": 200000,
+        "remaining": 100000,
+        "usage": 100000
+      }
+    ]
+  }
 }</Value>
     </Setting>
     <Setting Name="HistoricsGet" Type="System.String" Scope="Application">

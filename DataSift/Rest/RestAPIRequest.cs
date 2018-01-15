@@ -23,7 +23,7 @@ namespace DataSift.Rest
 
         internal RestAPIRequest(string username, string apikey, string baseUrl, string apiVersion)
         {
-            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls;
+            ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
 
             _auth = new HttpBasicAuthenticator(username, apikey);
 
