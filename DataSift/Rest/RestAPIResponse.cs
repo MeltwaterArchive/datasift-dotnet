@@ -28,5 +28,7 @@ namespace DataSift.Rest
         public int Limit { get; set; }
         public int Remaining { get; set; }
         public int Cost { get; set; }
+        public long Reset { get; set; }
+        public int ResetTtl { get; set; }
     }
 }

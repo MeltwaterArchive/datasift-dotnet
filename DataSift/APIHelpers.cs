@@ -94,6 +94,12 @@ namespace DataSift
                     case Constants.HEADER_RATELIMIT_COST:
                         result.Cost = int.Parse((string)header.Value);
                         break;
+                    case Constants.HEADER_RATELIMIT_RESET:
+                        result.Reset = long.Parse((string)header.Value);
+                        break;
+                    case Constants.HEADER_RATELIMIT_RESET_TTL:
+                        result.ResetTtl = int.Parse((string)header.Value);
+                        break;
                 }
             }
 

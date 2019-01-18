@@ -28,6 +28,8 @@ namespace DataSift
         public const string HEADER_RATELIMIT_LIMIT = "x-ratelimit-limit";
         public const string HEADER_RATELIMIT_REMAINING = "x-ratelimit-remaining";
         public const string HEADER_RATELIMIT_COST = "x-ratelimit-cost";
+        public const string HEADER_RATELIMIT_RESET = "x-ratelimit-reset";
+        public const string HEADER_RATELIMIT_RESET_TTL = "x-ratelimit-reset-ttl";
         public const string HEADER_DATA_FORMAT = "x-datasift-format";
         public const string HEADER_CURSOR_CURRENT = "x-datasift-cursor-current";
         public const string HEADER_CURSOR_NEXT = "x-datasift-cursor-next";
