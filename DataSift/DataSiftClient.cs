@@ -16,7 +16,7 @@ using DataSift.Rest.Pylon;
 
 namespace DataSift
 {
-    public class DataSiftClient
+    public class DataSiftClient : IDataSiftClient
     {
         private string _username;
         private string _apikey;
