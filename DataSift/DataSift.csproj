@@ -152,6 +152,7 @@
     <Compile Include="Enum\PushStatus.cs" />
     <Compile Include="Enum\Sample.cs" />
     <Compile Include="Enum\UsagePeriod.cs" />
+    <Compile Include="IDataSiftClient.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rest\Account\Account.cs" />
